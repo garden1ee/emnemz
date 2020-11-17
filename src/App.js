@@ -1,6 +1,6 @@
 
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Something from './Something';
 
 function App() {
