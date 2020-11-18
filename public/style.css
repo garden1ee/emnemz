@@ -1,9 +1,17 @@
 body{
-  margin 0;
+  margin: 0;
 }
 a{
   text-decoration: none;
   font-size: 25px;
+}
+
+.header-button{
+text-decoration: none;
+font-size:25px;
+color: white;
+border-color: transparent;
+background-color: transparent;
 }
 
 .navbar{

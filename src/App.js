@@ -2,6 +2,8 @@ import React from 'react';
 import Something from './Something';
 import Main from './Main.js';
 import Test from './Test.js';
+import MyPage from './MyPage.js';
+import FinishedWork from './FinishedWork.js';
 
 class App extends React.Component {
     constructor(props) {
@@ -26,6 +28,12 @@ class App extends React.Component {
                 break;
             case "main":
                 content = <Main setPage={this.setPage} />;
+                break;
+            case "mypage":
+                content = <MyPage setPage={this.setPage} />;
+                break;
+            case "finished":
+                content = <FinishedWork setPage={this.setPage} />
                 break;
             default:
                 content = <h1>Error, choose a page</h1>;

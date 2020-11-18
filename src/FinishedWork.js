@@ -28,7 +28,7 @@ const searchbarstyle={
   marginTop: 10,  
 }
 
-class Main extends React.Component {
+class FinishedWork extends React.Component {
     render() {
         return (
             <section className="main">
@@ -75,7 +75,7 @@ class Main extends React.Component {
                     </nav>
                     </div>
                 <div className="test text">
-                    <p>This page is mainpage </p>
+                    <p>This page is for works that are complete </p>
                 </div>
             </section>
 
@@ -85,4 +85,4 @@ class Main extends React.Component {
 }
 
 
-export default Main;
+export default FinishedWork;
