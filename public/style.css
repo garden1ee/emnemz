@@ -48,3 +48,24 @@ a{
 .navbar_menu li:hover{
   background-color: #d49466;
 }
+
+.searchbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+}
+.searchbar_input{
+  display: flex;
+  list-style: none;
+  padding-left: none;
+  margin-left: none;
+}
+.searchbar_char{
+  display: flex;
+  list-style: none;
+  padding-right: none;
+}
+.inputbar{
+  width: 400px;
+}
