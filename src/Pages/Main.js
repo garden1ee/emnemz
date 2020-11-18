@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link, Route } from 'react-router-dom';
+import { RoomList, PublishedList, MyPage, Logout } from 'Pages/Mainpages';
 
 const btnstyle={
   border: 0,
@@ -16,33 +18,24 @@ const stnstyle={
   fontSize: 24,
   marginLeft:30,
 }
-const searchbarstyle={
-  color: "black",
-  background: "#C4C4C4",
-  fontSize: 17,
-  marginLeft:30,
-  height: 29,
-  width: 600,
-  marginRight: 10,
-}
 
-class Main extends React.Component {
-    render() {
-        return (
-            <div className="main header">
-                  <button style={btnstyle} className="header">Service Name</button>
-                  <button style={stnstyle} className="header">Writing Room</button>
-                  <button style={stnstyle} className="header">Finished Works</button>
-                  <button style={stnstyle} className="header">My Pages</button>
-                  <button style={stnstyle}  className="header">Setting</button>
-                  <button style={stnstyle} className="header">Logout</button>
-                  <hr></hr>
-                  <input style={searchbarstyle}/>
-                  <button style={stnstyle} classname="hashtag">hastag </button>
-                  <button onClick={()=>{alert("조금더 시간을 주시면 구현됩니다")}}> 검색</button>
-            </div>
-          )
-
-    }
-}
+const Main = ({match}) => {
+  return (
+    <div>
+      <div className="main header">
+          <button style={btnstyle} className="header"><Link to="/list">Service Name</Link></button>
+          <button style={stnstyle} className="header"><Link to="/list">Writing Room</Link></button>
+          <button style={stnstyle} className="header"><Link to="/library">Finished Works</Link></button>
+          <button style={stnstyle} className="header"><Link to="/mypage">My Pages</Link></button>
+          <button style={stnstyle}  className="header">Setting</button>
+          <button style={stnstyle} className="header"><Link to="/logout">Logout</Link></button>
+          <hr></hr>
+      </div>
+      <Route path="/list" component={RoomList}/>
+      <Route path="/library" component={PublishedList}/>
+      <Route path="/mypage" component={MyPage}/>
+      <Route path="/logout" component={Logout}/>
+    </div>
+  )
+};
 export default Main;

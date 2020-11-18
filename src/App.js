@@ -1,40 +1,16 @@
-import React from 'react';
-import Main from './Pages/Main.js';
-import WritingRoom from './Pages/WritingRoom.js';
-
-class App extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            currPage: "main",
-        };
-
-        this.setPage = this.setPage.bind(this);
-    }
-
-    setPage(page) {
-        this.setState({ currPage: page });
-    }
-
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+import { Main, Login, WritingRoom } from 'Pages';
+class App extends Component {
     render() {
-        let content;
-        switch (this.state.currPage) {
-            case "writingroom":
-                content = <WritingRoom setPage={this.setPage} />;
-                break;
-            case "main":
-                content = <Main setPage={this.setPage} />;
-                break;
-            default:
-                content = <h1>Error, choose a page</h1>;
-        }
-
         return (
-            <div className="div-bg" >
-                {content}
+            <div>
+                <Route path="/" component={ Main }/>
+                <Route path="/login" component={ Login }/>
+                <Route path="/writingroom" component={ WritingRoom }/>
             </div>
-        )
+        );
     }
 }
+
 export default App;
