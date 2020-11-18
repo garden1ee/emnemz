@@ -1,6 +1,6 @@
 import React from 'react';
-import Main from './Main.js';
-import Test from './Test.js';
+import Main from './Pages/Main.js';
+import WritingRoom from './Pages/WritingRoom.js';
 
 class App extends React.Component {
     constructor(props) {
@@ -20,8 +20,8 @@ class App extends React.Component {
     render() {
         let content;
         switch (this.state.currPage) {
-            case "test":
-                content = <Test setPage={this.setPage} />;
+            case "writingroom":
+                content = <WritingRoom setPage={this.setPage} />;
                 break;
             case "main":
                 content = <Main setPage={this.setPage} />;
