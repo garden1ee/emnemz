@@ -38,6 +38,7 @@ class Main extends React.Component {
                   <button style={stnstyle} className="header">Logout</button>
                   <hr></hr>
                   <input style={searchbarstyle}/>
+                  <button style={stnstyle} classname="hashtag">hastag </button>
                   <button onClick={()=>{alert("조금더 시간을 주시면 구현됩니다")}}> 검색</button>
             </div>
           )
