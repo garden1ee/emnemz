@@ -10,7 +10,6 @@ class Main extends React.Component {
                         <button className="header">My Page</button>
                         <button className="header">Setting</button>
                         <button className="header">Logout</button>
-                        <button className="header">lcc</button>
                 <hr></hr>
             </div>
             )
