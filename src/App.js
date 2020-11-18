@@ -1,5 +1,4 @@
 import React from 'react';
-import Something from './Something';
 import Main from './Main.js';
 import Test from './Test.js';
 
