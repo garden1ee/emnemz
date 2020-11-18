@@ -30,8 +30,6 @@ class Main extends React.Component {
     render() {
         return (
             <div className="main header">
-                <input style={searchbarstyle}/>
-                  <button onClick={()=>{alert("조금더 시간을 주시면 구현됩니다")}}> 검색</button>
             </div>
 
           )
