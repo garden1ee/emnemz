@@ -19,7 +19,7 @@ const stnstyle={
   marginLeft:30,
 }
 
-const Main = ({match}) => {
+const Header = ({match}) => {
   return (
     <div>
       <div className="main header">
@@ -38,4 +38,4 @@ const Main = ({match}) => {
     </div>
   )
 };
-export default Main;
+export default Header;
