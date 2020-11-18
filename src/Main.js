@@ -51,6 +51,20 @@ class Main extends React.Component {
                 <div className="test text">
                     <p>This page is mainpage </p>
                 </div>
+                <div class="row chatroom">
+                        <div className="col-4 chatroom_col1">
+                        <img src="https://image.ytn.co.kr/general/jpg/2017/0725/201707251131549101_t.jpg" alt="image not dispalyed" className="w-50" /> 
+                        <p>OnePiece Chatroom</p>
+                    </div>
+                    <div className="col-4 chatroom_col2">
+                        <img src="https://i.insider.com/5e835889671de07d8317e613?width=1100&format=jpeg&auto=webp" alt="image not dispalyed" className="w-50" />
+                        <p>Naruto</p>
+                    </div>
+                    <div className="col-4 chatroom_col3">
+                        <img src="https://upload.wikimedia.org/wikipedia/ko/f/f4/%EB%93%9C%EB%9D%BC%EB%A7%88_%EC%9D%B4%ED%83%9C%EC%9B%90_%ED%81%B4%EB%9D%BC%EC%93%B0_%ED%8F%AC%EC%8A%A4%ED%84%B0.jpg" alt="image not dispalyed" className="w-50" />
+                        <p>이태원클라쓰</p>
+                    </div>
+                </div>
             </section>
 
           )
