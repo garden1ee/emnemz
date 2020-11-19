@@ -1,11 +1,12 @@
-import React from 'react';
+import React from "react";
+import AuthApplication from "./Components/AuthApplication";
+import UserProvider from "./providers/UserProvider";
 
-const Login =() => {
-    return(
-        <div>
-            <h2>login</h2>
-        </div>
-    );
-};
-
+function Login() {
+  return (
+    <UserProvider>
+      <AuthApplication />
+    </UserProvider>
+  );
+}
 export default Login;
