@@ -1,19 +1,18 @@
 import React from "react";
-import { Router } from "@reach/router";
+import { Route, Switch } from 'react-router-dom';
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-import ProfilePage from "./ProfilePage";
-function AuthApplication() {
+import ProfilePage from "../Pages/ProfilePage";
+const AuthApplication = ({match}) => {
   const user = null;
   return (
         user ?
         <ProfilePage />
       :
-        <Router>
-          <SignUp path="signUp" />
-          <SignIn path="/" />
-        </Router>
+        <Switch>
+          <Route path='/login/signup' component={ SignUp }/>
+          <Route path='/login' component={ SignIn }/>
+        </Switch>
 
-  );
-}
+  )};
 export default AuthApplication;
