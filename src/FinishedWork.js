@@ -9,17 +9,17 @@ class FinishedWork extends React.Component {
                 <div className="main header">
                     <nav className="navbar">
                         <ui class="navbar_logo">
-                            <li><button className="header-button" onClick={() => this.props.setPage("main")}>YuÄ®³ë¸®</button></li>
+                            <li><button className="header-button" onClick={() => this.props.setPage("main")}>Yuì¹¼ë…¸ë¦¬</button></li>
                         </ui>
                         <ui class="navbar_writing">
-                            <li><button className="header-button" onClick={() => this.props.setPage("main")}>¼Ò¼³ ÀÛ¼º¹æ</button></li>
-                            <li><button className="header-button" onClick={() => this.props.setPage("finished")}>¿Ï°á ÀÛÇ°¹æ</button></li>
+                            <li><button className="header-button" onClick={() => this.props.setPage("main")}>ì†Œì„¤ ì‘ì„±ë°©</button></li>
+                            <li><button className="header-button" onClick={() => this.props.setPage("finished")}>ì™„ê²° ì‘í’ˆë°©</button></li>
                         </ui>
                         <ui class="navbar_menu">
-                            <li><button className="header-button" onClick={() => this.props.setPage("mypage")} style={{ color: "white" }}>¸¶ÀÌ ÆäÀÌÁö</button></li>
-                            <li><a href="" style={{ color: "white" }}>¾Ë¸²</a></li>
-                            <li><a href="" style={{ color: "white" }}>È¯°æ¼³Á¤</a></li>
-                            <li><a href="" style={{ color: "white" }}>·Î±×ÀÎ</a></li>
+                            <li><button className="header-button" onClick={() => this.props.setPage("mypage")} style={{ color: "white" }}>ë§ˆì´ í˜ì´ì§€</button></li>
+                            <li><a href="" style={{ color: "white" }}>ì•Œë¦¼</a></li>
+                            <li><a href="" style={{ color: "white" }}>í™˜ê²½ì„¤ì •</a></li>
+                            <li><a href="" style={{ color: "white" }}>ë¡œê·¸ì¸</a></li>
                         </ui>
                     </nav>
                 </div >
@@ -27,23 +27,23 @@ class FinishedWork extends React.Component {
                     <nav class="searchbar">
                         <div class="searchbar_input">
                             <input class="inputbar"></input>
-                            <button> °Ë»ö</button>
+                            <button> ê²€ìƒ‰</button>
                         </div>
                         <ui class="searchbar_char">
-                            <text>ÇØ½ÃÅÂ±×:&nbsp;&nbsp;&nbsp;</text>
+                            <text>í•´ì‹œíƒœê·¸:&nbsp;&nbsp;&nbsp;</text>
                             <select name="job">
-                                <option value="">¼Ò¼³</option>
-                                <option value="ÇĞ»ı">ÆÇÅ¸Áö</option>
-                                <option value="È¸»ç¿ø" selected="selected">¸¸È­</option>
-                                <option value="±âÅ¸">µå¶ó¸¶</option>
+                                <option value="">ì†Œì„¤</option>
+                                <option value="">íŒíƒ€ì§€</option>
+                                <option value="" selected="selected">ë§Œí™”</option>
+                                <option value="">ë“œë¼ë§ˆ</option>
                             </select>&nbsp;&nbsp;&nbsp;
-                  
-          <text>Á¤·Ä:&nbsp;&nbsp;&nbsp;</text>
+
+          <text>ì •ë ¬:&nbsp;&nbsp;&nbsp;</text>
                             <select name="job">
-                                <option value="">ÃÖ½Å¼ø</option>
-                                <option value="ÇĞ»ı">ÀÎ±â¼ø</option>
-                                <option value="È¸»ç¿ø" selected="selected">ÆòÁ¡¼ø</option>
-                                <option value="±âÅ¸">°Ë»ö¼ø</option>
+                                <option value="">ìµœì‹ ìˆœ</option>
+                                <option value="">ì¸ê¸°ìˆœ</option>
+                                <option value="" selected="selected">í‰ì ìˆœ</option>
+                                <option value="">ê²€ìƒ‰ìˆœ</option>
                             </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </ui>
                     </nav>

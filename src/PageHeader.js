@@ -1,27 +1,27 @@
 import React from 'react';
 
+
 class PageHeader extends React.Component {
 
     render() {
         return (
-            <div className="main header">
-                <nav class="navbar">
-                    <ui class="navbar_logo">
-                        <li><button className="mypage-button" onClick={() => this.props.setPage("main")}>YuÄ®³ë¸®</button></li>
-                    </ui>
-                    <ui class="navbar_writing">
-                        <li><button className="mypage-button" onClick={() => this.props.setPage("main")}>¼Ò¼³ ÀÛ¼º¹æ</button></li>
-                        <li><button className="mypage-button" onClick={() => this.props.setPage("main")}>¿Ï°á ÀÛÇ°¹æ</button></li>
-                    </ui>
-                    <ui class="navbar_menu">
-                        <li><button className="mypage-button" onClick={() => this.props.setPage("mypage")}>¸¶ÀÌ ÆäÀÌÁö</button></li>
-                        <li><button className="mypage-button" onClick={() => this.props.setPage("main")}>¾Ë¸²</button></li>
-                        <li><button className="mypage-button" onClick={() => this.props.setPage("main")}>È¯°æ¼³Á¤</button></li>
-                        <li><button className="mypage-button" onClick={() => this.props.setPage("main")}>·Î±×ÀÎ</button></li>
-                    </ui>
-                </nav>
-            </div>
-
+          <div className="main header">
+              <nav className="navbar">
+                  <ui class="navbar_logo">
+                      <li><button className="header-button" onClick={() => this.props.setPage("main")}>Yuì¹¼ë…¸ë¦¬</button></li>
+                  </ui>
+                  <ui class="navbar_writing">
+                      <li><button className="header-button" onClick={() => this.props.setPage("main")}>ì†Œì„¤ ì‘ì„±ë°©</button></li>
+                      <li><button className="header-button" onClick={() => this.props.setPage("finished")}>ì™„ê²° ì‘í’ˆë°©</button></li>
+                  </ui>
+                  <ui class="navbar_menu">
+                      <li><button className="header-button" onClick={() => this.props.setPage("mypage")} style={{ color: "white" }}>ë§ˆì´ í˜ì´ì§€</button></li>
+                      <li><a href="" style={{ color: "white" }}>ì•Œë¦¼</a></li>
+                      <li><a href="" style={{ color: "white" }}>í™˜ê²½ì„¤ì •</a></li>
+                      <li><a href="" style={{ color: "white" }}>ë¡œê·¸ì¸</a></li>
+                  </ui>
+              </nav>
+          </div >
         )
     }
 }
