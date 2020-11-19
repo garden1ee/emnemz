@@ -1,0 +1,24 @@
+.container{
+   display: table;
+}
+
+.vertical_menus{
+    display: table-cell;
+    vertical-align: right;
+}
+.vertical_icon{
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    right: 0;
+}
+
+.right_align{
+    
+    position: absolute;
+    right: 0px;
+    width: px;
+    align-items: vertical;
+      
+}
+
