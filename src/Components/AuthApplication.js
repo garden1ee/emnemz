@@ -3,11 +3,13 @@ import { Route, Switch } from 'react-router-dom';
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import ProfilePage from "../Pages/ProfilePage";
-const AuthApplication = ({match}) => {
+function AuthApplication() {
   const user = null;
   return (
         user ?
-        <ProfilePage />
+        <Switch>
+          <Route path='/profile' component={ ProfilePage }/>
+        </Switch>
       :
         <Switch>
           <Route path='/login/signup' component={ SignUp }/>
