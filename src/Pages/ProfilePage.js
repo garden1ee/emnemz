@@ -1,9 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { UserContext } from "../Components/UserProvider";
 import {auth} from "../firebase";
-const ProfilePage = () => {
+const ProfilePage = ({history}) => {
+  const authed = auth.currentUser;
+  useEffect(() => {
+    if (authed==null){
+        history.push('/login');
+    }
+  });
   const user = useContext(UserContext);
   const {photoURL, displayName, email} = user;
+  console.log(user);
   return (
     <div>
       <div>
@@ -20,7 +27,7 @@ const ProfilePage = () => {
         <h3>{email}</h3>
         </div>
       </div>
-      <button onClick = {() => {auth.signOut()}}>Sign out</button>
+      <button onClick = {() => {auth.signOut();history.push("/login")}}>Sign out</button>
     </div>
   ) 
 };

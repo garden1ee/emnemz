@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import {auth} from "../firebase";
-const SignUp = () => {
+import { auth, generateUserDocument } from "../firebase";
+const SignUp = ({history}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
@@ -11,9 +11,10 @@ const SignUp = () => {
     try{
       const {user} = await auth.createUserWithEmailAndPassword(email, password);
       generateUserDocument(user, {displayName});
+      history.push('/login');
     }
     catch(error){
-      setError('Error Signing up with email and password');
+      setError(`Error ${JSON.stringify(error)} Signing up with email and password`);
     }
 
     setEmail("");
@@ -83,7 +84,7 @@ const SignUp = () => {
         </form>
         <p>or</p>
         <button>
-          Sign In with Google
+          Sign Up with Google
         </button>
         <p>
           Already have an account?{" "}
