@@ -11,6 +11,7 @@ const searchbarstyle={
 const RoomList =() => {
     return(
         <div>
+          <h2/>
             <input style={searchbarstyle}/>
             <button onClick={()=>{alert("조금더 시간을 주시면 구현됩니다")}}> 검색</button>
             <h2>소설방 목록</h2>
