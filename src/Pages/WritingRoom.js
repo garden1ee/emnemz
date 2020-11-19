@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, Route } from 'react-router-dom';
 import  '../../src/style/WritingRoom.css';
-
+import {DropdownButton, Dropdown} from 'react-bootstrap'
 
 
 const WritingRoom =() => {
@@ -14,25 +14,16 @@ const WritingRoom =() => {
                 <div class="navbar-header">
                 <a class="navbar-brand" href="#">novel room name</a>
                 </div>
+          
+                <DropdownButton id="dropdown-basic-button" title="" class="right-align" 
+                class="glyphicon glyphicon-menu-hamburger"
+         onSelcet={(eventKey) => console.log(eventKey)}>
+         <Dropdown.Item eventKey="participant_lists">참여자 목록</Dropdown.Item>
+         <Dropdown.Item eventKey="novel_info">소설 정보</Dropdown.Item>
+        < Dropdown.Item eventKey="communication_display">대화창</Dropdown.Item>
+        </DropdownButton>
              
-                <div class="menu">
-               <button type="button" class="btn btn-default" class="right_align" data-toggle="dropdown" aria-haspopup="true">
-
-                <span class="glyphicon glyphicon-menu-hamburger"></span>
-                </button>
-               <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">
-                    
-                    참여자 목록
-                    </a>
-                    <a class="dropdown-item" href="#">
-                    소설 정보
-                    </a>
-                    <a class="dropdown-item" href="#">
-                    대화창 
-                    </a>
-                </div>
-                </div>
+                
                 
             </div>
         </nav>
@@ -60,13 +51,7 @@ const WritingRoom =() => {
            <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5-3a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
          </svg>
          </button>
-         <div class="dropdown">
-         <a class="dropdown-toggle btn" data-toggle="dropdown" href="#" >Dropdown trigger</a>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-      <li>Item One</li>
-      <li>Item Two</li>
-           </ul>
-      </div>
+      
         </div>
         
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"></link>
