@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import { Modal, Button, Row, Col, Form } from 'react-bootstrap';
-import ChatSignupModal from './ChatSignupModal.js';
 
-
-export class ChatInfoModal extends Component {
+export class ChatSignupModal extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            setSignupIsOpen: false
-        };
     }
 
     render() {
-        let setSignupClose = () => this.setState({ setSignupIsOpen: false });
         return (
             <Modal
                 {...this.props}
@@ -22,20 +16,18 @@ export class ChatInfoModal extends Component {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        customer.map(
-                            id)
+                        Modal heading
         </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    This is first modal: room information modal
+                    This is second modal: room signup modal
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={() => this.setState({ setSignupIsOpen: true })}>Sign up</Button>
-                    <ChatSignupModal show={this.state.setSignupIsOpen} onSubmit={setSignupClose} />
-                    <Button onClick={this.props.onHide}>Close</Button>
+                    <Button onClick={this.props.onSubmit}>Submit</Button>
+                    <Button onClick={this.props.onSubmit}>Close</Button>
                 </Modal.Footer>
             </Modal>
         );
     }
 }
-export default ChatInfoModal;
+export default ChatSignupModal;
