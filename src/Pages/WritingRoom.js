@@ -6,13 +6,15 @@ import React, {Component} from 'react';
 import  '../../src/style/WritingRoom.css';
 import { Link, Route } from 'react-router-dom';
 import {DropdownButton, Dropdown} from 'react-bootstrap';
+import customer from "./Mainpages/PublishedList"
 
 class WritingRoom extends Component{
   constructor(props){
     super(props);
     this.state={
       invite_open: false,
-      publish_open: false
+      publish_open: false,
+      published: false
     };
   }
     publishClickOpen = () =>{
@@ -27,8 +29,10 @@ class WritingRoom extends Component{
       // 채팅한거 모아서 만드는 과정
       // 만든 컨텐츠를 완결 작품들로 정보 보내기
      
+
       this.setState({
-        publish_open: false
+        publish_open: false,
+        published: true
       });
     }
 
@@ -132,15 +136,31 @@ class WritingRoom extends Component{
              
         </button>
         <Dialog open={this.state.publish_open} onClick={this.publishClose}>
-          정말 출판하시겠습니까?
+          작품을 출판하시겠습니까? 출판 전, 작품에 들어갈 정보를 
+          점검해주세요. 
         <div>
         <DialogContent>
         <button onClick={this.publish}>
             네
         </button>
+        </DialogContent>
+
+        <DialogContent>
         <button variant="contained" class="btn btn-default" onClick={this.publishClose}>
           아니오
         </button>
+        </DialogContent>
+        </div>
+
+        </Dialog>
+       
+        <Dialog open={this.state.published} onClick={this.state.published = false}
+        style={{width: 700, height: 700}}>
+          소설 정보
+        <div>
+        <DialogContent>
+          
+          <button type="button" class="btn btn-default"></button>
         </DialogContent>
         </div>
         </Dialog>

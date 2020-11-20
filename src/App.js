@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-<<<<<<< HEAD
-import { Header, Login, ProfilePage, WritingRoom, PublishAgreeModal } from 'Pages';
-=======
-import { Header, Login, WritingRoom } from 'Pages';
->>>>>>> 94f6000704fca1787dc2e70945c389533be1420a
+import { Header, Login, ProfilePage, WritingRoom} from 'Pages';
 class App extends Component {
   render() {
     return (
