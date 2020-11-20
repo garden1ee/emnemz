@@ -16,8 +16,10 @@ const WritingRoom =() => {
                 </div>
           
                 <DropdownButton id="dropdown-basic-button" title="" class="nav_loc" 
-                class="glyphicon glyphicon-menu-hamburger"
+               
          onSelcet={(eventKey) => console.log(eventKey)}>
+             <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+           
              <div>
          <Dropdown.Item eventKey="participant_lists">
              <a href="">참여자 목록</a></Dropdown.Item>
@@ -56,8 +58,9 @@ const WritingRoom =() => {
          </svg>
          </div>
          </button>
-      
+
         </div>
+         
         
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"></link>
      <script type="text/javascript" src="Scripts/boostrap.min.js"></script>
@@ -65,8 +68,8 @@ const WritingRoom =() => {
      <script type="text/javascript" src="js/bootstrap/bootstrap-dropdown.js"></script>  
     
     <link href="css/boostrap/css" rel="stylesheet"></link>
+     </div>
     
-    </div>
     );
 };
 
