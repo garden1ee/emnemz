@@ -121,20 +121,13 @@ return (
         
             <div className="form-group basic-textarea">
               <div>
-              <button type="button"  class="btn btn-primary" 
-                  style={{position: "absolute", left:10, bottom:50}}>
-                      대사
-                    </button>
-                    <button type="button"  class="btn btn-default" 
-                  style={{position: "absolute", left:60, bottom:50}}>
-                      액션
-                    </button>
+             
                 <textarea className="form-control pl-2 my-0" id="exampleFormControlTextarea2" 
-                  style={{width: 1000, position: "absolute", left:130, bottom:50}}
+                  style={{width: 500, position: "absolute", left:10, bottom:50}}
                   placeholder="Type your message here..." />
                   
                   <button type="button"  class="btn btn-default" 
-                  style={{position: "absolute", left:1160, bottom:80}}>
+                  style={{position: "absolute", left:520, bottom:80}}>
                       전송
                     </button>
                     </div>
