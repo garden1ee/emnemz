@@ -1,6 +1,7 @@
 import React from 'react';
 import {makeStyles} from "@material-ui/core/styles";
 import {Grid, Paper} from "@material-ui/core";
+import ProfileModal from './ProfileModal.js';
 
 const useStyles = makeStyles((theme)=>({
   grid:{
@@ -31,7 +32,7 @@ const back1={
   fontSize: 36,
 }
 
-const MyPage =() => {
+const MyPage = () => {
     const classes=useStyles();
     return(
         <Grid container spacing={2} className={classes.grid}>
