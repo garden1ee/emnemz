@@ -59,7 +59,7 @@ const MyPage =() => {
               <h2/>
               <text>완결 편수:0</text>
               <h2/>
-              <h2/>
+
               <button>프로필 수정하기</button>
               <h2/>
               </Paper>
