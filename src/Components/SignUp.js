@@ -11,7 +11,7 @@ const SignUp = ({history}) => {
     try{
       const {user} = await auth.createUserWithEmailAndPassword(email, password);
       generateUserDocument(user, {displayName});
-      history.push('/login');
+      history.push('/');
     }
     catch(error){
       setError(`Error ${JSON.stringify(error)} Signing up with email and password`);
@@ -88,7 +88,7 @@ const SignUp = ({history}) => {
         </button>
         <p>
           Already have an account?{" "}
-          <Link to="/login">
+          <Link to="/">
             Sign in here
           </Link>
         </p>

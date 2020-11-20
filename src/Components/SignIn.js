@@ -11,7 +11,7 @@ const SignIn = ({history}) => {
       event.preventDefault();
       try {
       auth.signInWithEmailAndPassword(email, password);
-      history.push('/profile');
+      console.log(auth.currentuser+"signing in");
       }
       catch(error) {
         setError("Error signing in with password and email!");
@@ -68,7 +68,7 @@ const SignIn = ({history}) => {
         </button>
         <p>
           Don't have an account?{" "}
-          <Link to="/login/signup">
+          <Link to="/signup">
             Sign up here
           </Link>{" "}
         </p>
