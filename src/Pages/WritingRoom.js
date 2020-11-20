@@ -10,7 +10,8 @@ import customer, {Customer} from "./Mainpages/PublishedList";
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import { MDBCard, MDBCardBody, MDBRow, MDBCol, MDBListGroup, MDBListGroupItem, MDBBadge, MDBIcon, MDBBtn} from "mdbreact";
-
+import aron_img from "../Pages/Images_character/aron.png";
+import ruffi_img from "../Pages/Images_character/ruffi.png";
 
 class ChatPage extends Component {
 constructor() {
@@ -19,15 +20,15 @@ this.state = {
 friends: [
 {
 name: "루피",
-avatar: "ruphi",
-message: "Hello, Are you there?",
+avatar: "ruffii.png",
+message: "너 정말 나미를 죽인거냐",
 when: "Just now",
 toRespond: 1,
 seen: false,
 active: true
 },
 {
-name: "Danny Smith",
+name: "나미",
 message: "Lorem ipsum dolor sit",
 avatar: "https://mdbootstrap.com/img/Photos/Avatars/avatar-1",
 when: "5 min ago",
@@ -82,27 +83,21 @@ active: false
 }
 ],
 messages: [
-{
-author: "Brad Pitt",
-avatar: "https://mdbootstrap.com/img/Photos/Avatars/avatar-6",
-when: "12 mins ago",
-message:
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et doloremagna aliqua"
-},
-{
-author: "Lara Croft",
-avatar: "https://mdbootstrap.com/img/Photos/Avatars/avatar-5",
-when: "13 mins ago",
-message:
-" Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."
-},
-{
-author: "Brad Pitt",
-avatar: "https://mdbootstrap.com/img/Photos/Avatars/avatar-6",
-when: "14 mins ago",
-message:
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et doloremagna aliqua."
-}
+  {
+  author: "루피",
+  avatar: ruffi_img,
+  message: "너 정말 나미를 죽인거냐",
+  when: "Just now",
+  toRespond: 1,
+  seen: false,
+  active: true
+  },
+  {
+  author: "아론",
+  avatar: aron_img,
+  message: "그래서 나보고 어쩌라는 거냐 ",
+  when: "5 min ago",
+  }
 ]
 };
 }
@@ -181,13 +176,8 @@ const Friend = ({
     className="d-flex justify-content-between p-2 border-light"
     style={{ backgroundColor: active ? "#eeeeee" : "" }}
   >
-    <img
-      tag="img"
-      src={avatar}
-      alt="avatar"
-      circle
-      className="mr-2 z-depth-1"
-    />
+    <img src={avatar} alt="character"/>
+   
     <div style={{ fontSize: "0.95rem" }}>
       <strong>{name}</strong>
       <p className="text-muted">{message}</p>
@@ -215,13 +205,8 @@ const Friend = ({
 
 const ChatMessage = ({ message: { author, avatar, when, message } }) => (
   <li className="chat-message d-flex justify-content-between mb-4">
-    <img
-      tag="img"
-      src={avatar}
-      alt="avatar"
-      circle
-      className="mx-2 z-depth-1"
-    />
+    <img src={avatar} alt="character"  style={{width: 50, height: 50, borderRadius: 50/ 2}} />
+    
     <MDBCard>
       <MDBCardBody>
         <div>
