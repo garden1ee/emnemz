@@ -11,12 +11,16 @@ class WritingRoom extends Component{
   constructor(props){
     super(props);
     this.state={
-      open: false
+      invite_open: false,
+      publish_open: false
     };
   }
-    hadnleClickOpen = () =>{
+    publishClickOpen = () =>{
+      var origin = this.state.invite_open;
+
       this.setState({
-        open: true
+        publish_open: true,
+        invite_open: origin
       });
     }
 
@@ -24,13 +28,32 @@ class WritingRoom extends Component{
       // 채팅한거 모아서 만드는 과정
       // 만든 컨텐츠를 완결 작품들로 정보 보내기
      
+      this.publishClose();
+    }
+
+    publishClose = () => {
       this.setState({
-        open: false 
+        publish_open: false,
+        invite_open: this.state.invite_open
       });
     }
-    handleClose = () =>{
+
+    inviteClickOpen = () =>{
       this.setState({
-        open: false
+        publish_open: this.state.publish_open,
+        invite_open: true
+      });
+    }
+
+    invite = () => {
+      // 친구 초대하기 
+     
+      this.inviteClose();
+    }
+    inviteClose = () =>{
+      this.setState({
+        publish_open: this.state.publish_open,
+        invite_open: false
       });
     }
     render() {
@@ -81,32 +104,44 @@ class WritingRoom extends Component{
       </svg>
         </Link>
       </button>
-      <button type="button" class="btn btn-default" class="right_align3">
+      <button variant="contained" type="button" class="btn btn-default" class="right_align3"
+      onClick={this.inviteClickOpen}>
           <div to="">
       <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-plus-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
          <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5-3a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
        </svg>
        </div>
        </button>
+       <Dialog open={this.state.invite_open} onClick={this.inviteClose}>
+          초대 할 친구 목록
+        <div>
+        <DialogContent>
+          친구 
+          <button onClick={this.invite}></button>
+        </DialogContent>
+        </div>
+        </Dialog>
        <div>
        
        
           <div>
          
-          <button variant="contained" class="btn btn-default" class="right_align4" onClick={this.hadnleClickOpen}>
+          <button variant="contained" class="btn btn-default" class="right_align4" onClick={this.publishClickOpen}>
           출판
              
         </button>
-        <Dialog open={this.state.open} onClick={this.handleClose}>
-        정말 출판하시겠습니까?
+        <Dialog open={this.state.publish_open} onClick={this.publishClickOpen}>
+          정말 출판하시겠습니까?
+        <div>
         <DialogContent>
         <button variant="contained" class="btn btn-default" onClick={this.publish}>
             네
         </button>
-        <button variant="contained" class="btn btn-default" onClick={this.hadnleClose}>
+        <button variant="contained" class="btn btn-default" onClick={this.publishClose}>
           아니오
         </button>
         </DialogContent>
+        </div>
         </Dialog>
        
        </div>
