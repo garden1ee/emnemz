@@ -65,6 +65,7 @@ const MyPage =() => {
               </Paper>
             </Grid>
           </Grid>
+<<<<<<< HEAD
           <Grid item xs={3}>
             <text style={back}>신청중인 방</text>
             <h2/>
@@ -88,10 +89,23 @@ const MyPage =() => {
               <Grid xs={12}>
               <text>	원피스 웹소설 드가자
               <h2/>	#원피스 짱짱맨 #루피사기<h2/>	모집입원: 2/5명
+=======
+          <Grid item xs={12}>
+            <Grid item xs={3}>
+              <text style={back}>신청중인 방</text>
+              <h2/>
+              <Paper className={classes.paper} textSize={"15px"}>
+              <img width={420} textAlign={'center'} height={250} mraginLeft={'200px'}src={'https://i.insider.com/5e835889671de07d8317e613?width=1100&format=jpeg&auto=webp'} alt={"profile"}/>
+              <h2/>
+              <Grid xs={12}>
+              <text>나루토 성장시키기 방입니다
+              <h2/>#나루토멋져#사스케좋아<h2/>	모집입원: 1/5명
+>>>>>>> AAS
               </text>
               </Grid>
               </Paper>
             </Grid>
+<<<<<<< HEAD
           </Grid>
           <Grid item xs={3}>
             <text style={back}>대기중인방1</text>
@@ -108,6 +122,24 @@ const MyPage =() => {
           </Grid>
           <Grid item xs={3}>
             <text style={back}>대기중인방2</text>
+=======
+            <Grid item xs={3}>
+              <text style={back}>신청중인 방</text>
+              <h2/>
+              <Paper className={classes.paper} textSize={"15px"}>
+              <img width={420} textAlign={'center'} height={250} mraginLeft={'200px'}src={'https://i.insider.com/5e835889671de07d8317e613?width=1100&format=jpeg&auto=webp'} alt={"profile"}/>
+              <h2/>
+              <Grid xs={12}>
+              <text>나루토 성장시키기 방입니다
+              <h2/>#나루토멋져#사스케좋아<h2/>	모집입원: 1/5명
+              </text>
+              </Grid>
+              </Paper>
+            </Grid>
+          </Grid>
+          <Grid item xs={3}>
+            <text style={back}>참가하는 방</text>
+>>>>>>> AAS
             <h2/>
             <Paper className={classes.paper} textSize={"15px"}>
             <img width={420} textAlign={'center'} height={250} mraginLeft={'200px'}src={'https://image.ytn.co.kr/general/jpg/2017/0725/201707251131549101_t.jpg'} alt={"profile"}/>
@@ -120,7 +152,11 @@ const MyPage =() => {
             </Paper>
           </Grid>
           <Grid item xs={3}>
+<<<<<<< HEAD
           <text style={back}>대기중인 방3</text>
+=======
+          <text style={back}>대기중인 방</text>
+>>>>>>> AAS
           <h2/>
             <Paper className={classes.paper} textSize={"15px"}>
             <img width={420} textAlign={'center'} height={250} mraginLeft={'200px'}src={"https://upload.wikimedia.org/wikipedia/ko/f/f4/%EB%93%9C%EB%9D%BC%EB%A7%88_%EC%9D%B4%ED%83%9C%EC%9B%90_%ED%81%B4%EB%9D%BC%EC%93%B0_%ED%8F%AC%EC%8A%A4%ED%84%B0.jpg"} alt={"profile"}/>
