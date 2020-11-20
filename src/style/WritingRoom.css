@@ -87,3 +87,9 @@
     height: 510px;
     padding-bottom: 15px;
   }
+
+.below{
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+}

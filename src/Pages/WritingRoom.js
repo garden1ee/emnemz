@@ -13,6 +13,7 @@ import { MDBCard, MDBCardBody, MDBRow, MDBCol, MDBListGroup, MDBListGroupItem, M
 import aron_img from "../Pages/Images_character/aron.png";
 import ruffi_img from "../Pages/Images_character/ruffi.png";
 
+
 class ChatPage extends Component {
 constructor() {
 super();
@@ -105,25 +106,46 @@ messages: [
 render() {
 return (
   <div>
-
-      <MDBCol md="6" xl="8" className="pl-md-3 px-lg-auto mt-2 mt-md-0">
+<MDBCard className="grey lighten-3 chat-room" style={{width: 1000}}>
+  <MDBCardBody>
+    <MDBRow className="px-lg-2 px-2">
+      
+      <MDBCol md="6" xl="8">
         <MDBRow>
-          <MDBListGroup className="list-unstyled pl-3">
+          <MDBListGroup>
             {this.state.messages.map(message => (
             <ChatMessage key={message.author + message.when} message={message} />
             ))}
-            </MDBListGroup>
-           
-                
+         
+                </MDBListGroup>
               </MDBRow>
             </MDBCol>
-            <div>
-              <div className="form-group basic-textarea">
-                <textarea className="form-control pl-2 my-0" id="exampleFormControlTextarea2" rows="3"
+          </MDBRow>
+        </MDBCardBody>
+      </MDBCard>
+
+     
+        
+            <div className="form-group basic-textarea">
+              <div>
+              <button type="button"  class="btn btn-primary" 
+                  style={{position: "absolute", left:10, bottom:50}}>
+                      대사
+                    </button>
+                    <button type="button"  class="btn btn-default" 
+                  style={{position: "absolute", left:60, bottom:50}}>
+                      액션
+                    </button>
+                <textarea className="form-control pl-2 my-0" id="exampleFormControlTextarea2" 
+                  style={{width: 1000, position: "absolute", left:130, bottom:50}}
                   placeholder="Type your message here..." />
-                
+                  
+                  <button type="button"  class="btn btn-default" 
+                  style={{position: "absolute", left:1160, bottom:80}}>
+                      전송
+                    </button>
                     </div>
-                  </div>
+              </div>
             </div>
 /*<MDBCard className="grey lighten-3 chat-room">
   <MDBCardBody>
