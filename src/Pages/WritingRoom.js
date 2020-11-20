@@ -18,8 +18,8 @@ super();
 this.state = {
 friends: [
 {
-name: "John Doe",
-avatar: "https://mdbootstrap.com/img/Photos/Avatars/avatar-8",
+name: "루피",
+avatar: "ruphi",
 message: "Hello, Are you there?",
 when: "Just now",
 toRespond: 1,
@@ -109,17 +109,27 @@ message:
 
 render() {
 return (
+  <div>
 
-  <MDBCol md="6" xl="4" className="px-0 mb-2 mb-md-0">
-        <h6 className="font-weight-bold mb-3 text-lg-left">Member</h6>
-        <div className="white z-depth-1 p-3">
-          <MDBListGroup className="friend-list">
-            {this.state.friends.map(friend => (
-            <Friend key={friend.name} friend={friend} />
+      <MDBCol md="6" xl="8" className="pl-md-3 px-lg-auto mt-2 mt-md-0">
+        <MDBRow>
+          <MDBListGroup className="list-unstyled pl-3">
+            {this.state.messages.map(message => (
+            <ChatMessage key={message.author + message.when} message={message} />
             ))}
-          </MDBListGroup>
-        </div>
-      </MDBCol>
+            </MDBListGroup>
+           
+                
+              </MDBRow>
+            </MDBCol>
+            <div>
+              <div className="form-group basic-textarea">
+                <textarea className="form-control pl-2 my-0" id="exampleFormControlTextarea2" rows="3"
+                  placeholder="Type your message here..." />
+                
+                    </div>
+                  </div>
+            </div>
 /*<MDBCard className="grey lighten-3 chat-room">
   <MDBCardBody>
     <MDBRow className="px-lg-2 px-2">
