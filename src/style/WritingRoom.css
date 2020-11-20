@@ -1,0 +1,48 @@
+.container{
+   display: table;
+}
+
+.vertical_menus{
+    display: table-cell;
+    vertical-align: right;
+}
+.vertical_icon{
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    right: 0;
+}
+
+.right_align1{
+    
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 50px;
+    height:50px;
+}
+.right_align2{
+    position: absolute;
+    right: 0px;
+    top: 50px;
+    width: 50px;
+    height:50px;
+}
+.right_align3{
+    position: absolute;
+    right: 0px;
+    top: 100px;
+    width: 50px;
+    height:50px;
+}
+.nav_loc{
+    position: absolute;
+    right: 0px;
+}
+.column{
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(1, 30px);
+    grid-template-rows: repeat(4, 30px);
+    position: relative;
+}
