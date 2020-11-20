@@ -106,23 +106,16 @@ messages: [
 render() {
 return (
   <div>
-<MDBCard className="grey lighten-3 chat-room" style={{width: 1000}}>
-  <MDBCardBody>
-    <MDBRow className="px-lg-2 px-2">
-      
-      <MDBCol md="6" xl="8">
+         <MDBCol md="6" xl="8">
         <MDBRow>
           <MDBListGroup>
             {this.state.messages.map(message => (
-            <ChatMessage key={message.author + message.when} message={message} />
+            <ChatMessage key={message.author} message={message} />
             ))}
          
                 </MDBListGroup>
               </MDBRow>
-            </MDBCol>
-          </MDBRow>
-        </MDBCardBody>
-      </MDBCard>
+              </MDBCol>
 
      
         
@@ -147,45 +140,7 @@ return (
                     </div>
               </div>
             </div>
-/*<MDBCard className="grey lighten-3 chat-room">
-  <MDBCardBody>
-    <MDBRow className="px-lg-2 px-2">
-      <MDBCol md="6" xl="4" className="px-0 mb-2 mb-md-0">
-        <h6 className="font-weight-bold mb-3 text-lg-left">Member</h6>
-        <div className="white z-depth-1 p-3">
-          <MDBListGroup className="friend-list">
-            {this.state.friends.map(friend => (
-            <Friend key={friend.name} friend={friend} />
-            ))}
-          </MDBListGroup>
-        </div>
-      </MDBCol>
-      <MDBCol md="6" xl="8" className="pl-md-3 px-lg-auto mt-2 mt-md-0">
-        <MDBRow>
-          <MDBListGroup className="list-unstyled pl-3">
-            {this.state.messages.map(message => (
-            <ChatMessage key={message.author + message.when} message={message} />
-            ))}
-            <li>
-              <div className="form-group basic-textarea">
-                <textarea className="form-control pl-2 my-0" id="exampleFormControlTextarea2" rows="3"
-                  placeholder="Type your message here..." />
-                <MDBBtn
-                        color="info"
-                        rounded
-                        size="sm"
-                        className="float-right mt-4"
-                      >
-                        Send
-                      </MDBBtn>
-                    </div>
-                  </li>
-                </MDBListGroup>
-              </MDBRow>
-            </MDBCol>
-          </MDBRow>
-        </MDBCardBody>
-      </MDBCard>*/
+
     );
   }
 }
@@ -266,7 +221,8 @@ class WritingRoom extends Component{
         'author_saying': '저희 즐겁게 잘 썼습니다.'
         
          
-      }
+      },
+      isDiscussion: false
 
     };
   }
@@ -322,6 +278,17 @@ class WritingRoom extends Component{
         this.state.agree_num = 0;
       }
     }
+
+    open_discussion = () =>{
+      this.setState({
+      isDiscussion: true
+      });
+    }
+    closed_discussion = () =>{
+      this.setState({
+        isDiscussion: false
+      });
+    }
     render() {
 
       const { classes } = this.props;
@@ -358,14 +325,23 @@ class WritingRoom extends Component{
        
       <div class="column">
 
-      <button type="button" class="btn btn-default" class="right_align1"> 
-      <Link to="/DiscussionRoom">
+      <button type="button" class="btn btn-default" class="right_align1"
+      onClick={this.open_discussion}> 
+      
       <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chat-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
          <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z"/>
        </svg>
-       </Link>
+       
       </button>
+      <Dialog open={this.state.isDiscussion}>
+         
+        <div>
+        <DialogContent>
+        <ChatPage/>
+        </DialogContent>
+        </div>
 
+        </Dialog>
       <button type="button" class="btn btn-default" class="right_align2">
       <Link to="">
       <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
