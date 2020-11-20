@@ -4,6 +4,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
+import PublishInfoModal from './PublishInfoModal.js';
 
 const customer=[
   {
@@ -95,10 +96,18 @@ const PublishedList =() => {
     );
 };
 class Customer extends React.Component{
-  render(){
-    return(
-      <TableRow>
-        <TableCell>{this.props.id}</TableCell>
+    constructor(props) {
+        super(props);
+        this.state = {
+            setModalIsOpen: false
+        };
+    }
+    render() {
+        let setModalClose = () => this.setState({ setModalIsOpen: false });
+        return (
+            <TableRow>
+                <TableCell><button onClick={() => this.setState({ setModalIsOpen: true })}>{this.props.id}</button>
+                    <PublishInfoModal show={this.state.setModalIsOpen} onHide={setModalClose} /></TableCell>
         <TableCell><img src= {this.props.image} width="200" height="200" alt="profile"/></TableCell>
         <TableCell>{this.props.name}</TableCell>
         <TableCell>{this.props.birthday}</TableCell>
