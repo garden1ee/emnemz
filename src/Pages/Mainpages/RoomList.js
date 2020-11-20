@@ -4,6 +4,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
+import ChatInfoModal from './ChatInfoModal.js';
 
 const customer=[
   {
@@ -90,15 +91,23 @@ const RoomList =() => {
     );
 };
 class Customer extends React.Component{
-  render(){
-    return(
-      <TableRow>
-        <TableCell><a href="">{this.props.id}</a></TableCell>
-        <TableCell><img src= {this.props.image} width="200" height="200" alt="profile"/></TableCell>
-        <TableCell>{this.props.name}</TableCell>
-        <TableCell>{this.props.birthday}</TableCell>
-        <TableCell>{this.props.gender}</TableCell>
-      </TableRow>
+    constructor(props) {
+        super(props);
+        this.state = {
+            setModalIsOpen: false
+        };
+    }
+    render() {
+        let setModalClose = () => this.setState({ setModalIsOpen: false });
+        return (
+            <TableRow>
+                <TableCell><button onClick={() => this.setState({ setModalIsOpen: true })}>{this.props.id}</button>
+                    <ChatInfoModal show={this.state.setModalIsOpen} onHide={setModalClose} /></TableCell>
+                <TableCell><img src={this.props.image} width="200" height="200" alt="profile" /></TableCell>
+                <TableCell>{this.props.name}</TableCell>
+                <TableCell>{this.props.birthday}</TableCell>
+                <TableCell>{this.props.gender}</TableCell>
+            </TableRow>
     )
   }
 }
