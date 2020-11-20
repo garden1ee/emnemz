@@ -23,6 +23,7 @@ class WritingRoom extends Component{
     publish = () => {
       // 채팅한거 모아서 만드는 과정
       // 만든 컨텐츠를 완결 작품들로 정보 보내기
+      
       this.setState({
         open: false 
       });
