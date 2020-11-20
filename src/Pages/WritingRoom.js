@@ -16,11 +16,10 @@ class WritingRoom extends Component{
     };
   }
     publishClickOpen = () =>{
-      var origin = this.state.invite_open;
+    
 
       this.setState({
         publish_open: true,
-        invite_open: origin
       });
     }
 
@@ -28,13 +27,14 @@ class WritingRoom extends Component{
       // 채팅한거 모아서 만드는 과정
       // 만든 컨텐츠를 완결 작품들로 정보 보내기
      
-      this.publishClose();
+      this.setState({
+        publish_open: false
+      });
     }
 
     publishClose = () => {
       this.setState({
-        publish_open: false,
-        invite_open: this.state.invite_open
+        publish_open: false
       });
     }
 
@@ -50,9 +50,9 @@ class WritingRoom extends Component{
      
       this.inviteClose();
     }
+
     inviteClose = () =>{
       this.setState({
-        publish_open: this.state.publish_open,
         invite_open: false
       });
     }
@@ -117,7 +117,7 @@ class WritingRoom extends Component{
         <div>
         <DialogContent>
           친구 
-          <button onClick={this.invite}></button>
+          <button type="button" class="btn btn-default" onClick={this.invite}></button>
         </DialogContent>
         </div>
         </Dialog>
@@ -126,15 +126,16 @@ class WritingRoom extends Component{
        
           <div>
          
-          <button variant="contained" class="btn btn-default" class="right_align4" onClick={this.publishClickOpen}>
+  <button type="button" variant="contained" class="btn btn-default" 
+  class="right_align4" onClick={this.publishClickOpen}>
           출판
              
         </button>
-        <Dialog open={this.state.publish_open} onClick={this.publishClickOpen}>
+        <Dialog open={this.state.publish_open} onClick={this.publishClose}>
           정말 출판하시겠습니까?
         <div>
         <DialogContent>
-        <button variant="contained" class="btn btn-default" onClick={this.publish}>
+        <button onClick={this.publish}>
             네
         </button>
         <button variant="contained" class="btn btn-default" onClick={this.publishClose}>
