@@ -1,0 +1,16 @@
+.primary-btn{
+background-color: #4f4f4f;
+border-color: #4f4f4f;
+}
+
+.secondary-btn{
+background-color: #b2b2b2;
+border-color: #b2b2b2;
+color: black;
+}
+
+.profile-pic{
+border-radius: 40px;
+margin-left: 20px;
+margin-right: 15px;
+}
