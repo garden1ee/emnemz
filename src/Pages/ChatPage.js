@@ -2,7 +2,10 @@ import React, {Component} from 'react';
 import { MDBRow, MDBCol, MDBListGroup} from "mdbreact";
 import aron_img from "../Pages/Images_character/aron.png";
 import ruffi_img from "../Pages/Images_character/ruffi.png";
+import nami_img from "../Pages/Images_character/nami.png";
 import ChatMessage from "./ChatMessage";
+
+
 
 class ChatPage extends Component {
     constructor() {
@@ -19,13 +22,16 @@ class ChatPage extends Component {
       active: true,
       isScript: true
       },
-      {
-      author: "아론",
-      avatar: aron_img,
-      message: "아론이 성큼 성큼 루피에게 다가왔다.",
-      when: "5 min ago",
-      isScript: false
-      }
+        {
+            author: "나미",
+            avatar: nami_img,
+            message: "아론 거기서",
+            when: "Just now",
+            toRespond: 1,
+            seen: false,
+            active: true,
+            isScript: true
+            }
     ]
     };
     }
