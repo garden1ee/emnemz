@@ -39,6 +39,7 @@ const WritingRoom = () => {
             </div>
             <div className="row">
                 <div className="col-11 WR-scriptbar">
+                    
                     <button id="characterSelect"><img id="userCharacterImg" src={nami_img} /></button>
                     <textarea placeholder="대사를 입력하세요. &#10;" className="scriptInput" />
                     <div className="WR-submitBtn">
