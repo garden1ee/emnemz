@@ -4,7 +4,7 @@ import {auth} from "../firebase";
 const ProfilePage = () => {
   const authed = auth.currentUser;
   console.log(authed+'curuser');
-
+  
   const user = useContext(UserContext);
   const {photoURL, displayName, email} = user;
   console.log(user);
@@ -27,6 +27,6 @@ const ProfilePage = () => {
       </div>
       <button onClick = {() => {auth.signOut();}}>Sign out</button>
     </div>
-  )
+  ) 
 };
 export default ProfilePage;
