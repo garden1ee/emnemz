@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import { auth, generateUserDocument } from "../firebase";
+import '../style/login.css';
+
 const SignUp = ({history}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,7 +16,7 @@ const SignUp = ({history}) => {
       history.push('/');
     }
     catch(error){
-      setError(`Error ${JSON.stringify(error)} Signing up with email and password`);
+      setError(`Error ${JSON.stringify(error.errormessage)} Signing up with email and password`);
     }
 
     setEmail("");
@@ -32,8 +34,10 @@ const SignUp = ({history}) => {
     }
   };
   return (
-    <div>
-      <h1>Sign Up</h1>
+    <div className="content">
+      <p className="login-logo">롤링롤링</p>
+      <h3>가입하기</h3>
+      <br/>
       <div>
         {error !== null && (
           <div>
@@ -42,7 +46,7 @@ const SignUp = ({history}) => {
         )}
         <form>
           <label htmlFor="displayName">
-            Display Name:
+            닉네임 : &nbsp;
           </label>
           <input
             type="text"
@@ -50,10 +54,12 @@ const SignUp = ({history}) => {
             value={displayName}
             placeholder="E.g: 정원"
             id="displayName"
+            className="formInput"
             onChange={event => onChangeHandler(event)}
           />
+          <br/>
           <label htmlFor="userEmail">
-            Email:
+            이메일 : &nbsp;
           </label>
           <input
             type="email"
@@ -61,10 +67,12 @@ const SignUp = ({history}) => {
             value={email}
             placeholder="E.g: garden123@gmail.com"
             id="userEmail"
+            className="formInput"
             onChange={event => onChangeHandler(event)}
           />
+          <br/>
           <label htmlFor="userPassword">
-            Password:
+            패스워드 :
           </label>
           <input
             type="password"
@@ -72,26 +80,26 @@ const SignUp = ({history}) => {
             value={password}
             placeholder="Your Password"
             id="userPassword"
+            className="formInput"
             onChange={event => onChangeHandler(event)}
           />
+          <br/>
           <button
+            className="submitBtn"
             onClick={event => {
               createUserWithEmailAndPasswordHandler(event, email, password);
             }}
           >
-            Sign up
+            가입
           </button>
-        </form>
-        <p>or</p>
-        <button>
-          Sign Up with Google
-        </button>
-        <p>
-          Already have an account?{" "}
-          <Link to="/">
-            Sign in here
+          </form>
+          <br/>
+          <p className="alter">
+          이미 계정이 있으신가요?{" "}
+          <Link to="/" className="linki">
+            로그인
           </Link>
-        </p>
+          </p>
       </div>
     </div>
   );

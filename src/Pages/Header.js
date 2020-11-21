@@ -1,29 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { Link, Route } from 'react-router-dom';
-import { RoomList, PublishedList, ProfilePage, MyPage } from 'Pages/Mainpages';
+import { RoomList, PublishedList, ProfilePage } from 'Pages/Mainpages';
 import { auth } from "../firebase";
+import { withTheme } from '@material-ui/core';
+import '../style/Header.css';
 import 'style/Modal.css';
 import AlarmModal from './Mainpages/AlarmModal.js';
-
-
-const btnstyle1={
-  display:'flex',
-  background:"#263343"
-}
-
-const btnstyle={
-  border: 0,
-  background: "#263343",
-  fontSize: 36,
-}
-
-const stnstyle={
-  border: 0,
-  background: "#263343",
-  fontSize: 24,
-  marginLeft:30,
-}
 
 const Header = () => {
     
@@ -33,22 +16,21 @@ const Header = () => {
     const toggle = () => setModal(!modal);
 
   return (
-    <div>
-      <div className="main header">
-        <nav style={btnstyle1} className="navbar">
-          <button style={btnstyle} className="header"><Link to="/list">Yu칼노리</Link></button>
-          <button style={stnstyle} className="header"><Link to="/list">소설 작성방</Link></button>
-          <button style={stnstyle} className="header"><Link to="/library">완결 작품들</Link></button>
-          <button style={stnstyle} className="header"><Link to="/mypage">마이 페이지</Link></button>
-                  <button style={stnstyle} className="header-modalbutton" onClick={toggle}>알림
-                  <AlarmModal show={modal} toggle={toggle}/></button>
-          <button style={stnstyle} className="header"><Link to="/mypage">설정</Link></button>
-          <button style={stnstyle} className="header" onClick = {() => {auth.signOut();}}><Link to="/">로그아웃</Link></button>
-          <hr></hr>
-        </nav>
-      </div>
+    <div className="HD-header">
+      <ul className="HD-navbar">
+        <li><Link to="/list" className="Hd-link HD-logo">롤링롤링</Link></li>
+        <li><Link to="/list" className="Hd-link">소설 작성방</Link></li>
+        <li><Link to="/library" className="Hd-link HD-la">완결 작품들</Link></li>
+        <div className="HD-rightones">
+        <li><Link to="/mypage" className="Hd-link">마이페이지</Link></li>
+        <li><Link to="/mypage" className="Hd-link">알림</Link></li>
+        <li><Link to="/mypage" className="Hd-link">설정</Link></li>
+        <li onClick = {() => {auth.signOut();}}><Link to="/" className="Hd-link">로그아웃</Link></li>
+        </div>
+      </ul>
+      <hr></hr>
       <Route path="/library" component={PublishedList}/>
-      <Route path="/mypage" component={MyPage}/>
+      <Route path="/mypage" component={ProfilePage}/>
       <Route path="/list" component={RoomList}/>
       <Route exact path="/" component={ProfilePage}/>
     </div>

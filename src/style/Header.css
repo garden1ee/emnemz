@@ -1,0 +1,41 @@
+.HD-header {
+    background-color: white;
+    width: 1000px;
+    margin-top: 10px;
+}
+.HD-navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+}
+.Hd-link {
+    float: left;
+    background-color: white;
+    color: black;
+    display: block;
+    text-align: center;
+    padding: 10px;
+    padding-bottom: 0px;
+    margin-top: 18px;
+    font-size: 1.3em;
+}
+.HD-la {
+    margin-right: 100px;
+}
+.HD-logo {
+    font-size: 2em;
+    margin: 10px;
+    margin-right: 20px;
+    font-weight: 900;
+    color: #43afc7;
+}
+.Hd-link:hover {
+    color: #5dbcd2;
+    font-weight: 900;
+    text-decoration: none;
+}
+.HD-rightones {
+    display:inline;
+}
