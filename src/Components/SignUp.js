@@ -46,7 +46,7 @@ const SignUp = ({history}) => {
         )}
         <form>
           <label htmlFor="displayName">
-            닉네임 : &nbsp; &nbsp;
+            닉네임 : &nbsp;
           </label>
           <input
             type="text"
@@ -59,7 +59,7 @@ const SignUp = ({history}) => {
           />
           <br/>
           <label htmlFor="userEmail">
-            이메일 : &nbsp; &nbsp;
+            이메일 : &nbsp;
           </label>
           <input
             type="email"
@@ -72,7 +72,7 @@ const SignUp = ({history}) => {
           />
           <br/>
           <label htmlFor="userPassword">
-            패스워드 : &nbsp;
+            패스워드 :
           </label>
           <input
             type="password"
@@ -92,13 +92,14 @@ const SignUp = ({history}) => {
           >
             가입
           </button>
-        </form>
-        <p>
+          </form>
+          <br/>
+          <p className="alter">
           이미 계정이 있으신가요?{" "}
-          <Link to="/">
+          <Link to="/" className="linki">
             로그인
           </Link>
-        </p>
+          </p>
       </div>
     </div>
   );

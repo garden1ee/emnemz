@@ -1,7 +1,7 @@
 .content {
     margin-top: 50px;
     border-radius: 20px;
-    padding: 50px;
+    padding: 50px 50px 50px 50px;
     border: solid 1px gray;
 }
 .formInput {
@@ -9,11 +9,19 @@
     border: solid 1px gray;
     margin-left: 10px;
     margin-bottom: 10px;
-    padding: 3px 15px 3px 15px;
+    padding: 4px 15px 4px 15px;
+    font-family: Roboto;
+    font-size: 0.8em;
+    width: 200px;
 }
 .submitBtn {
     border-radius: 10px;
     border: none;
     background-color: #43afc7;
-    
+    padding: 10px 30px 10px 30px;
+    margin-left: 170px;
+}
+
+.linki {
+    font-size: 1em;
 }

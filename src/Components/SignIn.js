@@ -34,6 +34,7 @@ const SignIn = ({history}) => {
   return (
     <div className="content">
       <h1>로그인</h1>
+      <br/>
       <div>
         {error !== null && (
         <div>
@@ -42,7 +43,7 @@ const SignIn = ({history}) => {
         )}
         <form>
           <label htmlFor="userEmail">
-            이메일:
+            이메일: &nbsp;
           </label>
           <input
             type="email"
@@ -53,6 +54,7 @@ const SignIn = ({history}) => {
             className="formInput"
             onChange = {(event) => onChangeHandler(event)}
           />
+          <br/>
           <label htmlFor="userPassword">
             패스워드:
           </label>
@@ -65,15 +67,17 @@ const SignIn = ({history}) => {
             className="formInput"
             onChange = {(event) => onChangeHandler(event)}
           />
+          <br></br>
           <button 
             className = "submitBtn"
             onClick = {(event) => {signInWithEmailAndPasswordHandler(event, email, password)}}>
             로그인
           </button>
         </form>
-        <p>
+        <br/>
+        <p className="alter">
           아직 계정이 없으신가요?{" "}
-          <Link to="/signup">
+          <Link to="/signup" className="linki">
             회원가입
           </Link>{" "}
         </p>
