@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { Link } from 'react-router-dom';
 import { auth } from "../firebase";
+import '../style/login.css';
 /*Guided by Yusuff Faruq's blog post guide: https://blog.logrocket.com/user-authentication-firebase-react-apps/ */
 
 const SignIn = () => {
@@ -14,7 +15,7 @@ const SignIn = () => {
       console.log(auth.currentuser+"signing in");
       }
       catch(error) {
-        setError("Error signing in with password and email!");
+        setError("Error signing in with password and email");
         console.error("Error signing in with password and email", error);
       };
     };
@@ -31,13 +32,19 @@ const SignIn = () => {
       };
 
   return (
-    <div>
-      <h1>Sign In</h1>
+    <div className="content">
+      <p className="login-logo">롤링롤링</p>
+      <h3>로그인</h3>
+      <br/>
       <div>
-        {error !== null && <div>{error}</div>}
+        {error !== null && (
+        <div>
+          {error}
+        </div>
+        )}
         <form>
           <label htmlFor="userEmail">
-            Email:
+            이메일: &nbsp;
           </label>
           <input
             type="email"
@@ -45,10 +52,12 @@ const SignIn = () => {
             value = {email}
             placeholder="E.g: garden123@gmail.com"
             id="userEmail"
+            className="formInput"
             onChange = {(event) => onChangeHandler(event)}
           />
+          <br/>
           <label htmlFor="userPassword">
-            Password:
+            패스워드:
           </label>
           <input
             type="password"
@@ -56,20 +65,21 @@ const SignIn = () => {
             value = {password}
             placeholder="Your Password"
             id="userPassword"
+            className="formInput"
             onChange = {(event) => onChangeHandler(event)}
           />
-          <button onClick = {(event) => {signInWithEmailAndPasswordHandler(event, email, password)}}>
-            Sign in
+          <br></br>
+          <button 
+            className = "submitBtn"
+            onClick = {(event) => {signInWithEmailAndPasswordHandler(event, email, password)}}>
+            로그인
           </button>
         </form>
-        <p>or</p>
-        <button>
-          Sign in with Google
-        </button>
-        <p>
-          Don't have an account?{" "}
-          <Link to="/signup">
-            Sign up here
+        <br/>
+        <p className="alter">
+          아직 계정이 없으신가요?{" "}
+          <Link to="/signup" className="linki">
+            회원가입
           </Link>{" "}
         </p>
       </div>
