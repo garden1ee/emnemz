@@ -4,6 +4,7 @@ import { RoomList, PublishedList, ProfilePage, MyPage } from 'Pages/Mainpages';
 import { auth } from "../firebase";
 import { withTheme } from '@material-ui/core';
 import '../style/Header.css';
+import CreateRoom from 'Components/CreateRoom';
 
 const Header = () => {
   return (
@@ -20,6 +21,7 @@ const Header = () => {
         </div>
       </ul>
       <hr></hr>
+      <Route path="/createroom" component={CreateRoom}/>
       <Route path="/library" component={PublishedList}/>
       <Route path="/mypage" component={ProfilePage}/>
       <Route path="/list" component={RoomList}/>

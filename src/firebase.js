@@ -70,3 +70,38 @@ export const modifyUserDocument = async (user, additionalData) => {
   return getUserDocument(user.uid);
 };
 
+export const generateRoomDocument = async (room, additionalData) => {
+  const roomRef = firestore.doc(`rooms/${room.id}`);
+  const snapshot = await roomRef.get();
+  if (!snapshot.exists) {
+    const len = await firestore.doc('rooms').get().then(snap => {
+      size=snap.size+1
+    });
+    const { info, characters, script, discussion } = room;
+    try {
+      await roomRef.set({
+        id:len,
+        info,
+        characters,
+        script,
+        discussion,
+        ...additionalData
+      });
+    } catch (error) {
+      console.error("Error creating room document", error);
+    }
+  }
+  return getRoomDocument(room.id);
+};
+const getRoomDocument = async (roomid) => {
+  if (!roomid) return null;
+  try {
+    const RoomDocument = await firestore.doc(`rooms/${roomid}`).get();
+    return {
+      roomid,
+      ...RoomDocument.data()
+    };
+  } catch (error) {
+    console.error("Error fetching room info", error);
+  }
+};
