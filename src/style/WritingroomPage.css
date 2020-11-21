@@ -1,0 +1,59 @@
+.writingroompage {
+    height: 90%;
+    width: 1000px;
+    margin: 0;
+}
+.writingroom-title {
+    width: 100%;
+    display: inline;
+    text-align: center;
+    padding: 10px 0 0 10px;
+    background-color: #6c757d;
+}
+.WR-backtoMain {
+    float: left;
+    color: white;
+    background-color: #6c757d;
+    border: none;
+    padding: 3px;
+    margin-left: 5px;
+}
+.WRdropdown-here {
+    background-color: #6c757d;
+    text-align: right;
+}
+.WRdropdownedMenu {
+    font-size: 0.9em;
+}
+.dropdown-toggle::after {
+    display:none;
+}
+.WR-sidebar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0 6px 0 3px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    float: right;
+  }
+.Wr-sidebar-comp {
+    display: block;
+    color: #000;
+    padding: 4px 8px;
+    text-decoration: none;
+    text-align: center;
+  }
+.Wr-sidebar-comp > p {
+    font-size: 0.5em;
+}  
+.Wr-sidebar-comp:hover {
+    background-color: #555;
+    color: white;
+}
+#userCharacterImg {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
