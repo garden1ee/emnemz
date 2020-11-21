@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Header, Login, WritingRoom} from 'Pages';
+import { Header, Login, WritingRoom, ChatPage} from 'Pages';
 
 class App extends Component {
   render() {
@@ -10,7 +10,7 @@ class App extends Component {
           <Route path="/writingroom" component={ WritingRoom }/>
           <Route path="/main" component={ Header }/>
           <Route path="/" component={ Login }/>
-         
+          <Route path="/ChatPage" component={ ChatPage }/>
         </Switch>
       </div>
     );
