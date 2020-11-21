@@ -5,6 +5,7 @@ import { MDBCard, MDBCardBody, MDBRow, MDBCol, MDBListGroup, MDBListGroupItem, M
 import aron_img from "../Pages/Images_character/aron.png";
 import ruffi_img from "../Pages/Images_character/ruffi.png";
 import DiscussionModal from './DiscussionModal';
+import  '../style/ChatPage.css';
 
 class ChatPage extends Component {
     constructor() {
@@ -108,20 +109,28 @@ class ChatPage extends Component {
                     </MDBListGroup>
                   </MDBRow>
                   </MDBCol>
-    
+                
          
             
                 <div className="form-group basic-textarea">
                   <div>
-                  <button type="button"  class="btn btn-primary" 
-                      style={{position: "absolute", left:10, bottom:50}}>
-                          대사
-                        </button>
+                  <textarea className="action_text" id="exampleFormControlTextarea2" 
+                      style={{width: 1000, height:20, position: "absolute", left:130, bottom:70}}
+                      placeholder="액션 내용을 입력하세요" />
+
                         <button type="button"  class="btn btn-default" 
                       style={{position: "absolute", left:60, bottom:50}}>
                           액션
                         </button>
-                    <textarea className="form-control pl-2 my-0" id="exampleFormControlTextarea2" 
+                        <textarea className="action_text" id="exampleFormControlTextarea2" 
+                      style={{width: 1000, height:20, position: "absolute", left:130, bottom:30}}
+                      placeholder="대사 내용을 입력하세요" />
+
+                        <button type="button"  class="btn btn-default" 
+                      style={{position: "absolute", left:60, bottom:20}}>
+                          대사
+                        </button>
+                    <textarea className="send_button" id="exampleFormControlTextarea2" 
                       style={{width: 1000, position: "absolute", left:130, bottom:50}}
                       placeholder="Type your message here..." />
                       
@@ -180,14 +189,16 @@ class ChatPage extends Component {
           <MDBCardBody>
             <div>
               <strong className="primary-font">{author}</strong>
-              <small className="pull-right text-muted">
-                <i className="far fa-clock" /> {when}
-              </small>
+              
             </div>
             <hr />
             <p className="mb-0">{message}</p>
+           
           </MDBCardBody>
         </MDBCard>
+        <small className="pull-right text-muted">
+                <i className="far fa-clock" /> {when}
+              </small>
       </li>
     );
     
