@@ -28,6 +28,12 @@
 .dropdown-toggle::after {
     display:none;
 }
+.trytohandle {
+    height: 100%;
+}
+.WR-MainArea {
+    height: inherit;
+}
 .WR-sidebar {
     list-style-type: none;
     margin: 0;
@@ -52,8 +58,31 @@
     background-color: #555;
     color: white;
 }
+.WR-scriptbar {
+    display: flex;
+    align-items: center;
+}
 #userCharacterImg {
     height: 50px;
     width: 50px;
     border-radius: 50%;
+}
+#characterSelect {
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+}
+.scriptInput {
+    padding: 10px;
+    width: 85%;
+    border-radius: 8px;
+    border-color: gray;
+    margin-left: 6px;
+    margin-right: 15px;
+}
+.WR-submitBtn > button {
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+    border: solid 1px gray;
 }

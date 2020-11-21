@@ -1,4 +1,5 @@
 import React from "react";
+import ChatPage from "./ChatPage"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faBars, faComments, faVoteYea, faBook } from '@fortawesome/free-solid-svg-icons';
 import { DropdownButton, Dropdown } from 'react-bootstrap';
@@ -24,9 +25,9 @@ const WritingRoom = () => {
                     </DropdownButton>
                 </div>
             </div>
-            <div className="row">
-                <div className="col-11">
-                    main area
+            <div className="row trytohandle">
+                <div className="col-11 h-100 WR-MainArea">
+                    <ChatPage/>
                 </div>
                 <div className="col-1">
                     <ul className="WR-sidebar">
@@ -37,11 +38,13 @@ const WritingRoom = () => {
                 </div>
             </div>
             <div className="row">
-                <div className="col-11 WR-messagebar">
+                <div className="col-11 WR-scriptbar">
                     <button id="characterSelect"><img id="userCharacterImg" src={nami_img} /></button>
-                    <input type="text" placeholder="대사를 입력하세요" className="scriptInput" />
-                    <button className="scriptBtn">대사</button>
-                    <button className="actionBtn">액션</button>
+                    <textarea placeholder="대사를 입력하세요. &#10;" className="scriptInput" />
+                    <div className="WR-submitBtn">
+                        <button className="scriptBtn">대사</button><br/>
+                        <button className="actionBtn">액션</button>
+                    </div>
                 </div>
                 <div className="col-1">
                 </div>
