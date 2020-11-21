@@ -25,7 +25,7 @@ const ProfilePage = () => {
         <h3>{email}</h3>
         </div>
       </div>
-      <button onClick = {() => {auth.signOut();}}>Sign out</button>
+      <button onClick = {() => {auth.signOut();}}>로그아웃</button>
     </div>
   ) 
 };

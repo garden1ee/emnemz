@@ -1,0 +1,38 @@
+.header {
+    background-color: white;
+    width: 1000px;
+    margin-top: 10px;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+}
+.link {
+    float: left;
+    background-color: white;
+    color: black;
+    display: block;
+    text-align: center;
+    padding: 10px;
+    margin-top: 18px;
+}
+.la {
+    margin-right: 80px;
+}
+.logo {
+    font-size: 2em;
+    margin: 10px;
+    font-weight: 900;
+    color: #43afc7;
+}
+.link:hover {
+    color: #5dbcd2;
+    font-weight: 900;
+    text-decoration: none;
+}
+.rightones {
+    display:inline;
+}
