@@ -12,6 +12,7 @@ const Header = () => {
       <ul className="header">
         <li><Link to="/list" className="link logo">롤링롤링</Link></li>
         <li><Link to="/list" className="link">소설 작성방</Link></li>
+        <li><Link to="/createroom" className="link">소설 작성방 만들기</Link></li>
         <li><Link to="/library" className="link la">완결 작품들</Link></li>
         <div className="rightones">
         <li><Link to="/mypage" className="link right">마이페이지</Link></li>
