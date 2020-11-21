@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
@@ -6,6 +6,7 @@ import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import Modal from 'react-bootstrap';
 import ChatInfoModal from './ChatInfoModal.js';
+import CreateRoomModal from './CreateRoomModal.js';
 
 const customer=[
   {
@@ -36,12 +37,28 @@ const searchbarstyle={
     color: "black",
     background: "#C4C4C4",
     fontSize: 17,
-    marginLeft:30,
+    marginLeft:15,
     height: 29,
     width: 600,
     marginRight: 10,
 }
-const RoomList =() => {
+
+const roomcreate = {
+    border: 0,
+    background: "#263343",
+    fontSize: 24,
+    color: 'white',
+    marginLeft: 30,
+    marginTop: 15,
+    marginBottom: 5,
+}
+
+const RoomList = () => {
+
+    const [modal, setModal] = useState(false);
+
+    const toggle = () => setModal(!modal);
+
     return(
         <div>
           <h1/>
@@ -63,6 +80,9 @@ const RoomList =() => {
                 <option value="">검색순</option>
             </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </ui>
+            <div className="row">
+                <button style={roomcreate} onClick={toggle}>작성방 만들기<CreateRoomModal show={modal} toggle={toggle} /></button>
+                </div>
             <Table>
               <TableHead>
                 <TableRow>

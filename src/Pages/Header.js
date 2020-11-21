@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Button, Modal } from 'react-bootstrap';
 import { Link, Route } from 'react-router-dom';
 import { RoomList, PublishedList, ProfilePage, MyPage } from 'Pages/Mainpages';
 import { auth } from "../firebase";
+import 'style/Modal.css';
+import AlarmModal from './Mainpages/AlarmModal.js';
 
 
 const btnstyle1={
@@ -23,6 +26,12 @@ const stnstyle={
 }
 
 const Header = () => {
+    
+
+    const [modal, setModal] = useState(false);
+
+    const toggle = () => setModal(!modal);
+
   return (
     <div>
       <div className="main header">
@@ -31,7 +40,8 @@ const Header = () => {
           <button style={stnstyle} className="header"><Link to="/list">소설 작성방</Link></button>
           <button style={stnstyle} className="header"><Link to="/library">완결 작품들</Link></button>
           <button style={stnstyle} className="header"><Link to="/mypage">마이 페이지</Link></button>
-          <button style={stnstyle} className="header"><Link to="/mypage">알림</Link></button>
+                  <button style={stnstyle} className="header-modalbutton" onClick={toggle}>알림
+                  <AlarmModal show={modal} toggle={toggle}/></button>
           <button style={stnstyle} className="header"><Link to="/mypage">설정</Link></button>
           <button style={stnstyle} className="header" onClick = {() => {auth.signOut();}}><Link to="/">로그아웃</Link></button>
           <hr></hr>
