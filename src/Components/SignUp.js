@@ -35,8 +35,8 @@ const SignUp = ({history}) => {
   };
   return (
     <div className="content">
-      <h4>반가워요!</h4>
-      <h1>회원가입</h1>
+      <p className="login-logo">롤링롤링</p>
+      <h3>가입하기</h3>
       <br/>
       <div>
         {error !== null && (

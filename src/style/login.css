@@ -4,6 +4,11 @@
     padding: 50px 50px 50px 50px;
     border: solid 1px gray;
 }
+.login-logo {
+    font-size: 2em;
+    font-weight: 900;
+    color: #43afc7;
+}
 .formInput {
     border-radius: 8px;
     border: solid 1px gray;

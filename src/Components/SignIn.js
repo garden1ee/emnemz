@@ -33,7 +33,8 @@ const SignIn = ({history}) => {
 
   return (
     <div className="content">
-      <h1>로그인</h1>
+      <p className="login-logo">롤링롤링</p>
+      <h3>로그인</h3>
       <br/>
       <div>
         {error !== null && (
