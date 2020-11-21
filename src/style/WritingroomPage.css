@@ -34,6 +34,7 @@
 .WR-MainArea {
     height: inherit;
     border: 1px solid gray;
+    padding: 10px;
 }
 .WR-sidebar {
     list-style-type: none;
