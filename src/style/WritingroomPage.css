@@ -33,6 +33,7 @@
 }
 .WR-MainArea {
     height: inherit;
+    border: 1px solid gray;
 }
 .WR-sidebar {
     list-style-type: none;
@@ -61,6 +62,9 @@
 .WR-scriptbar {
     display: flex;
     align-items: center;
+    position: absolute;
+    bottom: 30px;
+    width: 62.5%;
 }
 #userCharacterImg {
     height: 50px;
@@ -74,7 +78,7 @@
 }
 .scriptInput {
     padding: 10px;
-    width: 85%;
+    width: 80%;
     border-radius: 8px;
     border-color: gray;
     margin-left: 6px;
