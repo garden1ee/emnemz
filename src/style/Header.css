@@ -1,38 +1,41 @@
-.header {
+.HD-header {
     background-color: white;
     width: 1000px;
     margin-top: 10px;
 }
-ul {
+.HD-navbar {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: white;
 }
-.link {
+.Hd-link {
     float: left;
     background-color: white;
     color: black;
     display: block;
     text-align: center;
     padding: 10px;
+    padding-bottom: 0px;
     margin-top: 18px;
+    font-size: 1.3em;
 }
-.la {
-    margin-right: 80px;
+.HD-la {
+    margin-right: 100px;
 }
-.logo {
+.HD-logo {
     font-size: 2em;
     margin: 10px;
+    margin-right: 20px;
     font-weight: 900;
     color: #43afc7;
 }
-.link:hover {
+.Hd-link:hover {
     color: #5dbcd2;
     font-weight: 900;
     text-decoration: none;
 }
-.rightones {
+.HD-rightones {
     display:inline;
 }
