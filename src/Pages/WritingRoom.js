@@ -3,15 +3,15 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import React, {Component} from 'react';
-import  '../../src/style/WritingRoom.css';
+import  '../style/WritingRoom.css';
 import { Link, Route, BrowserRouter} from 'react-router-dom';
 import {DropdownButton, Dropdown} from 'react-bootstrap';
 import customer, {Customer} from "./Mainpages/PublishedList";
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import { MDBCard, MDBCardBody, MDBRow, MDBCol, MDBListGroup, MDBListGroupItem, MDBBadge, MDBIcon, MDBBtn} from "mdbreact";
-import aron_img from "../Pages/Images_character/aron.png";
-import ruffi_img from "../Pages/Images_character/ruffi.png";
+import aron_img from "./Images_character/aron.png";
+import ruffi_img from "./Images_character/ruffi.png";
 import DiscussionModal from './DiscussionModal';
 
 
@@ -302,24 +302,19 @@ class WritingRoom extends Component{
            
       <nav class="navbar navbar-inverse">
           <div class="container-fluid">
-              <div class="navbar-header">
+            <div class="navbar-header">
               <a class="navbar-brand" href="#">novel room name</a>
-              </div>
-       
-              <DropdownButton id="dropdown-basic-button" title="" class="nav_loc" 
-             
-       onSelcet={(eventKey) => console.log(eventKey)}>
-           <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-         
-           <div>
-       <Dropdown.Item eventKey="participant_lists">
+            </div>
+            <DropdownButton id="dropdown-basic-button" title="" class="nav_loc" 
+              onSelcet={(eventKey) => console.log(eventKey)}>
+            <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+          <div>
+          <Dropdown.Item eventKey="participant_lists">
            <a href="">참여자 목록</a></Dropdown.Item>
-       <Dropdown.Item eventKey="novel_info">소설 정보</Dropdown.Item>
-      < Dropdown.Item eventKey="communication_display">대화창</Dropdown.Item>
+          <Dropdown.Item eventKey="novel_info">소설 정보</Dropdown.Item>
+          <Dropdown.Item eventKey="communication_display">대화창</Dropdown.Item>
       </div>
-      </DropdownButton>
-           
-             
+      </DropdownButton> 
              
           </div>
       </nav>
