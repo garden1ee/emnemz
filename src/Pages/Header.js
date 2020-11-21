@@ -38,7 +38,7 @@ const Header = () => {
         </nav>
       </div>
       <Route path="/library" component={PublishedList}/>
-      <Route path="/mypage" component={MyPage}/>
+      <Route path="/mypage" component={ProfilePage}/>
       <Route path="/list" component={RoomList}/>
       <Route exact path="/" component={ProfilePage}/>
     </div>
