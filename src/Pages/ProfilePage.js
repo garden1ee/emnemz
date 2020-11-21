@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { UserContext } from "../Components/UserProvider";
-import {auth} from "../firebase";
+import {auth, modifyUserDocument} from "../firebase";
 const ProfilePage = () => {
   const authed = auth.currentUser;
   console.log(authed+'curuser');
   
   const user = useContext(UserContext);
   const {photoURL, displayName, email} = user;
+
   console.log(user);
   return (
     <div>
@@ -26,6 +27,7 @@ const ProfilePage = () => {
         </div>
       </div>
       <button onClick = {() => {auth.signOut();}}>로그아웃</button>
+      <button onClick = {() => {modifyUserDocument(user, {test1: 8});}}>test</button>
     </div>
   ) 
 };

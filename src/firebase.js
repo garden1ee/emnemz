@@ -54,3 +54,19 @@ const getUserDocument = async (uid) => {
     console.error("Error fetching user", error);
   }
 };
+export const modifyUserDocument = async (user, additionalData) => {
+  if (!user) return;
+  const userRef = firestore.doc(`users/${user.uid}`);
+  const snapshot = await userRef.get();
+  if (snapshot.exists) {
+    try {
+      await userRef.set({
+        ...additionalData
+      }, { merge: true });
+    } catch (error) {
+      console.error("Error changing user document", error);
+    }
+  }
+  return getUserDocument(user.uid);
+};
+
