@@ -2,22 +2,22 @@ import React from 'react';
 import { Link, Route } from 'react-router-dom';
 import { RoomList, PublishedList, ProfilePage, MyPage } from 'Pages/Mainpages';
 import { auth } from "../firebase";
+import { withTheme } from '@material-ui/core';
 
 
 const btnstyle1={
   display:'flex',
-  background:"#263343"
+  backgroundColor: 'white'
 }
 
 const btnstyle={
   border: 0,
-  background: "#263343",
   fontSize: 36,
+
 }
 
 const stnstyle={
   border: 0,
-  background: "#263343",
   fontSize: 24,
   marginLeft:30,
 }
@@ -25,9 +25,9 @@ const stnstyle={
 const Header = () => {
   return (
     <div>
-      <div className="main header">
+      <div style={btnstyle1} className="main header">
         <nav style={btnstyle1} className="navbar">
-          <button style={btnstyle} className="header"><Link to="/list">Yu칼노리</Link></button>
+          <button style={btnstyle} className="header"><Link to="/list">롤링롤링</Link></button>
           <button style={stnstyle} className="header"><Link to="/list">소설 작성방</Link></button>
           <button style={stnstyle} className="header"><Link to="/library">완결 작품들</Link></button>
           <button style={stnstyle} className="header"><Link to="/mypage">마이 페이지</Link></button>

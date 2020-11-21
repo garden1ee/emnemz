@@ -14,7 +14,7 @@ const SignUp = ({history}) => {
       history.push('/');
     }
     catch(error){
-      setError(`Error ${JSON.stringify(error)} Signing up with email and password`);
+      setError(`Error ${JSON.stringify(error.errormessage)} Signing up with email and password`);
     }
 
     setEmail("");
