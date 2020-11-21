@@ -105,8 +105,8 @@ messages: [
 }
 
 render() {
-return (
-  <div>
+  return (
+    <div>
          <MDBCol md="6" xl="8">
         <MDBRow>
           <MDBListGroup>
@@ -122,25 +122,29 @@ return (
         
             <div className="form-group basic-textarea">
               <div>
-              <button type="button"  class="btn btn-primary" 
+                <button type="button"  class="btn btn-primary" 
                   style={{position: "absolute", left:10, bottom:50}}>
                       대사
-                    </button>
-                    <button type="button"  class="btn btn-default" 
+                </button>
+                <button type="button"  class="btn btn-default" 
                   style={{position: "absolute", left:60, bottom:50}}>
                       액션
-                    </button>
+                </button>
                 <textarea className="form-control pl-2 my-0" id="exampleFormControlTextarea2" 
                   style={{width: 1000, position: "absolute", left:130, bottom:50}}
-                  placeholder="Type your message here..." />
+                  placeholder="대사를 입력하세요" />
                   
-                  <button type="button"  class="btn btn-default" 
+                <button type="button"  class="btn btn-default" 
                   style={{position: "absolute", left:1160, bottom:80}}>
-                      전송
-                    </button>
-                    </div>
+                      대사
+                </button>
+                <button type="button"  class="btn btn-default" 
+                  style={{position: "absolute", left:1160, bottom:80}}>
+                      액션
+                </button>
               </div>
             </div>
+    </div>
 
     );
   }
