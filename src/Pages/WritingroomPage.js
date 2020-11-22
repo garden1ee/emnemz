@@ -1,17 +1,32 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import ChatPage from "./ChatPage"
+import { getRoomDocument, getScript } from "../firebase";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faBars, faComments, faVoteYea, faBook } from '@fortawesome/free-solid-svg-icons';
 import { DropdownButton, Dropdown } from 'react-bootstrap';
 import '../style/WritingroomPage.css';
 import nami_img from "./Images_character/nami.png";
+import NovelRoomInfo from './NovelRoomInfo';
+import Vote from './Vote';
+import { Link } from 'react-router-dom';
 
-const WritingRoomPage = () => {
+var script = "대사를 입력하세요. \n";
+
+const WritingRoomPage = (props) => {
+    const [characters, setCharacters] = useState([]);
+    const [scripts, setScripts] = useState([{character:"", message:""}]);
+    useEffect ( async () => {
+        const room_id = props.roomid;
+        const {characters} = await getRoomDocument(room_id);
+        setCharacters(characters);
+        const {scriptdata} = await getScript(room_id);
+        setScripts(scriptdata);
+      });
     return (
         <div className="writingroompage">
             <div className="row">
                 <div className="col-11 writingroom-title">
-                    <button className="WR-backtoMain"><FontAwesomeIcon icon={faArrowLeft} /></button>
+                    <button className="WR-backtoMain"><Link to="/list"><FontAwesomeIcon icon={faArrowLeft} /></Link></button>
                     <h4>room title</h4>
                 </div>
                 <div className="col-1 WRdropdown-here">
@@ -19,7 +34,7 @@ const WritingRoomPage = () => {
                     title={<FontAwesomeIcon icon={faBars} />}>
                         <div>
                         <Dropdown.Item className="WRdropdownedMenu">참여자 목록</Dropdown.Item>
-                        <Dropdown.Item className="WRdropdownedMenu">소설 정보</Dropdown.Item>
+                        <NovelRoomInfo />
                         <Dropdown.Item className="WRdropdownedMenu">친구 초대</Dropdown.Item>
                         </div>
                     </DropdownButton>
@@ -27,12 +42,21 @@ const WritingRoomPage = () => {
             </div>
             <div className="row trytohandle">
                 <div className="col-11 h-100 WR-MainArea">
-                    <ChatPage/>
+                    <ChatPage characters={characters} scripts={scripts}/>
                 </div>
                 <div className="col-1">
                     <ul className="WR-sidebar">
                         <li><a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faComments} /><p>토론방</p></a></li>
-                        <li><a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faVoteYea} /><p>투표</p></a></li>
+                        <li>
+                       
+                                
+                            <a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faVoteYea} />
+                             <p> 
+                               
+                            </p>
+                             </a>
+                            투표하기
+                        </li>
                         <li><a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faBook} /><p>출판하기</p></a></li>
                     </ul>
                 </div>
@@ -41,7 +65,7 @@ const WritingRoomPage = () => {
                 <div className="col-11 WR-scriptbar">
                     
                     <button id="characterSelect"><img id="userCharacterImg" src={nami_img} /></button>
-                    <textarea placeholder="대사를 입력하세요. &#10;" className="scriptInput" />
+                    <textarea placeholder={script} className="scriptInput" />
                     <div className="WR-submitBtn">
                         <button className="scriptBtn">대사</button><br/>
                         <button className="actionBtn">액션</button>

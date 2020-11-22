@@ -83,15 +83,18 @@ export const generateRoomDocument = async (room, additionalData) => {
   const roomRef = firestore.doc(`rooms/${room.id}`);
   const snapshot = await roomRef.get();
   if (!snapshot.exists) {
-    const { id, info, characters, script, discussion } = room;
+    const { info, characters } = room;
     try {
       await roomRef.set({
-        id,
         info,
         characters,
-        script,
-        discussion,
         ...additionalData
+      });
+      await firestore.doc(`scripts/${room.id}`).set({
+        scripts:[]
+      });
+      await firestore.doc(`discussions/${room.id}`).set({
+        discussions:[]
       });
     } catch (error) {
       console.error("Error creating room document", error);
@@ -111,3 +114,15 @@ export const getRoomDocument = async (roomid) => {
   console.error("Error fetching room info", error);
   }
 };
+export const getScript = async (roomid) => {
+  if (!roomid) return null;
+  try {
+    const ScriptDocu = await firestore.doc(`scripts/${roomid}`).get();
+    return {
+      roomid,
+      ...ScriptDocu.data()
+    };
+  } catch (error) {
+  console.error("Error fetching script history", error);
+  }
+}

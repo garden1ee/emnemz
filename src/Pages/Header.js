@@ -20,7 +20,6 @@ const Header = () => {
       <ul className="HD-navbar">
         <li><Link to="/list" className="Hd-link HD-logo">롤링롤링</Link></li>
         <li><Link to="/list" className="Hd-link">소설 작성방</Link></li>
-        <li><Link to="/createroom" className="Hd-link">소설 작성방 만들기</Link></li>
         <li><Link to="/library" className="Hd-link HD-la">완결 작품들</Link></li>
         <div className="HD-rightones">
         <li><Link to="/mypage" className="Hd-link">마이페이지</Link></li>
@@ -30,7 +29,6 @@ const Header = () => {
         </div>
       </ul>
       <hr></hr>
-      <Route path="/createroom" component={CreateRoom}/>
       <Route path="/library" component={PublishedList}/>
       <Route path="/mypage" component={ProfilePage}/>
       <Route path="/list" component={RoomList}/>

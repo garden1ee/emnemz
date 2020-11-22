@@ -1,12 +1,9 @@
 import React from "react";
-import EnterWritingroom from "../Components/EnterWritingroom";
-import UserProvider from "../Components/UserProvider";
+import EnterWritingroom from "./EnterWritingroom";
 
 function WritingRoom() {
   return (
-    <UserProvider>
       <EnterWritingroom />
-    </UserProvider>
   );
 }
 export default WritingRoom;
