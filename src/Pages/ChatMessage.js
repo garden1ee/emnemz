@@ -30,7 +30,7 @@ const ChatMessage = ({ message: { character, avatar, when, message, isScript } }
       </MDBCardBody>
     </MDBCard>
     <small className="pull-right text-muted">
-            <i className="far fa-clock"/> {when.seconds}
+            <i className="far fa-clock"/> {when}
           </small>
           {(user === character ?
 
@@ -74,7 +74,7 @@ const ChatMessage = ({ message: { character, avatar, when, message, isScript } }
  
   
   <small className="pull-right text-muted">
-          <i className="far fa-clock"/> {when.seconds}
+          <i className="far fa-clock"/> {when}
         </small>
         </TableRow>
    

@@ -126,3 +126,32 @@ export const getScript = async (roomid) => {
   console.error("Error fetching script history", error);
   }
 }
+export const updateScript = async (roomid, Data) => {
+    const scriptref = await firestore.doc(`scripts/${roomid}`);
+    const snapshot = await scriptref.get();
+    if (snapshot.exists) {
+      try {
+        await scriptref.update({
+          scripts: firebase.firestore.FieldValue.arrayUnion({
+            when: Date.now(),
+            ...Data})
+        });
+      } catch (error) {
+        console.error("Error sending new script", error);
+      }
+    }
+}
+export const addRoomUserDocument = async (user, Data) => {
+  if (!user) return;
+  const userRef = firestore.doc(`users/${user.uid}`);
+  const snapshot = await userRef.get();
+  if (snapshot.exists) {
+    try {
+      await userRef.update({
+        rooms: firebase.firestore.FieldValue.arrayUnion(Data)
+      });
+    } catch (error) {
+      console.error("Error changing user document", error);
+    }
+  }
+};
