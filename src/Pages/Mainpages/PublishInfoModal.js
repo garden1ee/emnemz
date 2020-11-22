@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Button, Row, Col, Form } from 'react-bootstrap';
-import '../../../style/Modal.css';
+import '../../style/Modal.css';
 
 
 export class ChatInfoModal extends Component {
@@ -22,7 +22,7 @@ export class ChatInfoModal extends Component {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        소설 보기
+                        One Piece chatroom
         </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -31,25 +31,27 @@ export class ChatInfoModal extends Component {
                             <img src="https://image.ytn.co.kr/general/jpg/2017/0725/201707251131549101_t.jpg" width= "200" height = "200" />
                         </div>
                         <div className="col-6" style={{ paddingLeft: '40px'}}>
-                            <p>루피의 모험</p>
-                            <p>#원피스 #루피</p>
-                            <p>장르: 모험, 액션</p>
-                            <p>평점: 4.89/5점</p>
+                            <p>Join in our One Piece Chatroom</p>
+                            <p>#One Piece #Luffy all the way</p>
+                            <p>Genre: Adventure, Action</p>
+                            <p>Rating: 4.89</p>
                             </div>
                     </div>
                     <div className="row" style={{
                         paddingTop: "10px", paddingLeft: '15px'
                     }}>
-                        <h6>작가의 말</h6>
+                        <h6>Author's Notes</h6>
                         </div>
                     <div className="row" style={{ marginLeft: '1px' }}>
-                        <p>재밋게 읽어 주셧으면 합니다-작가 일동</p><h2/>
+                        <p>We worked really hard to make this entertaining for you guys, hope you guys enjoy this! - Nami</p>
+                        <p>We had so much fun writing this and we hope you would enjoy this as well - Zoro </p>
+                        <p>This is my first work on this platform! Enjoy our work! - Luffy </p>
                         </div>
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={this.props.onHide} className="secondary-btn">소설 읽기</Button>
-                    <Button onClick={this.props.onHide} className="primary-btn">닫기</Button>
+                    <Button onClick={this.props.onHide} className="secondary-btn">Read this work</Button>
+                    <Button onClick={this.props.onHide} className="primary-btn">Close</Button>
                 </Modal.Footer>
             </Modal>
         );
