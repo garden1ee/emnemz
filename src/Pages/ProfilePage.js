@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { UserContext } from "../Components/UserProvider";
 import { Link } from 'react-router-dom';
-import {auth, modifyUserDocument} from "../firebase";
+import {auth, updateScript} from "../firebase";
 const ProfilePage = () => {
   const authed = auth.currentUser;
   console.log(authed+'curuser');
@@ -28,7 +28,7 @@ const ProfilePage = () => {
         </div>
       </div>
       <button onClick = {() => {auth.signOut();}}>로그아웃</button>
-      <button onClick = {() => {modifyUserDocument(user, {rooms:[1,2,3]});}}>test</button>
+      <button onClick = {() => {updateScript(2,{'3':'e'});}}>test</button>
       <Link to="/writingroom/1">방입장test</Link>
     </div>
   ) 

@@ -85,7 +85,7 @@ class ChatPage extends Component {
 
   </MDBCard>
 
- {(this.state.user === character ?
+ {(this.state.my_id === character ?
 
 <li>
   <br></br>
@@ -113,7 +113,7 @@ class ChatPage extends Component {
     this.state = {
       scripts:[],
      mytext: "original",
-     user: "나미"
+     my_id: "나미"
     };
 
 
@@ -143,8 +143,9 @@ class ChatPage extends Component {
                 <MDBListGroup>
   
                   {this.state.scripts.map(message => (
-  
-                  <ChatMessage message={message} />
+                       <ChatMessage message={message} />
+                    
+            
                   
                 ))}
              
