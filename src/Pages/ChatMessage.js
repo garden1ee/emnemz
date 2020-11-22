@@ -9,7 +9,7 @@ function edit(){
   
   
 }
-const ChatMessage = ({ message: { author, avatar, when, message, isScript } }) => 
+const ChatMessage = ({ message: { character, avatar, when, message, isScript } }) => 
   <div>
     <div>
 {(isScript  
@@ -20,7 +20,7 @@ const ChatMessage = ({ message: { author, avatar, when, message, isScript } }) =
     <MDBCard style={{borderRadius: "20%"}}>
       <MDBCardBody>
         <div>
-          <strong className="primary-font">{author}</strong>
+          <strong className="primary-font">{character}</strong>
          
         </div>
         <hr />
@@ -30,9 +30,9 @@ const ChatMessage = ({ message: { author, avatar, when, message, isScript } }) =
       </MDBCardBody>
     </MDBCard>
     <small className="pull-right text-muted">
-            <i className="far fa-clock"/> {when}
+            <i className="far fa-clock"/> {when.seconds}
           </small>
-          {(user === author ?
+          {(user === character ?
 
 <button class="btn btn-primary" style={{width:70, height:30, verticalAlign: "center"}}>편집</button>
 : 
@@ -49,7 +49,7 @@ const ChatMessage = ({ message: { author, avatar, when, message, isScript } }) =
   <MDBCard>
     <MDBCardBody>
       <div>
-        <strong className="primary-font">{author}</strong>
+        <strong className="primary-font">{character}</strong>
        
       </div>
       <hr />
@@ -60,7 +60,7 @@ const ChatMessage = ({ message: { author, avatar, when, message, isScript } }) =
 
   </MDBCard>
 
- {(user === author ?
+ {(user === character ?
 
 <li>
   <br></br>

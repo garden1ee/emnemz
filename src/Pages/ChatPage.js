@@ -40,33 +40,32 @@ class ChatPage extends Component {
     }
     componentDidMount = async () => {
       const room_id = this.props.roomid;
-      const {characters} = await getRoomDocument(room_id);
-      this.setState({characters: characters});
-      const {scriptdata} = await getScript(room_id);
-      this.setState({scripts: scriptdata});
+      const roominfo = await getRoomDocument(room_id);
+      if (roominfo) {
+        const {characters} = roominfo;
+        this.setState({characters: characters});
+      };
+      const scriptDB = await getScript(room_id);
+      if (scriptDB) {
+        const {scripts} = scriptDB;
+        this.setState({scripts: scripts});
+      }
     };
     render() {
     return (
       <div>
-             <MDBCol md="6" xl="8">
+          <MDBCol md="6" xl="8">
             <MDBRow>
               <MDBListGroup>
                 {this.state.scripts.map(message => (
                 <ChatMessage key={message.character} message={message} />
                 ))}
-             
-                    </MDBListGroup>
-                  </MDBRow>
-                  </MDBCol>
-                
-         
-            
-              
-                </div>
-    
-        );
-      }
-    }
+              </MDBListGroup>
+            </MDBRow>
+          </MDBCol>   
+      </div>
+    )};
+  }
     
    
 

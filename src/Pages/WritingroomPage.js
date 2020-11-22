@@ -13,15 +13,7 @@ import { Link } from 'react-router-dom';
 var script = "대사를 입력하세요. \n";
 
 const WritingRoomPage = (props) => {
-    const [characters, setCharacters] = useState([]);
-    const [scripts, setScripts] = useState([{character:"", message:""}]);
-    useEffect ( async () => {
-        const room_id = props.roomid;
-        const {characters} = await getRoomDocument(room_id);
-        setCharacters(characters);
-        const {scriptdata} = await getScript(room_id);
-        setScripts(scriptdata);
-      });
+
     return (
         <div className="writingroompage">
             <div className="row">
@@ -42,7 +34,7 @@ const WritingRoomPage = (props) => {
             </div>
             <div className="row trytohandle">
                 <div className="col-11 h-100 WR-MainArea">
-                    <ChatPage characters={characters} scripts={scripts}/>
+                    <ChatPage roomid={props.roomid} />
                 </div>
                 <div className="col-1">
                     <ul className="WR-sidebar">
