@@ -8,7 +8,7 @@ import TableRow from '@material-ui/core/TableRow';
 import '../style/ChatPage.css';
 
 
-/*
+
 const messages =  [
   {
   author: "루피",
@@ -29,7 +29,7 @@ const messages =  [
         isScript: true
         }
 ];
-*/
+
 class ChatPage extends Component {
     constructor(props) {
     super(props);
@@ -143,7 +143,7 @@ class ChatPage extends Component {
                 <MDBListGroup>
   
                   {this.state.scripts.map(message => (
-                       <ChatMessage message={message} />
+                       <this.ChatMessage message={message} />
                     
             
                   
@@ -253,6 +253,6 @@ class ChatPage extends Component {
 
     
 
-     
+
 export default ChatPage;
    
