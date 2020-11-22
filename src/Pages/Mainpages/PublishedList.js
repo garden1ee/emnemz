@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme)=>({
     width:'100%',
     fontSize:'20px',
     margin:'0px',
+    justifyContent: "center",
   },
   paper: {
     border:"0",
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme)=>({
   paper1: {
     padding: theme.spacing(2),
     color: "black",
-    background: "#c4c4c4",
+    background: "white",
     border:0,
   },
 
@@ -68,15 +69,16 @@ const customer=[
   'score':'4.89/5점',
 }]
 const stly={
-  marginLeft:0,
+  textAlign: 'center',
 }
+
 const searchbarstyle={
     color: "black",
     background: "#C4C4C4",
     fontSize: 17,
-    marginLeft:30,
+    marginLeft:0,
     height: 29,
-    width: 600,
+    width: "auto",
     marginRight: 10,
 }
 const PublishedList =() => {
@@ -84,11 +86,11 @@ const PublishedList =() => {
     const classes=useStyles();
     return(
         <Grid container spacing={2} className={classes.grid}>
-          <Grid item xs={9}>
+          <Grid item xs={6}>
             <input style={searchbarstyle}/>
             <button onClick={()=>{alert("조금더 시간을 주시면 구현됩니다")}}> 검색</button>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={6}>
             <ui class="searchbar_char">
               <text style={stly}>해시태그:</text>
               <select name="job">
@@ -106,12 +108,9 @@ const PublishedList =() => {
               </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </ui>
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={3}>
             <Grid item xs={12}>
               <Grid item xs={12}>
-                <Paper className={classes.paper1}>
-                  <text> 작품들 보기 </text>
-                </Paper>
               </Grid>
               <Paper className={classes.paper1}>
                 {
@@ -129,12 +128,9 @@ const PublishedList =() => {
               </Paper>
             </Grid>
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={3}>
             <Grid item xs={12}>
               <Grid item xs={12}>
-                <Paper className={classes.paper1}>
-                  <text> 작품들 보기</text>
-                </Paper>
               </Grid>
 
               <Paper className={classes.paper1}>
@@ -153,12 +149,9 @@ const PublishedList =() => {
                 </Paper>
             </Grid>
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={3}>
             <Grid item xs={12}>
               <Grid item xs={12}>
-                <Paper className={classes.paper1}>
-                  <text> 작품들 보기 </text>
-                </Paper>
               </Grid>
               <Paper className={classes.paper1}>
                 {
@@ -192,11 +185,10 @@ class Customer extends React.Component{
         return (
             <TableRow>
         <h2/><img src= {this.props.image} width="200" height="200" alt="profile"/>
-        <h2/>{this.props.name}
-        <h2/>{this.props.birthday}
-        <h2/>{this.props.gender}
-        <h2/>{this.props.score}
-        <h2/><button onClick={() => this.setState({ setModalIsOpen: true })}>{this.props.id}</button>
+        <h2/><text style={stly}>{this.props.name}</text>
+        <h2/><text style={stly}>{this.props.birthday}</text>
+        <h2/><text style={stly}>{this.props.score}</text>
+        <h2/><button style={stly} onClick={() => this.setState({ setModalIsOpen: true })}>{this.props.id}</button>
             <PublishInfoModal show={this.state.setModalIsOpen} onHide={setModalClose} />
 
       </TableRow>
@@ -217,7 +209,7 @@ class CustomerInfo extends React.Component{
   render(){
     return(
       <div>
-        <a href="">{this.props.name}</a>
+        <a marginLeft={3} href="">{this.props.name}</a>
         <p>{this.props.birthday}</p>
         <p>{this.props.gender}</p>
         <p>{this.props.score}</p>
