@@ -1,5 +1,5 @@
 import React from "react";
-import { getRoomId, generateRoomDocument } from "../firebase";
+import { getRoomNum, generateRoomDocument } from "../firebase";
 /*NOT WORKING YET form과 character list 나누어놓기*/
 class CreateRoom extends React.Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class CreateRoom extends React.Component {
     }
     onSubmitHandler(event) {
       event.preventDefault();
-        const {id} = getRoomId();
+        const {id} = getRoomNum()+1;
         const {title, profilePic, hashtag, intro, characters} = this.state;
         const {info} = {title, profilePic, hashtag, intro}
         const room = {id, info, characters};

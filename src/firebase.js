@@ -69,13 +69,13 @@ export const modifyUserDocument = async (user, additionalData) => {
   }
   return getUserDocument(user.uid);
 };
-export const getRoomId = async () => {
+export const getRoomNum = async () => {
   const snapshot = await firestore.collection('rooms').get();
   if (!snapshot.exists) {
-    return 1;
+    return 0;
   }
   else {
-    return snapshot.size+1;
+    return snapshot.size;
   }
 };
 export const generateRoomDocument = async (room, additionalData) => {
