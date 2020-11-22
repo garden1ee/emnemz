@@ -99,7 +99,7 @@ export const generateRoomDocument = async (room, additionalData) => {
   }
   return getRoomDocument(room.id);
 };
-const getRoomDocument = async (roomid) => {
+export const getRoomDocument = async (roomid) => {
   if (!roomid) return null;
   try {
     const RoomDocument = await firestore.doc(`rooms/${roomid}`).get();

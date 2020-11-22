@@ -5,11 +5,15 @@ import { UserContext } from "../Components/UserProvider";
 function EnterWritingroom({history}) {
   const {rooms} = useContext(UserContext);
   let { id } = useParams();
-  if (rooms.includes(id)==false) {
-      history.push('/');
+  if (rooms.includes(id)) {
+      const room = getRoomDocument(id)
+      return (
+        <WritingRoomPage room={room}/>
+      )
   }
-  return (
-      <WritingRoomPage id={id}/>
-  )
+  else{
+    history.push('/');
+  }
+
 };
 export default EnterWritingroom;

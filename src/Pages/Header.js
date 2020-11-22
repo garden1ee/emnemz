@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Button, Modal } from 'react-bootstrap';
 import { Link, Route } from 'react-router-dom';
 import { RoomList, PublishedList, ProfilePage } from 'Pages/Mainpages';
 import { auth } from "../firebase";
 import { withTheme } from '@material-ui/core';
 import '../style/Header.css';
-import CreateRoom from 'Components/CreateRoom';
+import 'style/Modal.css';
+import AlarmModal from './Mainpages/AlarmModal.js';
 
 const Header = () => {
+    
+
+    const [modal, setModal] = useState(false);
+
+    const toggle = () => setModal(!modal);
+
   return (
     <div className="HD-header">
       <ul className="HD-navbar">
