@@ -48,23 +48,24 @@ class NovelRoomInfo extends Component{
         onClick={this.Open}>
             소설 정보
         </Dropdown.Item>
-        <Dialog open={this.state.isOpen}
-        style={{width: 700, height: 700}}>    
-                소설 정보
+        <Dialog open={this.state.isOpen} style={{width: 1500}}
+        >    
+                
             <div>
                 <DialogContent>
                     <TableRow>
                         <TableCell><img src= {this.state.roomInfo.image} width="200" height="200" alt="profile"/></TableCell>
+                 
+                            <br></br>
                         <li>
-                            <br></br>
                             <TableRow>작품명:   {this.state.roomInfo.name} </TableRow>
-                            <br></br>
+                            
                             <TableRow>장르:  {this.state.roomInfo.genre}</TableRow>
                             <br></br>
                             <TableRow> 해시 태그:  {this.state.roomInfo.birthday}</TableRow>
                             <br></br>
                             <TableRow> 작품 줄거리: {this.state.roomInfo.novel_summary}</TableRow>
-                        </li>
+                            </li>
             
                     </TableRow>
                     <TableRow>

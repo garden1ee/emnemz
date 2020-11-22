@@ -6,6 +6,8 @@ import { DropdownButton, Dropdown } from 'react-bootstrap';
 import '../style/WritingroomPage.css';
 import nami_img from "./Images_character/nami.png";
 import NovelRoomInfo from './NovelRoomInfo';
+import Vote from './Vote';
+import { Link } from 'react-router-dom';
 
 const WritingRoom = () => {
     return (
@@ -33,7 +35,14 @@ const WritingRoom = () => {
                 <div className="col-1">
                     <ul className="WR-sidebar">
                         <li><a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faComments} /><p>토론방</p></a></li>
-                        
+                        <li>
+                            <a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faVoteYea} />
+                             <p> 
+                                  투표하기
+    
+                            </p>
+                             </a>
+                        </li>
                         <li><a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faBook} /><p>출판하기</p></a></li>
                     </ul>
                 </div>
