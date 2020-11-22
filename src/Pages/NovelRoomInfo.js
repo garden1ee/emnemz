@@ -53,7 +53,7 @@ class NovelRoomInfo extends Component{
         >    
                 
             <div>
-                <DialogContent style={{width: 1500}}>
+                <DialogContent style={{width: 600}}>
                     <TableRow>
                         <img src= {this.state.roomInfo.image} width="200" height="200" alt="profile"/>
                  

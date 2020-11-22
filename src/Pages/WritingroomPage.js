@@ -1,14 +1,13 @@
 import React from "react";
 import ChatPage from "./ChatPage"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faBars, faComments, faVoteYea, faBook } from '@fortawesome/free-solid-svg-icons';
 import { DropdownButton, Dropdown } from 'react-bootstrap';
 import '../style/WritingroomPage.css';
 import nami_img from "./Images_character/nami.png";
 import NovelRoomInfo from './NovelRoomInfo';
+import { Route, Link } from 'react-router-dom';
 import Vote from './Vote';
-import { Link } from 'react-router-dom';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 var script = "대사를 입력하세요. &#10;";
 
 const WritingRoom = () => {
@@ -38,14 +37,8 @@ const WritingRoom = () => {
                     <ul className="WR-sidebar">
                         <li><a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faComments} /><p>토론방</p></a></li>
                         <li>
-                       
-                                
-                            <a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faVoteYea} />
-                             <p> 
-                               
-                            </p>
-                             </a>
-                            투표하기
+                        <Vote/>
+                     
                         </li>
                         <li><a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faBook} /><p>출판하기</p></a></li>
                     </ul>
@@ -64,6 +57,7 @@ const WritingRoom = () => {
                 <div className="col-1">
                 </div>
             </div>
+            <Route path="/Vote" component={Vote}/>
         </div>
     )
 }

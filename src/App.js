@@ -7,10 +7,11 @@ class App extends Component {
     return (
       <div>
         <Switch>
+          <Route path="/Vote" component={ Vote }/>
           <Route path="/writingroom" component={ WritingRoom }/>
           <Route path="/main" component={ Header }/>
           <Route path="/" component={ Login }/>
-          <Route path="/Vote" component={ Vote }/>
+         
         </Switch>
       </div>
     );
