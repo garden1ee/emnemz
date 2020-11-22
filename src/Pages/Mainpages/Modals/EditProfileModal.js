@@ -1,6 +1,6 @@
  import React, { Component } from 'react';
 import { Modal, Button, Row, Col, Form } from 'react-bootstrap';
-import '../../style/Modal.css';
+import '../../../style/Modal.css';
 
 
 export class EditProfileModal extends Component {

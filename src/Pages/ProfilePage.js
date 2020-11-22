@@ -3,8 +3,8 @@ import { UserContext } from "../Components/UserProvider";
 import {auth} from "../firebase";
 import {makeStyles} from "@material-ui/core/styles";
 import { Grid, Paper } from "@material-ui/core";
-import EditProfileModal from '../Pages/Mainpages/EditProfileModal.js';
-import EnterRoomModal from '../Pages/Mainpages/EnterRoomModal.js';
+import EditProfileModal from '../Pages/Mainpages/Modals/EditProfileModal.js';
+import EnterRoomModal from '../Pages/Mainpages/Modals/EnterRoomModal.js';
 
 const useStyles = makeStyles((theme)=>({
   grid:{

@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { Button, Modal } from 'react-bootstrap';
 import { Link, Route } from 'react-router-dom';
 import { RoomList, PublishedList, ProfilePage } from 'Pages/Mainpages';
 import { auth } from "../firebase";
-import { withTheme } from '@material-ui/core';
 import '../style/Header.css';
 import 'style/Modal.css';
-import AlarmModal from './Mainpages/AlarmModal.js';
+import AlarmModal from './Mainpages/Modals/AlarmModal.js';
 
 const Header = () => {
     

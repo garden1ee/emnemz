@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Button, Row, Col, Form } from 'react-bootstrap';
 import { Link, Route } from 'react-router-dom';
-import WritingRoom from '../WritingRoom.js';
-import { fontSize } from '@material-ui/system';
+import WritingRoom from '../../WritingRoom.js';
 
 
 export class AlarmModal extends Component {
@@ -18,10 +17,10 @@ export class AlarmModal extends Component {
                 centered
             >
             <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">작성방 입장
+                    <Modal.Title id="contained-modal-title-vcenter">알림
                               </Modal.Title>
             </Modal.Header>
-            <Modal.Body>작성방에 입장하시겠습니까?</Modal.Body>
+            <Modal.Body>작성방 신청이 승인 되었습니다!</Modal.Body>
             <Modal.Footer>
                     <Button className="primary-btn"><Link to="/writingroom" style={{
                         fontSize: 15, color: 'white'

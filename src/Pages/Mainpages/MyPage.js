@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import {makeStyles} from "@material-ui/core/styles";
 import { Grid, Paper } from "@material-ui/core";
-import EditProfileModal from './EditProfileModal.js';
-import EnterRoomModal from './EnterRoomModal.js';
+import EditProfileModal from './Modals/EditProfileModal.js';
+import EnterRoomModal from './Modals/EnterRoomModal.js';
 
 const useStyles = makeStyles((theme)=>({
   grid:{
