@@ -18,6 +18,9 @@
     padding: 3px;
     margin-left: 5px;
 }
+.WR-link {
+    color: white;
+}
 .WRdropdown-here {
     background-color: #6c757d;
     text-align: right;
@@ -32,9 +35,11 @@
     height: 100%;
 }
 .WR-MainArea {
-    height: inherit;
+    max-height: 530px;
     border: 1px solid gray;
     padding: 10px;
+    margin: 0;
+    overflow: auto;
 }
 .WR-sidebar {
     list-style-type: none;
@@ -90,4 +95,7 @@
     background-color: white;
     border-radius: 8px;
     border: solid 1px gray;
+}
+.NV-li {
+    float:right;
 }

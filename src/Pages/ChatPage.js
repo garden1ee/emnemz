@@ -11,40 +11,10 @@ import ChatMessage from "./ChatMessage";
 class ChatPage extends Component {
     constructor(props) {
     super(props);
-    this.state = {characters:[], scripts:[]};
-/*
-    {
-    messages: [
-      {
-      author: "루피",
-      avatar: ruffi_img,
-      message: "너 정말 나미를 죽인거냐",
-      when: "Just now",
-      toRespond: 1,
-      seen: false,
-      active: true,
-      isScript: true
-      },
-        {
-            author: "나미",
-            avatar: nami_img,
-            message: "아론 거기서",
-            when: "Just now",
-            toRespond: 1,
-            seen: false,
-            active: true,
-            isScript: true
-            }
-    ],
-    }; */
+    this.state = {scripts:[]};
     }
     componentDidMount = async () => {
       const room_id = this.props.roomid;
-      const roominfo = await getRoomDocument(room_id);
-      if (roominfo) {
-        const {characters} = roominfo;
-        this.setState({characters: characters});
-      };
       const scriptDB = await getScript(room_id);
       if (scriptDB) {
         const {scripts} = scriptDB;
@@ -58,7 +28,7 @@ class ChatPage extends Component {
             <MDBRow>
               <MDBListGroup>
                 {this.state.scripts.map(message => (
-                <ChatMessage key={message.character} message={message} />
+                <ChatMessage message={message} />
                 ))}
               </MDBListGroup>
             </MDBRow>

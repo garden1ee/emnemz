@@ -74,7 +74,7 @@ const ChatMessage = ({ message: { character, avatar, when, message, isScript } }
  
   
   <small className="pull-right text-muted">
-          <i className="far fa-clock"/> {when}
+          <i className="far fa-clock"/> {when.seconds}
         </small>
         </TableRow>
    
