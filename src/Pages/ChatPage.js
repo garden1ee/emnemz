@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {MDBCard, MDBCardBody, MDBRow, MDBCol, MDBListGroup} from "mdbreact";
-import { MDBRow, MDBCol, MDBListGroup} from "mdbreact";
 import { getRoomDocument, getScript } from "../firebase";
 import aron_img from "../Pages/Images_character/aron.png";
 import ruffi_img from "../Pages/Images_character/ruffi.png";
@@ -8,11 +7,34 @@ import nami_img from "../Pages/Images_character/nami.png";
 import TableRow from '@material-ui/core/TableRow';
 import '../style/ChatPage.css';
 
-const ChatMessage = ({ message: { author, avatar, when, message, isScript } }) => {
 
-  var isClicked = false;
+/*
+const messages =  [
+  {
+  author: "루피",
+  avatar: ruffi_img,
+  message: "너 정말 나미를 죽인거냐",
+  when: "Just now",
+  seen: false,
+  active: true,
+  isScript: true
+  },
+    {
+        author: "나미",
+        avatar: nami_img,
+        message: "아론 거기서",
+        when: "Just now",
+        seen: false,
+        active: true,
+        isScript: true
+        }
+];
+*/
+class ChatPage extends Component {
+    constructor(props) {
+    super(props);
 
-  return(
+    const ChatMessage = ({ message: { character, avatar, when, message, isScript } }) => 
   <div>
     <div>
 {(isScript  
@@ -23,7 +45,7 @@ const ChatMessage = ({ message: { author, avatar, when, message, isScript } }) =
     <MDBCard style={{borderRadius: "20%"}}>
       <MDBCardBody>
         <div>
-          <strong className="primary-font">{author}</strong>
+          <strong className="primary-font">{character}</strong>
          
         </div>
         <hr />
@@ -33,9 +55,16 @@ const ChatMessage = ({ message: { author, avatar, when, message, isScript } }) =
       </MDBCardBody>
     </MDBCard>
     <small className="pull-right text-muted">
-            <i className="far fa-clock"/> {when}
+            <i className="far fa-clock"/> {when.seconds}
           </small>
-          
+          {(this.state.user === character ?
+
+<button class="btn btn-primary" style={{width:70, height:30, verticalAlign: "center"}}>편집</button>
+: 
+ <p></p>
+)}
+   
+   
   </li>
   
   : <li className="chat-message  d-flex justify-content-between mb-4">
@@ -45,7 +74,7 @@ const ChatMessage = ({ message: { author, avatar, when, message, isScript } }) =
   <MDBCard>
     <MDBCardBody>
       <div>
-        <strong className="primary-font">{author}</strong>
+        <strong className="primary-font">{character}</strong>
        
       </div>
       <hr />
@@ -56,72 +85,110 @@ const ChatMessage = ({ message: { author, avatar, when, message, isScript } }) =
 
   </MDBCard>
 
+ {(this.state.user === character ?
+
+<li>
+  <br></br>
+  <br></br>
+  <button class="btn btn-primary" onclick={this.change_user_text()}>편집</button>
+</li>
+: 
+ <p></p>
+)}
+   
  
   
   <small className="pull-right text-muted">
-          <i className="far fa-clock"/> {when}
+          <i className="far fa-clock"/> {when.seconds}
         </small>
         </TableRow>
    
-</li>
+</li>)}
 
-)}
+
 
 </div>
+</div> 
 
-
-</div>);
-};
-
-const messages =  [
-  {
-  author: "루피",
-  avatar: ruffi_img,
-  message: "너 정말 나미를 죽인거냐",
-  when: "Just now",
-  toRespond: 1,
-  seen: false,
-  active: true,
-  isScript: true
-  },
-    {
-        author: "나미",
-        avatar: nami_img,
-        message: "아론 거기서",
-        when: "Just now",
-        toRespond: 1,
-        seen: false,
-        active: true,
-        isScript: true
-        }
-];
-
-class ChatPage extends Component {
-<<<<<<< HEAD
-    constructor(props) {
-    super(props);
     this.state = {
       scripts:[],
      mytext: "original",
      user: "나미"
     };
 
+
+  }
+
     componentDidMount = async () => {
       const room_id = this.props.roomid;
       const scriptDB = await getScript(room_id);
-      if (scriptDB) {
+      if (scriptDB){
         const {scripts} = scriptDB;
         this.setState({scripts: scripts});
       }
-    };
-
     }
+
+    
     change_user_text = (value) => {
 
       this.setState({my_text: value});
     }
 
-    render() {
+    render(){
+      return (
+        <div>
+          <div className="col-125 h-100 WR-MainArea">
+               <MDBCol md="10" xl="20">
+              <MDBRow>
+                <MDBListGroup>
+  
+                  {this.state.scripts.map(message => (
+  
+                  <ChatMessage message={message} />
+                  
+                ))}
+             
+                       
+  
+                      </MDBListGroup>
+                  )
+                 
+  
+                    </MDBRow>
+                    </MDBCol>
+        
+      
+  
+                  
+                    <div className="row" style={{left: 10}}>
+                  <div className="col-11 WR-scriptbar">
+                      
+                      <button id="characterSelect"><img id="userCharacterImg" src={nami_img} /></button>
+                 
+                      <textarea placeholder="대사를 입력하세요. &#10;"
+                      defaultValue={this.state.my_text}
+                      className="scriptInput" />
+  
+                
+                      <div className="WR-submitBtn">
+                          <button className="scriptBtn">대사</button><br/>
+                          <button className="actionBtn">액션</button>
+                          
+                      </div>
+                    
+  
+                  </div>
+                  <div className="col-1">
+                      </div>
+                </div>
+              
+                </div>
+                  </div>
+      
+          );
+        }
+  }
+    /*render(){
     return (
       <div>
         <div className="col-125 h-100 WR-MainArea">
@@ -131,7 +198,7 @@ class ChatPage extends Component {
 
                 {this.state.scripts.map(message => (
 
-                <ChatMessage key={message.author} message={message} />
+                <ChatMessage message={message} />
                 
               ))}
               {messages.map(message => (
@@ -178,42 +245,13 @@ class ChatPage extends Component {
                 </div>
     
         );
-      }
-    }
-=======
-    constructor(props) {
-    super(props);
-    this.state = {scripts:[]};
-    }
-    componentDidMount = async () => {
-      const room_id = this.props.roomid;
-      const scriptDB = await getScript(room_id);
-      if (scriptDB) {
-        const {scripts} = scriptDB;
-        this.setState({scripts: scripts});
-      }
-    };
-    render() {
-    return (
-      <div>
-          <MDBCol md="6" xl="8">
-            <MDBRow>
-              <MDBListGroup>
-                {this.state.scripts.map(message => (
-                <ChatMessage message={message} />
-                ))}
-              </MDBListGroup>
-            </MDBRow>
-          </MDBCol>   
-      </div>
-    )};
-  }
->>>>>>> origin/test
+      }*/
+    
     
    
 
     
 
      
-    export default ChatPage;
+export default ChatPage;
    

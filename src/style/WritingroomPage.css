@@ -38,12 +38,8 @@
     max-height: 530px;
     border: 1px solid gray;
     padding: 10px;
-<<<<<<< HEAD
-    width: 930px;
-=======
     margin: 0;
     overflow: auto;
->>>>>>> origin/test
 }
 .WR-sidebar {
     list-style-type: none;

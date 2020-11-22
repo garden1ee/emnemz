@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-import React from "react";
-import ChatPage, {testing} from "./ChatPage"
-=======
 import React, {useState, useEffect} from "react";
 import ChatPage from "./ChatPage"
 import { getRoomDocument, getScript } from "../firebase";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
->>>>>>> origin/test
 import { faArrowLeft, faBars, faComments, faVoteYea, faBook } from '@fortawesome/free-solid-svg-icons';
 import { DropdownButton, Dropdown } from 'react-bootstrap';
 import '../style/WritingroomPage.css';
@@ -14,30 +9,11 @@ import nami_img from "./Images_character/nami.png";
 import NovelRoomInfo from './NovelRoomInfo';
 import { Route, Link } from 'react-router-dom';
 import Vote from './Vote';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {Component} from 'react';
 import DiscussionModal from './DiscussionModal';
 
 
 
-<<<<<<< HEAD
-class WritingRoom extends Component{ 
-    constructor(props){
-        super(props)
-        this.state = {
-            script: "dd"
-        }
-    }
-
-    changeScript(value){
-
-        this.setState({
-            script: value
-        });
-    }
-
-    render(){
-=======
 var script = "대사를 입력하세요. \n";
 
 const WritingRoomPage = (props) => {
@@ -54,7 +30,6 @@ const WritingRoomPage = (props) => {
     }
     useEffect(getRoominfo);
 
->>>>>>> origin/test
     return (
         <div className="writingroompage">
             <div className="row">
@@ -74,15 +49,9 @@ const WritingRoomPage = (props) => {
                 </div>
             </div>
             <div className="row trytohandle">
-<<<<<<< HEAD
-                
-                    <ChatPage/>
-                
-=======
                 <div className="col-11 h-100 WR-MainArea">
                     <ChatPage roomid={props.roomid} />
                 </div>
->>>>>>> origin/test
                 <div className="col-1">
                     <ul className="WR-sidebar">
                         <Vote/>
@@ -95,12 +64,7 @@ const WritingRoomPage = (props) => {
             <Route path="/Vote" component={Vote}/>
         </div>
     );
-    }
-    
 }
-<<<<<<< HEAD
-export default WritingRoom;
+    
 
-=======
 export default WritingRoomPage;
->>>>>>> origin/test

@@ -7,12 +7,9 @@ class App extends Component {
     return (
       <div>
         <Switch>
-<<<<<<< HEAD
           <Route path="/Vote" component={ Vote }/>
           <Route path="/writingroom" component={ WritingRoom }/>
-=======
           <Route path="/writingroom/:id" component={ WritingRoom }/>
->>>>>>> origin/test
           <Route path="/main" component={ Header }/>
           <Route path="/" component={ Login }/>
          
