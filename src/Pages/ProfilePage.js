@@ -27,7 +27,7 @@ const ProfilePage = () => {
         </div>
       </div>
       <button onClick = {() => {auth.signOut();}}>로그아웃</button>
-      <button onClick = {() => {modifyUserDocument(user, {test1: 8, test2: [9, 6], displayName: '정원'});}}>test</button>
+      <button onClick = {() => {modifyUserDocument(user, {rooms:[1,2,3]});}}>test</button>
     </div>
   ) 
 };

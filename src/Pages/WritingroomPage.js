@@ -6,7 +6,7 @@ import { DropdownButton, Dropdown } from 'react-bootstrap';
 import '../style/WritingroomPage.css';
 import nami_img from "./Images_character/nami.png";
 
-const WritingRoom = () => {
+const WritingRoomPage = () => {
     return (
         <div className="writingroompage">
             <div className="row">
@@ -53,4 +53,4 @@ const WritingRoom = () => {
         </div>
     )
 }
-export default WritingRoom;
+export default WritingRoomPage;

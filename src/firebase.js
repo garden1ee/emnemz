@@ -69,24 +69,24 @@ export const modifyUserDocument = async (user, additionalData) => {
   }
   return getUserDocument(user.uid);
 };
-
+export const getRoomId = async () => {
+  const snapshot = await firestore.collection('rooms').get();
+  if (!snapshot.exists) {
+    return 1;
+  }
+  else {
+    return snapshot.size+1;
+  }
+};
 export const generateRoomDocument = async (room, additionalData) => {
   if (!room) return;
-  var size = 0;
   const roomRef = firestore.doc(`rooms/${room.id}`);
   const snapshot = await roomRef.get();
   if (!snapshot.exists) {
-    const snap = await firestore.collection('rooms').get();
-    if (!snap.exists) {
-      size = 1;
-    }
-    else {
-      size = snap.size+1;
-    }
-    const { info, characters, script, discussion } = room;
+    const { id, info, characters, script, discussion } = room;
     try {
       await roomRef.set({
-        id:size,
+        id,
         info,
         characters,
         script,
@@ -108,6 +108,6 @@ const getRoomDocument = async (roomid) => {
       ...RoomDocument.data()
     };
   } catch (error) {
-    console.error("Error fetching room info", error);
+  console.error("Error fetching room info", error);
   }
 };
