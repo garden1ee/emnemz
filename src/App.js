@@ -9,8 +9,8 @@ class App extends Component {
         <Switch>
           <Route path="/writingroom" component={ WritingRoom }/>
           <Route path="/main" component={ Header }/>
-          <Route path="/" component={ Login }/>
           <Route path="/Vote" component={ Vote }/>
+          <Route path="/" component={ Login }/>
         </Switch>
       </div>
     );
