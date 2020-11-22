@@ -22,12 +22,11 @@ export class AlarmModal extends Component {
             </Modal.Header>
             <Modal.Body>작성방에 입장하시겠습니까?</Modal.Body>
             <Modal.Footer>
-                    <Button className="primary-btn"><Link to="/writingroom" style={{
+                    <Button className="primary-btn"><Link to="/writingroom/1" style={{
                         fontSize: 15, color: 'white'
                     }}>작성방으로</Link></Button>
                     <Button className="secondary-btn" onClick={this.props.toggle}>닫기</Button>
                 </Modal.Footer>
-                <Route path="/writingroom" component={WritingRoom} />
                   </Modal >
         );
     }
