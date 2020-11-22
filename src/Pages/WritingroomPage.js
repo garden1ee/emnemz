@@ -9,6 +9,8 @@ import NovelRoomInfo from './NovelRoomInfo';
 import Vote from './Vote';
 import { Link } from 'react-router-dom';
 
+var script = "대사를 입력하세요. &#10;";
+
 const WritingRoom = () => {
     return (
         <div className="writingroompage">
@@ -36,12 +38,14 @@ const WritingRoom = () => {
                     <ul className="WR-sidebar">
                         <li><a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faComments} /><p>토론방</p></a></li>
                         <li>
+                       
+                                
                             <a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faVoteYea} />
                              <p> 
-                                  투표하기
-    
+                               
                             </p>
                              </a>
+                            투표하기
                         </li>
                         <li><a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faBook} /><p>출판하기</p></a></li>
                     </ul>
@@ -51,7 +55,7 @@ const WritingRoom = () => {
                 <div className="col-11 WR-scriptbar">
                     
                     <button id="characterSelect"><img id="userCharacterImg" src={nami_img} /></button>
-                    <textarea placeholder="대사를 입력하세요. &#10;" className="scriptInput" />
+                    <textarea placeholder={script} className="scriptInput" />
                     <div className="WR-submitBtn">
                         <button className="scriptBtn">대사</button><br/>
                         <button className="actionBtn">액션</button>

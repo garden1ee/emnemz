@@ -32,8 +32,9 @@ class ChatPage extends Component {
             active: true,
             isScript: true
             }
-    ]
+    ],
     };
+
     }
     
     render() {

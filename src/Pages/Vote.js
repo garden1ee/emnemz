@@ -4,6 +4,7 @@ import TableCell from '@material-ui/core/TableCell';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 
+
 class Vote extends Component{
 
     constructor(props){

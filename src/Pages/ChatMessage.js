@@ -1,8 +1,14 @@
 import { MDBCard, MDBCardBody} from "mdbreact";
 import TableRow from '@material-ui/core/TableRow';
 
+
 var user = "나미";
 
+function edit(){
+  var edit_content = ChatMessage.mesage;
+  
+  
+}
 const ChatMessage = ({ message: { author, avatar, when, message, isScript } }) => 
   <div>
     <div>
@@ -56,7 +62,11 @@ const ChatMessage = ({ message: { author, avatar, when, message, isScript } }) =
 
  {(user === author ?
 
-<button class="btn btn-primary">편집</button>
+<li>
+  <br></br>
+  <br></br>
+  <button class="btn btn-primary" onclick={edit()}>편집</button>
+</li>
 : 
  <p></p>
 )}
