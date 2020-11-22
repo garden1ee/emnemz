@@ -22,7 +22,7 @@ export class ChatInfoModal extends Component {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        One Piece chatroom
+                        소설 보기
         </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
