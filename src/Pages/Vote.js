@@ -65,11 +65,11 @@ class Vote extends Component{
             <a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faVoteYea} 
             onClick={this.Open}/>
                <p> 
-                                   
+               투표하기      
                </p>
             </a>
-            투표하기
-            <Dialog open={this.state.isOpen} >
+   
+            <Dialog open={this.state.isOpen}>
          
             <div>
             <DialogContent>
@@ -80,6 +80,7 @@ class Vote extends Component{
                 <button type="button" class="btn btn-warning" onClick={this.voting}>
                     네
                 </button>
+             
                 <button type="button" class="btn btn-warning" onClick={this.voting}>
                     아니오
                 </button>

@@ -8,9 +8,28 @@ import NovelRoomInfo from './NovelRoomInfo';
 import { Route, Link } from 'react-router-dom';
 import Vote from './Vote';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-var script = "대사를 입력하세요. &#10;";
+import {Component} from 'react';
+import DiscussionModal from './DiscussionModal';
 
-const WritingRoom = () => {
+
+
+
+class WritingRoom extends Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            script: "ㅁㅁㅁ"
+        }
+    }
+
+    changeScript(value){
+
+        this.setState({
+            script: value
+        });
+    }
+
+    render(){
     return (
         <div className="writingroompage">
             <div className="row">
@@ -35,11 +54,8 @@ const WritingRoom = () => {
                 </div>
                 <div className="col-1">
                     <ul className="WR-sidebar">
-                        <li><a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faComments} /><p>토론방</p></a></li>
-                        <li>
                         <Vote/>
-                     
-                        </li>
+                        <DiscussionModal/>
                         <li><a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faBook} /><p>출판하기</p></a></li>
                     </ul>
                 </div>
@@ -48,10 +64,13 @@ const WritingRoom = () => {
                 <div className="col-11 WR-scriptbar">
                     
                     <button id="characterSelect"><img id="userCharacterImg" src={nami_img} /></button>
-                    <textarea placeholder={script} className="scriptInput" />
+                    <textarea placeholder="대사를 입력하세요. &#10;" 
+                    className="scriptInput" value={this.state.script}/>
                     <div className="WR-submitBtn">
                         <button className="scriptBtn">대사</button><br/>
                         <button className="actionBtn">액션</button>
+                        <button className="actionBtn" 
+                        onClick={() => this.changeScript("ddd")}>수정</button>
                     </div>
                 </div>
                 <div className="col-1">
@@ -59,6 +78,8 @@ const WritingRoom = () => {
             </div>
             <Route path="/Vote" component={Vote}/>
         </div>
-    )
+    );
+    }
 }
 export default WritingRoom;
+

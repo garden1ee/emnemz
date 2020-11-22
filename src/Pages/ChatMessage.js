@@ -4,8 +4,9 @@ import TableRow from '@material-ui/core/TableRow';
 
 var user = "나미";
 
-function edit(){
-  var edit_content = ChatMessage.mesage;
+var edit = () =>{
+  var edit_content = "나미가 ";
+ // script = edit_content;
   
   
 }
@@ -65,7 +66,7 @@ const ChatMessage = ({ message: { author, avatar, when, message, isScript } }) =
 <li>
   <br></br>
   <br></br>
-  <button class="btn btn-primary" onclick={edit()}>편집</button>
+  <button class="btn btn-primary" onclick={edit}>편집</button>
 </li>
 : 
  <p></p>

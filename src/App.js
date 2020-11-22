@@ -10,13 +10,8 @@ class App extends Component {
           <Route path="/Vote" component={ Vote }/>
           <Route path="/writingroom" component={ WritingRoom }/>
           <Route path="/main" component={ Header }/>
-<<<<<<< HEAD
           <Route path="/" component={ Login }/>
          
-=======
-          <Route path="/Vote" component={ Vote }/>
-          <Route path="/" component={ Login }/>
->>>>>>> origin/writingroom
         </Switch>
       </div>
     );
