@@ -1,5 +1,5 @@
 import React from "react";
-import ChatPage from "./ChatPage"
+import ChatPage, {testing} from "./ChatPage"
 import { faArrowLeft, faBars, faComments, faVoteYea, faBook } from '@fortawesome/free-solid-svg-icons';
 import { DropdownButton, Dropdown } from 'react-bootstrap';
 import '../style/WritingroomPage.css';
@@ -13,12 +13,11 @@ import DiscussionModal from './DiscussionModal';
 
 
 
-
-class WritingRoom extends Component{
+class WritingRoom extends Component{ 
     constructor(props){
         super(props)
         this.state = {
-            script: "ㅁㅁㅁ"
+            script: "dd"
         }
     }
 
@@ -49,9 +48,9 @@ class WritingRoom extends Component{
                 </div>
             </div>
             <div className="row trytohandle">
-                <div className="col-11 h-100 WR-MainArea">
+                
                     <ChatPage/>
-                </div>
+                
                 <div className="col-1">
                     <ul className="WR-sidebar">
                         <Vote/>
@@ -60,26 +59,12 @@ class WritingRoom extends Component{
                     </ul>
                 </div>
             </div>
-            <div className="row">
-                <div className="col-11 WR-scriptbar">
-                    
-                    <button id="characterSelect"><img id="userCharacterImg" src={nami_img} /></button>
-                    <textarea placeholder="대사를 입력하세요. &#10;" 
-                    className="scriptInput" value={this.state.script}/>
-                    <div className="WR-submitBtn">
-                        <button className="scriptBtn">대사</button><br/>
-                        <button className="actionBtn">액션</button>
-                        <button className="actionBtn" 
-                        onClick={() => this.changeScript("ddd")}>수정</button>
-                    </div>
-                </div>
-                <div className="col-1">
-                </div>
-            </div>
+           
             <Route path="/Vote" component={Vote}/>
         </div>
     );
     }
+    
 }
 export default WritingRoom;
 

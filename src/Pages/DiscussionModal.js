@@ -1,13 +1,78 @@
 import React, {Component} from 'react';
 import  '../../src/style/WritingRoom.css';
-import {MDBRow, MDBCol, MDBListGroup} from "mdbreact";
+import {MDBCard, MDBCardBody, MDBRow, MDBCol, MDBListGroup} from "mdbreact";
 import aron_img from "../Pages/Images_character/aron.png";
 import ruffi_img from "../Pages/Images_character/ruffi.png";
-import ChatMessage from "./ChatMessage";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faComments} from '@fortawesome/free-solid-svg-icons';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
+import TableRow from '@material-ui/core/TableRow';
+
+const discussionMessage = ({ message: { author, avatar, when, message, isScript } }) => {
+
+  var isClicked = false;
+
+  return(
+  <div>
+    <div>
+{(isScript  
+    ? <li className="chat-message  d-flex justify-content-between mb-4">
+  
+    <img src={avatar} alt="character"  style={{width: 50, height: 50, borderRadius: 50/ 2}} />
+    
+    <MDBCard style={{borderRadius: "20%"}}>
+      <MDBCardBody>
+        <div>
+          <strong className="primary-font">{author}</strong>
+         
+        </div>
+        <hr />
+     
+        <p className="mb-0">{message}  </p>
+       
+      </MDBCardBody>
+    </MDBCard>
+    <small className="pull-right text-muted">
+            <i className="far fa-clock"/> {when}
+          </small>
+          
+  </li>
+  
+  : <li className="chat-message  d-flex justify-content-between mb-4">
+     <TableRow>
+  <img src={avatar} alt="character"  style={{width: 50, height: 50, borderRadius: 50/ 2}} />
+
+  <MDBCard>
+    <MDBCardBody>
+      <div>
+        <strong className="primary-font">{author}</strong>
+       
+      </div>
+      <hr />
+   
+      <p className="mb-0">{message}  </p>
+     
+    </MDBCardBody>
+
+  </MDBCard>
+
+ 
+  
+  <small className="pull-right text-muted">
+          <i className="far fa-clock"/> {when}
+        </small>
+        </TableRow>
+   
+</li>
+
+)}
+
+</div>
+
+
+</div>);
+};
 
 class DiscussionModal extends Component {
 constructor() {
@@ -59,7 +124,7 @@ return (
         <MDBRow>
           <MDBListGroup>
             {this.state.messages.map(message => (
-            <ChatMessage key={message.author} message={message} />
+            <discussionMessage key={message.author} message={message} />
             ))}
          
                 </MDBListGroup>

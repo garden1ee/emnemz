@@ -1,0 +1,7 @@
+  <div>
+                {message.author ===  this.state.user 
+                  ?  <button class="btn btn-primary" onClick= {this.setState({my_text: message})}>
+                      편집 
+                     </button> : message = message}
+
+                </div>
