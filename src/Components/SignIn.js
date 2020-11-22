@@ -4,7 +4,7 @@ import { auth } from "../firebase";
 import '../style/login.css';
 /*Guided by Yusuff Faruq's blog post guide: https://blog.logrocket.com/user-authentication-firebase-react-apps/ */
 
-const SignIn = ({history}) => {
+const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);

@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {makeStyles} from "@material-ui/core/styles";
-import {Grid, Paper} from "@material-ui/core";
+import { Grid, Paper } from "@material-ui/core";
+import EditProfileModal from './Modals/EditProfileModal.js';
+import EnterRoomModal from './Modals/EnterRoomModal.js';
 
 const useStyles = makeStyles((theme)=>({
   grid:{
@@ -32,6 +34,12 @@ const back1={
 }
 
 const MyPage = () => {
+    const [modalprofile, setModalprofile] = useState(false);
+    const [modalroom, setModalroom] = useState(false);
+
+    const toggleprofile = () => setModalprofile(!modalprofile);
+    const toggleroom = () => setModalroom(!modalroom);
+
     const classes=useStyles();
     return(
         <Grid container spacing={2} className={classes.grid}>
@@ -62,7 +70,7 @@ const MyPage = () => {
               <text>완결 편수:0</text>
               <h2/>
               <h2/>
-                        <button style={{ marginLeft: "100px" }}>프로필 수정하기</button>
+                        <button style={{ marginLeft: "100px" }} onClick={toggleprofile}>프로필 수정하기<EditProfileModal show={modalprofile} toggleprofile={toggleprofile}/></button>
               <h2/>
               </Paper>
             </Grid>
@@ -86,9 +94,9 @@ const MyPage = () => {
             <text style={back}>참가하는 방</text>
             <h2/>
             <Paper className={classes.paper} textSize={"15px"}>
-                    <img src={'https://image.ytn.co.kr/general/jpg/2017/0725/201707251131549101_t.jpg'} style={{
+                    <button onClick={toggleroom}><img src={'https://image.ytn.co.kr/general/jpg/2017/0725/201707251131549101_t.jpg'} style={{
                         width: '330px', textAlign: 'center', height: '250px'
-                    }} alt={"profile"}/>
+                    }} alt={"profile"} /><EnterRoomModal show={modalroom} toggleroom={toggleroom}/></button>
             <h2/>
             <Grid xs={12}>
             <text>	원피스 웹소설 드가자
