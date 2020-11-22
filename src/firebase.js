@@ -71,16 +71,22 @@ export const modifyUserDocument = async (user, additionalData) => {
 };
 
 export const generateRoomDocument = async (room, additionalData) => {
+  if (!room) return;
+  var size = 0;
   const roomRef = firestore.doc(`rooms/${room.id}`);
   const snapshot = await roomRef.get();
   if (!snapshot.exists) {
-    const len = await firestore.doc('rooms').get().then(snap => {
-      size=snap.size+1
-    });
+    const snap = await firestore.collection('rooms').get();
+    if (!snap.exists) {
+      size = 1;
+    }
+    else {
+      size = snap.size+1;
+    }
     const { info, characters, script, discussion } = room;
     try {
       await roomRef.set({
-        id:len,
+        id:size,
         info,
         characters,
         script,

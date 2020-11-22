@@ -1,53 +1,45 @@
 import React, { useState } from "react";
 import { generateRoomDocument } from "../firebase";
 
-const CreateRoom = ({history}) => {
-  const [title, setTitle] = useState("");
-  const [profilePic, setProfilePic] = useState(null);
-  const [hashtag, setHashtag] = useState("");
-  const [intro, setIntro] = useState("");
-  const [name, setName] = useState("");
-  const [pic, setPic] = useState(null)
-  const [characters, setCharacters] = useState([]);
-  const [error, setError] = useState(null);
-  const createRoomHandler = async (event, title, profilePic, hashtag, intro, characters) => {
-    event.preventDefault();
-    try{
-      const {info} = {title, profilePic, hashtag, intro};
-      const room = {info, characters};
-      generateRoomDocument(room);
-      history.push('/');
+class CreateRoom extends React.Component {
+  constructor(props) {
+    super(props);
+    this. state = { title: '', profilePic: '' hashtag: '', intro: '', name: '', pic: '', characters: []};
+  
+    const [error, setError] = useState(null);
+    const createRoomHandler = async (event, title, profilePic, hashtag, intro, characters) => {
+      event.preventDefault();
+      try{
+        const {info} = {title, profilePic, hashtag, intro};
+        const room = {info, characters};
+        generateRoomDocument(room, {info, characters});
+        alert('The form is submitted');
+        history.push('/list');
+      }
+      catch(error){
+        setError(`Error creating room`);
+      }
+    };
+    this.onChangeHandler = this.onChangeHandler.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    onChangeHandler(event) {
+      if (name === "Roomtitle") {
+        this.setState({title: event.target.value});
+      } else if (name === "RoomprofilePic") {
+        this.setState({profilePic: event.target.value});
+      } else if (name === "Roomhashtag") {
+        this.setState({hashtag: event.target.value});
+      } else if (name === "Roomintro") {
+        this.setState({intro: event.target.value});
+      } else if (name === "Charname") {
+        this.setState({name: event.target.value});
+      } else if (name === "Charpic") {
+        this.setState({pic: event.target.value});
+      }
     }
-    catch(error){
-      setError(`Error creating room`);
-    }
-
-    setTitle("");
-    setProfilePic("");
-    setHashtag("");
-    setIntro("");
-    setName("");
-    setPic("");
-    setCharacters([]);
-  };
-  const onChangeHandler = event => {
-    const { name, value } = event.currentTarget;
-    if (name === "Roomtitle") {
-      setEmail(value);
-    } else if (name === "RoomprofilePic") {
-      setPassword(value);
-    } else if (name === "Roomhashtag") {
-      setDisplayName(value);
-    } else if (name === "Roomintro") {
-      setIntro(value);
-    } else if (name === "Charname") {
-      setName(value);
-    } else if (name === "Charpic") {
-      setPic(value);
-    }
-  };
   const memberAddHandler = () => {
-      setCharacters([...characters, {Charname, Charpic}]);
+      const {character} = {name, pic}
+      setCharacters([...characters, character]);
   }
   const memberRemove = (id) => {
       setCharacters(characters.splice(id,1));
@@ -64,12 +56,11 @@ const CreateRoom = ({history}) => {
         )}
         <form name="createForm">
           <label htmlFor="Roomname">
-            소설 이름 : &nbsp;
+            소설 이름 : 
           </label>
-          <input
-            type="text"
+          <textarea
             name="Roomname"
-            value={name}
+            value={title}
             placeholder="E.g: 루피네 대모험"
             id="Roomname"
             className="Cr-formInput"
@@ -79,8 +70,7 @@ const CreateRoom = ({history}) => {
           <label htmlFor="RoomprofilePic">
             대표사진 :
           </label>
-          <input
-            type="image"
+          <textarea
             name="RoomprofilePic"
             value={profilePic}
             id="RoomprofilePic"
@@ -111,7 +101,6 @@ const CreateRoom = ({history}) => {
             onChange={event => onChangeHandler(event)}
           />
           <br/>
-          <form name="characterForm">
             <label htmlFor="Charname">
                 캐릭터명
             </label>
@@ -128,7 +117,7 @@ const CreateRoom = ({history}) => {
                 프로필 사진 :
             </label>
             <input
-                type="image"
+                type="text"
                 name="Charpic"
                 value={pic}
                 id="Charpic"
@@ -137,17 +126,16 @@ const CreateRoom = ({history}) => {
             />
             <button
               className="Cr-addBtn"
-              onclick={() => {
+              onClick={() => {
                 memberAddHandler();
             }}>
                 추가
             </button>
-          </form>
           <label htmlFor="Charlist">
             목록 :
           </label>
           <ul>
-          {this.characters.map(character => (
+          {characters.map(character => (
               <li key={character.name} message={character.pic} />
               ))}
           </ul>
