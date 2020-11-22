@@ -40,10 +40,10 @@ class Vote extends Component{
               출판에 동의하시겠습니까?
           </TableRow>
           <TableRow>
-            <button type="button" class="btn btn-warning" onClick={this.voting}>
+            <button type="button" class="btn btn-warning" onClick={this.voting()}>
                 네
             </button>
-            <button type="button" class="btn btn-warning" onClick={this.voting}>
+            <button type="button" class="btn btn-warning" onClick={this.voting()}>
                 아니오
             </button>
           </TableRow>
