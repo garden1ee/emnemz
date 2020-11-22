@@ -54,3 +54,75 @@ const getUserDocument = async (uid) => {
     console.error("Error fetching user", error);
   }
 };
+export const modifyUserDocument = async (user, additionalData) => {
+  if (!user) return;
+  const userRef = firestore.doc(`users/${user.uid}`);
+  const snapshot = await userRef.get();
+  if (snapshot.exists) {
+    try {
+      await userRef.set({
+        ...additionalData
+      }, { merge: true });
+    } catch (error) {
+      console.error("Error changing user document", error);
+    }
+  }
+  return getUserDocument(user.uid);
+};
+export const getRoomId = async () => {
+  const snapshot = await firestore.collection('rooms').get();
+  if (!snapshot.exists) {
+    return 1;
+  }
+  else {
+    return snapshot.size+1;
+  }
+};
+export const generateRoomDocument = async (room, additionalData) => {
+  if (!room) return;
+  const roomRef = firestore.doc(`rooms/${room.id}`);
+  const snapshot = await roomRef.get();
+  if (!snapshot.exists) {
+    const { info, characters } = room;
+    try {
+      await roomRef.set({
+        info,
+        characters,
+        ...additionalData
+      });
+      await firestore.doc(`scripts/${room.id}`).set({
+        scripts:[]
+      });
+      await firestore.doc(`discussions/${room.id}`).set({
+        discussions:[]
+      });
+    } catch (error) {
+      console.error("Error creating room document", error);
+    }
+  }
+  return getRoomDocument(room.id);
+};
+export const getRoomDocument = async (roomid) => {
+  if (!roomid) return null;
+  try {
+    const RoomDocument = await firestore.doc(`rooms/${roomid}`).get();
+    return {
+      roomid,
+      ...RoomDocument.data()
+    };
+  } catch (error) {
+  console.error("Error fetching room info", error);
+  }
+};
+export const getScript = async (roomid) => {
+  if (!roomid) return null;
+  try {
+    const ScriptDocu = await firestore.doc(`scripts/${roomid}`).get();
+    return {
+      roomid,
+      ...ScriptDocu.data()
+    };
+  } catch (error) {
+  console.error("Error fetching script history", error);
+  }
+}

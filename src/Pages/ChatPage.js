@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {MDBCard, MDBCardBody, MDBRow, MDBCol, MDBListGroup} from "mdbreact";
+import { MDBRow, MDBCol, MDBListGroup} from "mdbreact";
+import { getRoomDocument, getScript } from "../firebase";
 import aron_img from "../Pages/Images_character/aron.png";
 import ruffi_img from "../Pages/Images_character/ruffi.png";
 import nami_img from "../Pages/Images_character/nami.png";
@@ -95,11 +97,22 @@ const messages =  [
 ];
 
 class ChatPage extends Component {
-    constructor() {
-    super();
+<<<<<<< HEAD
+    constructor(props) {
+    super(props);
     this.state = {
+      scripts:[],
      mytext: "original",
      user: "나미"
+    };
+
+    componentDidMount = async () => {
+      const room_id = this.props.roomid;
+      const scriptDB = await getScript(room_id);
+      if (scriptDB) {
+        const {scripts} = scriptDB;
+        this.setState({scripts: scripts});
+      }
     };
 
     }
@@ -116,7 +129,7 @@ class ChatPage extends Component {
             <MDBRow>
               <MDBListGroup>
 
-                {messages.map(message => (
+                {this.state.scripts.map(message => (
 
                 <ChatMessage key={message.author} message={message} />
                 
@@ -167,6 +180,35 @@ class ChatPage extends Component {
         );
       }
     }
+=======
+    constructor(props) {
+    super(props);
+    this.state = {scripts:[]};
+    }
+    componentDidMount = async () => {
+      const room_id = this.props.roomid;
+      const scriptDB = await getScript(room_id);
+      if (scriptDB) {
+        const {scripts} = scriptDB;
+        this.setState({scripts: scripts});
+      }
+    };
+    render() {
+    return (
+      <div>
+          <MDBCol md="6" xl="8">
+            <MDBRow>
+              <MDBListGroup>
+                {this.state.scripts.map(message => (
+                <ChatMessage message={message} />
+                ))}
+              </MDBListGroup>
+            </MDBRow>
+          </MDBCol>   
+      </div>
+    )};
+  }
+>>>>>>> origin/test
     
    
 
