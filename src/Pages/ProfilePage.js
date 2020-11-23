@@ -6,9 +6,11 @@ import { Grid, Paper } from "@material-ui/core";
 import EditProfileModal from '../Pages/Mainpages/Modals/EditProfileModal.js';
 import EnterRoomModal from '../Pages/Mainpages/Modals/EnterRoomModal.js';
 import TableRow from '@material-ui/core/TableRow'
+import RoomRequestModal from './Mainpages/Modals/RoomRequestModal.js';
 
 const customer = [
     {
+        'number': "1",
         'id': "소설보기",
         'image': 'https://image.ytn.co.kr/general/jpg/2017/0725/201707251131549101_t.jpg',
         'name': '루피의 모험',
@@ -16,6 +18,7 @@ const customer = [
         'score': '모집인원 2/5명',
     },
     {
+        'number': "2",
         'id': "소설보기",
         'image': "https://i.insider.com/5e835889671de07d8317e613?width=1100&format=jpeg&auto=webp",
         'name': '나루토 성장시키기 방입니다',
@@ -23,6 +26,7 @@ const customer = [
         'score': '모집인원 1/5명',
     },
     {
+        'number': "3",
         'id': "소설보기",
         'image': "https://upload.wikimedia.org/wikipedia/ko/f/f4/%EB%93%9C%EB%9D%BC%EB%A7%88_%EC%9D%B4%ED%83%9C%EC%9B%90_%ED%81%B4%EB%9D%BC%EC%93%B0_%ED%8F%AC%EC%8A%A4%ED%84%B0.jpg",
         'name': '이태원 클라쓰 if 소설',
@@ -33,6 +37,7 @@ const customer = [
 
 const customer2 = [
     {
+        'number': "1",
         'id': "소설보기",
         'image': 'https://image.ytn.co.kr/general/jpg/2017/0725/201707251131549101_t.jpg',
         'name': '루피의 모험',
@@ -40,6 +45,7 @@ const customer2 = [
         'score': '4.89/5점',
     },
     {
+        'number': "2",
         'id': "소설보기",
         'image': "https://i.insider.com/5e835889671de07d8317e613?width=1100&format=jpeg&auto=webp",
         'name': '나루토 성장시키기 방입니다',
@@ -47,6 +53,7 @@ const customer2 = [
         'score': '4.89/5점',
     },
     {
+        'number': "3",
         'id': "소설보기",
         'image': "https://upload.wikimedia.org/wikipedia/ko/f/f4/%EB%93%9C%EB%9D%BC%EB%A7%88_%EC%9D%B4%ED%83%9C%EC%9B%90_%ED%81%B4%EB%9D%BC%EC%93%B0_%ED%8F%AC%EC%8A%A4%ED%84%B0.jpg",
         'name': '이태원 클라쓰 if 소설',
@@ -137,12 +144,7 @@ const ProfilePage = () => {
                         {
                             customer.map(c => {
                                 return (
-                                    <Customer
-                                        id={c.id}
-                                        image={c.image}
-                                        name={c.name}
-                                        birthday={c.birthday}
-                                        score={c.score} />
+                                    <RoomRequestModal c={c} />
                                 )
                             })
                         }
@@ -169,13 +171,12 @@ const ProfilePage = () => {
                     <Paper className={classes.paper1}>
                         {
                             customer2.map(c => {
-                                return (
-                                    <Customer
-                                        id={c.id}
-                                        image={c.image}
-                                        name={c.name}
-                                        birthday={c.birthday}
-                                        score={c.score} />
+                                return (<Customer
+                                    id={c.id}
+                                    image={c.image}
+                                    name={c.name}
+                                    birthday={c.birthday}
+                                    score={c.score} />
                                 )
                             })
                         }
