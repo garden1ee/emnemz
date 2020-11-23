@@ -126,6 +126,14 @@ export const getScript = async (roomid) => {
   console.error("Error fetching script history", error);
   }
 }
+export const scriptonChange = async (roomid) => {
+  if (!roomid) return null;
+  try {
+    firestore.doc(`rooms/${roomid}`).onSnapshot(true);
+  } catch (error) {
+    console.error("Error fetching script update state",error);
+  }
+}
 export const updateScript = async (roomid, Data) => {
     const scriptref = await firestore.doc(`scripts/${roomid}`);
     const snapshot = await scriptref.get();
