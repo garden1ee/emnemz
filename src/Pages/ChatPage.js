@@ -17,6 +17,7 @@ class ChatPage extends Component {
     constructor(props) {
     super(props);
 
+
     this.ChatMessage = ({ message: { character, avatar, when, message, isScript } }) => 
   <div>
     <div>
@@ -105,7 +106,7 @@ class ChatPage extends Component {
       text_input: "",
       room_id: -1,
       user_script: "",
-      user_character: {character: "자림"}};
+      user_character: {}};
 
       console.log(this.state.user_character);
 
@@ -142,12 +143,12 @@ class ChatPage extends Component {
       const characters = this.props.characters;
       // name, pic, url, user, uid
       
-
-      characters.map((character) =>
+        
+      characters.map((c) =>
         {
-          return(character.user === this.state.user_id ?
+          return(c.user === this.state.user_id ?
            
-            this.state.user_character = character :
+            this.state.user_character = c :
             false);
         }
          
