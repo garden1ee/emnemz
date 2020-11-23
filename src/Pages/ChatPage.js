@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { MDBRow, MDBCol, MDBListGroup} from "mdbreact";
-import { getRoomDocument, getScript } from "../firebase";
+import { getRoomDocument, getScript, updateScript } from "../firebase";
 import aron_img from "../Pages/Images_character/aron.png";
 import ruffi_img from "../Pages/Images_character/ruffi.png";
 import nami_img from "../Pages/Images_character/nami.png";
@@ -109,22 +109,25 @@ class ChatPage extends Component {
        if(this.state.text_input != target){
         this.setState({
           text_input: target,
-        });
+        }); 
        }
    
     } 
     send = (text_input) => {
-      const new_Script = updateScript(room_id);
+      
+      const new_scripts = updateScript(this.state.room_id, text_input);
+     // this.setState({scripts: new_scripts});
     } 
     componentDidMount = async () => {
       const room_id = this.props.roomid;
       const characters = this.props.characters;
-      
+
        this.setState({
           room_id: room_id
        });
 
       const scriptDB = await getScript(room_id);
+
       if (scriptDB) {
         const {scripts} = scriptDB;
         
