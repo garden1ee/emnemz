@@ -17,7 +17,7 @@ class ChatPage extends Component {
     constructor(props) {
     super(props);
 
-    this.ChatMessage = ({ message: { name, avatar, when, message, isScript } }) => 
+    this.ChatMessage = ({ message: { character, avatar, when, message, isScript } }) => 
   <div>
     <div>
 {(isScript  
@@ -29,7 +29,7 @@ class ChatPage extends Component {
     <MDBCard style={{borderRadius: "20%"}}>
       <MDBCardBody>
         <div>
-          <strong className="primary-font">{name}</strong>
+          <strong className="primary-font">{character}</strong>
          
         </div>
         <hr />
@@ -43,7 +43,7 @@ class ChatPage extends Component {
           </small>
 
 <hr></hr>
-          {(this.state.user_character.name === name ?
+          {(this.state.user_character.name === character?
 
 <button class="btn btn-primary" style={{width:70, height:30, verticalAlign: "center"}} onClick={() => this.changeText(message)}>편집</button>
 : 
@@ -61,7 +61,7 @@ class ChatPage extends Component {
     <TableRow>
     <MDBCardBody>
       <div>
-        <strong className="primary-font">{name}</strong>
+        <strong className="primary-font">{character}</strong>
        
       </div>
       <hr />
@@ -78,7 +78,7 @@ class ChatPage extends Component {
         </small>
 
    
-   {(this.state.user_character.name=== name ?
+   {(this.state.user_character.name === character ?
 
   
 <button class="btn btn-primary" onClick={() => this.changeText(message)}>편집</button>
@@ -105,8 +105,9 @@ class ChatPage extends Component {
       text_input: "",
       room_id: -1,
       user_script: "",
-      character_name: "경우",
-      user_character: {name: "자림", }};
+      user_character: {character: "자림"}};
+
+      console.log(this.state.user_character);
 
     } 
     
@@ -120,38 +121,38 @@ class ChatPage extends Component {
     } 
     send_script = () => { 
       // this.state.user_script
-      var new_data = { character: this.state.user_character.name
-        , avatar: this.state.user_character.pic, 
+     var new_data = { character: this.state.user_character.name
+        , avatar: this.state.user_character.url, 
         message: this.state.user_script, isScript: true}
 
-      const new_scripts = updateScript(this.state.room_id, new_data);
+      const new_scripts = updateScript(this.state.room_id, new_data); 
      // this.setState({scripts: new_scripts});
     } 
 
     send_action = () => {
-      var new_data = { character: this.state.user_character.name
-        , avatar: this.state.user_character.pic, 
+     var new_data = { character: this.state.user_character.name
+        , avatar: this.state.user_character.url, 
         message: this.state.user_script, isScript: false}
 
-      const new_scripts = updateScript(this.state.room_id, new_data);
+      const new_scripts = updateScript(this.state.room_id, new_data); 
     }
 
     componentDidMount = async () => {
       const room_id = this.props.roomid;
       const characters = this.props.characters;
       // name, pic, url, user, uid
-       this.state.user_id  = characters.uid;
+      
 
       characters.map((character) =>
         {
-          return(character.uid === this.state.user_id ?
+          return(character.user === this.state.user_id ?
            
             this.state.user_character = character :
             false);
         }
-          
+         
       )
-
+      
       
 
 
