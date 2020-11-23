@@ -1,5 +1,5 @@
-import React, { Component, useState } from 'react';
-import { Modal, Button, Row, Col, Form } from 'react-bootstrap';
+import React, {useState } from 'react';
+import { Modal, Button} from 'react-bootstrap';
 
 function InsertImg({ c }) {
     if (c.number == "1") {
