@@ -10,6 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faComments, faVoteYea, faBook } from '@fortawesome/free-solid-svg-icons';
 import '../style/WritingroomPage.css';
+import TableCell from '@material-ui/core/TableCell';
 
 class ChatPage extends Component {
     constructor(props) {
@@ -25,7 +26,7 @@ class ChatPage extends Component {
     <img src={avatar} alt="character"  style={{width: 50, height: 50, borderRadius: 50/ 2}} />
     
     <MDBCard style={{borderRadius: "20%"}}>
-      <MDBCardBody  >
+      <MDBCardBody>
         <div>
           <strong className="primary-font">{character}</strong>
          
@@ -39,6 +40,8 @@ class ChatPage extends Component {
     <small className="pull-right text-muted">
             <i className="far fa-clock"/> {when}
           </small>
+
+<hr></hr>
           {(this.state.user === character ?
 
 <button class="btn btn-primary" style={{width:70, height:30, verticalAlign: "center"}} onClick={() => this.changeText(message)}>편집</button>
@@ -54,6 +57,7 @@ class ChatPage extends Component {
   <img src={avatar} alt="character"  style={{width: 50, height: 50, borderRadius: 50/ 2}} />
 
   <MDBCard>
+    <TableRow>
     <MDBCardBody>
       <div>
         <strong className="primary-font">{character}</strong>
@@ -62,27 +66,28 @@ class ChatPage extends Component {
       <hr />
    
       <p className="mb-0">{message}  </p>
-     
+  
     </MDBCardBody>
-
+  
+    </TableRow>
   </MDBCard>
 
- {(this.state.user === character ?
-
-<li>
-  <br></br>
-  <br></br>
-  <button class="btn btn-primary" onClick={() => this.changeText(message)}>편집</button>
-</li>
-: 
- <p></p>
-)}
-   
- 
-  
   <small className="pull-right text-muted">
           <i className="far fa-clock"/> {when}
         </small>
+
+   
+   {(this.state.user === character ?
+
+  
+<button class="btn btn-primary" onClick={() => this.changeText(message)}>편집</button>
+
+: 
+<p></p>
+)}
+ 
+  
+
         </TableRow>
    
 </li>
@@ -96,7 +101,8 @@ class ChatPage extends Component {
     this.state = {
       scripts:[],
       user: "경우",
-      text_input: ""};
+      text_input: "",
+      room_id: -1};
     } 
     
      changeText(target){
@@ -107,13 +113,25 @@ class ChatPage extends Component {
        }
    
     } 
+    send = (text_input) => {
+      const new_Script = updateScript(room_id);
+    } 
     componentDidMount = async () => {
       const room_id = this.props.roomid;
+      const characters = this.props.characters;
+      
+       this.setState({
+          room_id: room_id
+       });
+
       const scriptDB = await getScript(room_id);
       if (scriptDB) {
         const {scripts} = scriptDB;
+        
         this.setState({scripts: scripts});
+
       }
+   
     };
     render() {
     return (
@@ -139,9 +157,12 @@ class ChatPage extends Component {
             <button id="characterSelect"><img id="userCharacterImg" src={nami_img} /></button>
             <textarea placeholder="대사를 입력하세요." className="scriptInput" defaultValue={this.state.text_input}/>
             <div className="WR-submitBtn">
-                <button className="scriptBtn">대사</button><br/>
-                <button className="actionBtn">액션</button>
+                <button className="scriptBtn" className="btn btn-default" style={{width:80, height:30, textAlign: "center"}}>대사</button>
+                <button className="actionBtn" className="btn btn-default" style={{width:80, height:30, textAlign: "center"}}>액션</button>
             </div>
+            <button className="sendBtn" className="btn btn-primary" 
+            style={{width:80, height:30, textAlign: "center"}}
+            onClick={() => this.send(this.state.text_input)}>전송</button>
         </div>
       
         <div className="col-1">

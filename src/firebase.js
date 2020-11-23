@@ -54,6 +54,7 @@ const getUserDocument = async (uid) => {
     console.error("Error fetching user", error);
   }
 };
+
 export const modifyUserDocument = async (user, additionalData) => {
   if (!user) return;
   const userRef = firestore.doc(`users/${user.uid}`);

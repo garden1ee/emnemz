@@ -44,7 +44,7 @@ const WritingRoomPage = (props) => {
                     </DropdownButton>
                 </div>
             </div>
-            <ChatPage roomid={props.roomid} />
+            <ChatPage roomid={props.roomid} characters={props.characters}/>
             <div className="row">
                 
                 <div className="col-1">
