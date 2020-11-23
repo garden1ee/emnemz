@@ -7,6 +7,7 @@ import EditProfileModal from '../Pages/Mainpages/Modals/EditProfileModal.js';
 import EnterRoomModal from '../Pages/Mainpages/Modals/EnterRoomModal.js';
 import TableRow from '@material-ui/core/TableRow'
 import RoomRequestModal from './Mainpages/Modals/RoomRequestModal.js';
+import RoomCompleteModal from './Mainpages/Modals/RoomCompleteModal.js';
 
 const customer = [
     {
@@ -43,6 +44,7 @@ const customer2 = [
         'name': '루피의 모험',
         'birthday': '#원피스 #루피',
         'score': '4.89/5점',
+        'genre': "장르: 모험, 액션",
     },
     {
         'number': "2",
@@ -51,6 +53,7 @@ const customer2 = [
         'name': '나루토 성장시키기 방입니다',
         'birthday': "#나루토 #사스케",
         'score': '4.89/5점',
+        'genre': "장르: 모험, 액션",
     },
     {
         'number': "3",
@@ -59,6 +62,7 @@ const customer2 = [
         'name': '이태원 클라쓰 if 소설',
         'birthday': '#이태원클라쓰 #배우 #드라마',
         'score': '4.89/5점',
+        'genre': "장르: 스릴러, 액션",
     }]
 
 const useStyles = makeStyles((theme) => ({
@@ -171,12 +175,7 @@ const ProfilePage = () => {
                     <Paper className={classes.paper1}>
                         {
                             customer2.map(c => {
-                                return (<Customer
-                                    id={c.id}
-                                    image={c.image}
-                                    name={c.name}
-                                    birthday={c.birthday}
-                                    score={c.score} />
+                                return (<RoomCompleteModal c={c} />
                                 )
                             })
                         }

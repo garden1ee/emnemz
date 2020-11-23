@@ -37,13 +37,13 @@ function RoomRequestModal({ c }) {
                     </Modal.Footer>
                     </Modal>
             </div>
-            <div className="row">
+            <div className="row" style={{ marginTop: "5px" , marginBottom: "5px"}}>
                 {c.name}
             </div>
-            <div className="row">
+            <div className="row" style={{ marginTop: "5px", marginBottom: "5px" }}>
                 {c.birthday}
             </div>
-            <div className="row">
+            <div className="row" style={{ marginTop: "5px", marginBottom: "15px" }}>
                 {c.score}
             </div>
         </div>
@@ -51,4 +51,6 @@ function RoomRequestModal({ c }) {
 
         )
 }
+
+
 export default RoomRequestModal;
