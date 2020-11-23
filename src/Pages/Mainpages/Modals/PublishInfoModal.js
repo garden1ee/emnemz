@@ -64,8 +64,11 @@ function RoomCompleteModal({ c }) {
             <div className="row " style={{ marginTop: "5px", marginBottom: "5px" }}>
                 {c.birthday}
             </div>
-            <div className="row" style={{ marginTop: "5px", marginBottom: "15px" }}>
+            <div className="row" style={{ marginTop: "5px", marginBottom: "5px" }}>
                 {c.score}
+            </div>
+            <div className="row" style={{ marginTop: "5px", marginBottom: "15px" }} > 
+                <button onClick={() => { setShowModal(true); }}> {c.id}</button>
             </div>
         </div>
 

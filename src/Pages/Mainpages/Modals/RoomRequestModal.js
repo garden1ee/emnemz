@@ -46,6 +46,9 @@ function RoomRequestModal({ c }) {
             <div className="row" style={{ marginTop: "5px", marginBottom: "15px" }}>
                 {c.score}
             </div>
+            <div className="row" style={{ marginTop: "5px", marginBottom: "15px" }} >
+                <button onClick={() => { setShowModal(true); }}> 신청 상태 확인</button>
+            </div>
         </div>
 
 
