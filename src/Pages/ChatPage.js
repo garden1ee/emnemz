@@ -9,6 +9,7 @@ import { MDBCard, MDBCardBody} from "mdbreact";
 import TableRow from '@material-ui/core/TableRow';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faComments, faVoteYea, faBook } from '@fortawesome/free-solid-svg-icons';
+import '../style/WritingroomPage.css';
 
 class ChatPage extends Component {
     constructor(props) {
@@ -20,10 +21,11 @@ class ChatPage extends Component {
 {(isScript  
     ? <li className="chat-message  d-flex justify-content-between mb-4">
   
+  <TableRow>
     <img src={avatar} alt="character"  style={{width: 50, height: 50, borderRadius: 50/ 2}} />
     
     <MDBCard style={{borderRadius: "20%"}}>
-      <MDBCardBody>
+      <MDBCardBody  >
         <div>
           <strong className="primary-font">{character}</strong>
          
@@ -44,7 +46,7 @@ class ChatPage extends Component {
  <p></p>
 )}
    
-   
+   </TableRow>
   </li>
   
   : <li className="chat-message  d-flex justify-content-between mb-4">
