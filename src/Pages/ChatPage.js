@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { MDBRow, MDBCol, MDBListGroup} from "mdbreact";
-import { getRoomDocument, getScript } from "../firebase";
+import { getRoomDocument, getScript, firestore } from "../firebase";
 import aron_img from "../Pages/Images_character/aron.png";
 import ruffi_img from "../Pages/Images_character/ruffi.png";
 import nami_img from "../Pages/Images_character/nami.png";
@@ -16,10 +16,8 @@ class ChatPage extends Component {
     componentDidMount = async () => {
       const room_id = this.props.roomid;
       const scriptDB = await getScript(room_id);
-      if (scriptDB) {
-        const {scripts} = scriptDB;
-        this.setState({scripts: scripts});
-      }
+      const {scripts} = scriptDB;
+      this.setState({scripts: scripts});
     };
     render() {
     return (
