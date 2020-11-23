@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import TableRow from '@material-ui/core/TableRow'
 import ChatInfoModal from './Modals/ChatInfoModal.js';
 import {makeStyles} from "@material-ui/core/styles";
 import {Grid, Paper} from "@material-ui/core";
-
+import {getRoomDocument, getRoomNum} from '../../firebase'
 const useStyles = makeStyles((theme)=>({
   grid:{
     width:'100%',
@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme)=>({
   },
 
 }));
+/*
 const customer=[
   {
   'id':"참가신청하기",
@@ -47,7 +48,8 @@ const customer=[
   'name':'이태원 클라쓰 관련 소설 쓰실분?',
   'score':'모집인원 2/7명',
   'birthday':'#클라스가다르지 #배우팬오세요',
-}]
+}]*/ 
+
 const stly={
   textAlign: 'center',
 }
@@ -69,12 +71,36 @@ const roomcreate = {
     color: 'white',
     marginLeft: 30,
     marginTop: 15,
-    marginBottom: 5,
+    marginBottom: 5
 }
 
 const RoomList = () => {
-
+  var customer = [];
   const classes=useStyles();
+
+  useEffect(() => {
+
+   
+   
+
+
+    var room_data, aa;
+    async function loadRoom () {
+
+      const roomnum = await getRoomNum();
+
+      for(var i = 1; i <= roomnum; i++){
+        room_data = await getRoomDocument(i);
+        customer.push(room_data);
+  
+      }
+    };
+
+    loadRoom();
+    
+
+  });
+
   return(
       <Grid container spacing={2} className={classes.grid}>
         <Grid item xs={6}>
@@ -108,11 +134,10 @@ const RoomList = () => {
                 customer.map(c=>{
                   return(
                     <Customer
-                      id={c.id}
-                      image={c.image}
-                      name={c.name}
-                      birthday={c.birthday}
-                      score={c.score}/>
+                    id={c.id}
+                    image={c.info.profilePic}
+                    name={c.info.title}
+                    hashtag={c.info.hashtag}/>
                   )
                 })
               }
@@ -130,10 +155,10 @@ const RoomList = () => {
                     return(
                       <Customer
                         id={c.id}
-                        image={c.image}
-                        name={c.name}
-                        birthday={c.birthday}
-                        score={c.score}/>
+                        image={c.info.profilePic}
+                        name={c.info.title}
+                        hashtag={c.info.hashtag}
+                      />
                     )
                   })
                 }
@@ -150,10 +175,10 @@ const RoomList = () => {
                   return(
                     <Customer
                       id={c.id}
-                      image={c.image}
-                      name={c.name}
-                      birthday={c.birthday}
-                      score={c.score}/>
+                      image={c.info.profilePic}
+                      name={c.info.title}
+                      hashtag={c.info.hashtag}
+                      />
                   )
                 })
               }
@@ -177,8 +202,7 @@ class Customer extends React.Component{
           <TableRow>
       <h2/><img src= {this.props.image} width="200" height="200" alt="profile"/>
       <h2/><text style={stly}>{this.props.name}</text>
-      <h2/><text style={stly}>{this.props.birthday}</text>
-      <h2/><text style={stly}>{this.props.score}</text>
+      <h2/><text style={stly}>{this.props.hashtag}</text>
       <h2/><button style={stly} onClick={() => this.setState({ setModalIsOpen: true })}>{this.props.id}</button>
           <ChatInfoModal show={this.state.setModalIsOpen} onHide={setModalClose} />
 
@@ -201,7 +225,7 @@ render(){
   return(
     <div>
       <a marginLeft={3} href="">{this.props.name}</a>
-      <p>{this.props.birthday}</p>
+      <p>{this.props.hashtag}</p>
       <p>{this.props.gender}</p>
       <p>{this.props.score}</p>
     </div>

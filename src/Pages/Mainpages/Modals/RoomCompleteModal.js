@@ -1,21 +1,38 @@
-import React, { useState } from 'react';
-import { Modal, Button, Row, Col, Form } from 'react-bootstrap';
-
+import React, {useState } from 'react';
+import { Modal, Button} from 'react-bootstrap';
 
 function InsertImg({ c }) {
     if (c.number == "1") {
         return (<img src={"https://image.ytn.co.kr/general/jpg/2017/0725/201707251131549101_t.jpg"} style={{
-            width: '200px', textAlign: 'center', height: '200px'
+            width: '260px', textAlign: 'center', height: '250px'
         }} />)
     }
     else if (c.number == "2") {
         return (<img src={'https://i.insider.com/5e835889671de07d8317e613?width=1100&format=jpeg&auto=webp'} style={{
-            width: '200px', textAlign: 'center', height: '200px'
+            width: '260px', textAlign: 'center', height: '250px'
         }} />)
     }
     else if (c.number == "3") {
         return (<img src={'https://upload.wikimedia.org/wikipedia/ko/f/f4/%EB%93%9C%EB%9D%BC%EB%A7%88_%EC%9D%B4%ED%83%9C%EC%9B%90_%ED%81%B4%EB%9D%BC%EC%93%B0_%ED%8F%AC%EC%8A%A4%ED%84%B0.jpg'} style={{
-            width: '200px', textAlign: 'center', height: '200px'
+            width: '260px', textAlign: 'center', height: '250px'
+        }} />)
+    }
+}
+
+function InsertImg2({ c }) {
+    if (c.number == "1") {
+        return (<img src={"https://image.ytn.co.kr/general/jpg/2017/0725/201707251131549101_t.jpg"} style={{
+            width: '200px', height: '200px'
+        }} />)
+    }
+    else if (c.number == "2") {
+        return (<img src={'https://i.insider.com/5e835889671de07d8317e613?width=1100&format=jpeg&auto=webp'} style={{
+            width: '200px', height: '200px'
+        }} />)
+    }
+    else if (c.number == "3") {
+        return (<img src={'https://upload.wikimedia.org/wikipedia/ko/f/f4/%EB%93%9C%EB%9D%BC%EB%A7%88_%EC%9D%B4%ED%83%9C%EC%9B%90_%ED%81%B4%EB%9D%BC%EC%93%B0_%ED%8F%AC%EC%8A%A4%ED%84%B0.jpg'} style={{
+            width: '200px', height: '200px'
         }} />)
     }
 }
@@ -35,7 +52,7 @@ function RoomCompleteModal({ c }) {
                     <Modal.Body>
                         <div className="row">
                             <div className="col-3">
-                                {InsertImg({ c })}
+                                {InsertImg2({ c })}
                             </div>
                             <div className="col-6" style={{ marginLeft: '100px' }}>
                                 <p>{c.name}</p>
@@ -64,10 +81,10 @@ function RoomCompleteModal({ c }) {
             <div className="row " style={{ marginTop: "5px", marginBottom: "5px" }}>
                 {c.birthday}
             </div>
-            <div className="row" style={{ marginTop: "5px", marginBottom: "5px" }}>
+            <div className="row" style={{ marginTop: "5px", marginBottom: "15px" }}>
                 {c.score}
             </div>
-            <div className="row" style={{ marginTop: "5px", marginBottom: "15px" }} > 
+            <div className="row" style={{ marginTop: "5px", marginBottom: "15px" }} >
                 <button onClick={() => { setShowModal(true); }}> {c.id}</button>
             </div>
         </div>

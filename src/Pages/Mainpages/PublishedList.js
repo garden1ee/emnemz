@@ -27,14 +27,16 @@ const useStyles = makeStyles((theme)=>({
 
 }));
 const customer1=[
-  {
+    {
+        'number': "1",
   'id':"소설보기",
   'image':'https://image.ytn.co.kr/general/jpg/2017/0725/201707251131549101_t.jpg',
   'name':'루피의 모험',
   'birthday':'#원피스 #루피',
   'score':'4.89/5점',
 },
-{
+    {
+    'number': "2",
   'id':"소설보기",
   'image':"https://i.insider.com/5e835889671de07d8317e613?width=1100&format=jpeg&auto=webp",
   'name':'나루토 성장시키기 방입니다',
@@ -43,21 +45,24 @@ const customer1=[
 }]
 
 const customer=[
-  {
+    {
+        'number': "1",
   'id':"소설보기",
   'image':'https://image.ytn.co.kr/general/jpg/2017/0725/201707251131549101_t.jpg',
   'name':'루피의 모험',
   'birthday':'#원피스 #루피',
   'score':'4.89/5점',
 },
-{
+    {
+    'number': "2",
   'id':"소설보기",
   'image':"https://i.insider.com/5e835889671de07d8317e613?width=1100&format=jpeg&auto=webp",
   'name':'나루토 성장시키기 방입니다',
   'birthday':"#나루토 #사스케",
   'score':'4.89/5점',
 },
-{
+    {
+    'number': "3",
   'id':"소설보기",
   'image':"https://upload.wikimedia.org/wikipedia/ko/f/f4/%EB%93%9C%EB%9D%BC%EB%A7%88_%EC%9D%B4%ED%83%9C%EC%9B%90_%ED%81%B4%EB%9D%BC%EC%93%B0_%ED%8F%AC%EC%8A%A4%ED%84%B0.jpg",
   'name':'이태원 클라쓰 if 소설',
@@ -112,12 +117,7 @@ const PublishedList =() => {
                 {
                   customer.map(c=>{
                     return(
-                      <Customer
-                        id={c.id}
-                        image={c.image}
-                        name={c.name}
-                        birthday={c.birthday}
-                        score={c.score}/>
+                        <PublishInfoModal c={c}/>
                     )
                   })
                 }
@@ -133,12 +133,7 @@ const PublishedList =() => {
                 {
                     customer1.map(c=>{
                       return(
-                        <Customer
-                          id={c.id}
-                          image={c.image}
-                          name={c.name}
-                          birthday={c.birthday}
-                          score={c.score}/>
+                          <PublishInfoModal c={c} />
                       )
                     })
                   }
@@ -153,12 +148,7 @@ const PublishedList =() => {
                 {
                   customer.map(c=>{
                     return(
-                      <Customer
-                        id={c.id}
-                        image={c.image}
-                        name={c.name}
-                        birthday={c.birthday}
-                        score={c.score}/>
+                        <PublishInfoModal c={c} />
                     )
                   })
                 }
