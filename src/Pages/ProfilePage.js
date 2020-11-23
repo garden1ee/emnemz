@@ -158,13 +158,17 @@ const ProfilePage = () => {
                     <text style={back}>참가하는 방</text>
                     <h2 />
                     <Paper className={classes.paper} textSize={"15px"}>
-                        <button onClick={toggleroom}><img src={'https://image.ytn.co.kr/general/jpg/2017/0725/201707251131549101_t.jpg'} style={{
+                        <button onClick={toggleroom}><img src={'https://lh3.googleusercontent.com/proxy/VBpaCKJuzYhJb04fUMa9DOqH6ydDIU5l4p-DvPzXeimL1Mm5z74xVnROWYtdWGxe8Qi0tblWbbqks75ORnje3EoWZSEwvsjFwdVU9uNIo77hEcoNrlGbi9SgZQjwvP0j8D-HZGf--x4vls4'} style={{
                             width: '260px', textAlign: 'center', height: '250px'
                         }} alt={"profile"} /><EnterRoomModal show={modalroom} toggleroom={toggleroom} /></button>
                         <h2 />
                         <Grid xs={12}>
-                            <text>   원피스 웹소설 드가자
-          <h2 />   #원피스 짱짱맨 #루피사기<h2 />   모집입원: 2/5명
+                            <text>   연애혁명 방입니다~
+          <h2 />   #왕자림 걸크러쉬 #공주영 쏘 스윗 ㅠㅠ<h2 />   <div className="row" style={{ marginLeft: "2px", marginTop: "4px", marginBottom: "5px"}}>모집입원: 2/5명</div>
+                                <div className="row" style={{ margin: "2px", marginTop: "4px", marginBottom: "4px"}}>
+                                    <button onClick={toggleroom}>방 들어가기<EnterRoomModal show={modalroom} toggleroom={toggleroom} /></button>
+                                </div>
+
           </text>
                         </Grid>
                     </Paper>

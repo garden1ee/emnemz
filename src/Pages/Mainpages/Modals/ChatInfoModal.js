@@ -41,7 +41,7 @@ export class ChatInfoModal extends Component {
                     <div className="row" style={{
                         paddingTop: "10px", paddingLeft: '15px'
                     }}>
-                        할 수 있는 캐릭터
+                        선택 할 수 있는 캐릭터
                         </div>
                     <div className="row">
                         <img src="https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F274E2B36579831D510628C" width="50" height="50" className="profile-pic" /> 루피
