@@ -16,6 +16,7 @@ const WritingRoomPage = (props) => {
     const [info, setInfo] = useState({title:"", profilePic:"", intro:"", hashtag:[]});
     const [characters, setCharacters] = useState([]);
     const room_id = props.roomid;
+    
     const getRoominfo = async () => {
         const roominfo = await getRoomDocument(room_id)
         if (roominfo) {
@@ -44,7 +45,7 @@ const WritingRoomPage = (props) => {
                     </DropdownButton>
                 </div>
             </div>
-            <ChatPage roomid={props.roomid} characters={props.characters}/>
+            <ChatPage roomid={props.roomid} characters={characters}/>
             <div className="row">
                 
                 <div className="col-1">

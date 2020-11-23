@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useContext } from 'react';
 import { MDBRow, MDBCol, MDBListGroup} from "mdbreact";
 import { getRoomDocument, getScript, updateScript } from "../firebase";
 import aron_img from "../Pages/Images_character/aron.png";
@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faComments, faVoteYea, faBook } from '@fortawesome/free-solid-svg-icons';
 import '../style/WritingroomPage.css';
 import TableCell from '@material-ui/core/TableCell';
+import { UserContext } from "../Components/UserProvider";
 
 class ChatPage extends Component {
     constructor(props) {
@@ -100,10 +101,12 @@ class ChatPage extends Component {
 </div>
     this.state = {
       scripts:[],
-      user: "경우",
+      user_id: "girlera7",
       text_input: "",
       room_id: -1,
-      user_script: ""};
+      user_script: "",
+      user_character: {}};
+
     } 
     
      changeText(target){
@@ -116,7 +119,7 @@ class ChatPage extends Component {
     } 
     send = () => { 
       // this.state.user_script
-      var new_data = { character: "나미", avatar: nami_img, when: 12121212, message: "Ddd", isScript: true}
+      var new_data = { character: "나미", avatar: nami_img, message: this.state.user_script, isScript: true}
 
       const new_scripts = updateScript(this.state.room_id, new_data);
      // this.setState({scripts: new_scripts});
@@ -124,6 +127,22 @@ class ChatPage extends Component {
     componentDidMount = async () => {
       const room_id = this.props.roomid;
       const characters = this.props.characters;
+      // name, pic, url, user, uid
+
+      characters.map((character) =>
+        {
+          return(character.uid === this.state.user_id ?
+           
+            this.state.user_character = character :
+            false);
+        }
+          
+      )
+
+      
+
+
+      
 
        this.setState({
           room_id: room_id
@@ -165,7 +184,9 @@ class ChatPage extends Component {
            
         <div className="col-11 WR-scriptbar" style={{bottom: 0}}>
             
-            <button id="characterSelect"><img id="userCharacterImg" src={nami_img} /></button>
+            <button id="characterSelect">
+              <img id="userCharacterImg" src={this.state.user_character} />
+            </button>
        
             <input placeholder="대사를 입력하세요." defaultValue={this.state.text_input} 
            
@@ -204,9 +225,8 @@ class ChatPage extends Component {
   }
     
    
+  
 
-    
 
-   
     
     export default ChatPage;
