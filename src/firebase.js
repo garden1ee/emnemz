@@ -129,7 +129,9 @@ export const getScript = async (roomid) => {
 export const scriptonChange = async (roomid) => {
   if (!roomid) return null;
   try {
-    firestore.doc(`rooms/${roomid}`).onSnapshot(true);
+    firestore.doc(`rooms/${roomid}`).onSnapshot(function(doc) {
+      return doc.data();
+    });
   } catch (error) {
     console.error("Error fetching script update state",error);
   }
