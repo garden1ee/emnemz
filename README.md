@@ -16,11 +16,11 @@ This project was generated with React 16.13.1.
 [src/Pages folder]
 * ChatMessage.js
 * ChatPage.js
-* DiscussionModal.js
+* DiscussionModal.js -
 * EnterWritingroom.js
 * Header.js - Header located at the top of the website that shows primary pages like: current room, published rooms, my page and etc.
 * Login.js
-* NovelRoomInfo.js
+* NovelRoomInfo.js - Information aggregation about novel room. It contains genre and charactor of  novel. 
 * ProfilePage.js - MyPage page in which users can see personal informations like profile information and rooms the users are currently involved in.
 * UserList.js
 * Vote.js
