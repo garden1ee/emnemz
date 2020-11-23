@@ -10,6 +10,9 @@
     padding: 10px 0 0 10px;
     background-color: #6c757d;
 }
+.WR-title {
+    font-weight: 700;
+}
 .WR-backtoMain {
     float: left;
     color: white;
@@ -36,15 +39,15 @@
 }
 .WR-MainArea {
     max-height: 530px;
-    border: 1px solid gray;
-    padding: 10px;
+    background-color: 1px solid #f1f1f1;
+    padding: 20px;
     margin: 0;
     overflow: auto;
 }
 .WR-sidebar {
     list-style-type: none;
     margin: 0;
-    padding: 0 6px 0 3px;
+    padding: 0;
     background-color: #f1f1f1;
     position: fixed;
     height: 100%;
@@ -54,12 +57,13 @@
 .Wr-sidebar-comp {
     display: block;
     color: #000;
-    padding: 4px 8px;
+    padding: 6px;
     text-decoration: none;
     text-align: center;
+    font-size: 2.2em;
   }
-.Wr-sidebar-comp > p {
-    font-size: 0.5em;
+.Wr-sidebar-comp > .WR-small {
+    font-size: 16px;
 }  
 .Wr-sidebar-comp:hover {
     background-color: #555;
