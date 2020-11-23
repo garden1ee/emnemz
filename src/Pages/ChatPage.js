@@ -122,7 +122,7 @@ class ChatPage extends Component {
     send_script = () => { 
       // this.state.user_script
      var new_data = { character: this.state.user_character.name
-        , avatar: this.state.user_character.url, 
+        , avatar: this.state.user_character.pic, 
         message: this.state.user_script, isScript: true}
 
       const new_scripts = updateScript(this.state.room_id, new_data); 
@@ -131,7 +131,7 @@ class ChatPage extends Component {
 
     send_action = () => {
      var new_data = { character: this.state.user_character.name
-        , avatar: this.state.user_character.url, 
+        , avatar: this.state.user_character.pic, 
         message: this.state.user_script, isScript: false}
 
       const new_scripts = updateScript(this.state.room_id, new_data); 
