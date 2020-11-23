@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Button, Row, Col, Form } from 'react-bootstrap';
-import { Link, Route } from 'react-router-dom';
-import WritingRoom from '../../WritingRoom.js';
+import { Link } from 'react-router-dom';
 
 
 export class AlarmModal extends Component {
@@ -27,7 +26,6 @@ export class AlarmModal extends Component {
                     }}>작성방으로</Link></Button>
                     <Button className="secondary-btn" onClick={this.props.toggle}>닫기</Button>
                 </Modal.Footer>
-                <Route path="/writingroom" component={WritingRoom} />
                   </Modal >
         );
     }
