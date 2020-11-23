@@ -1,4 +1,4 @@
-# RolyRoly
+# RollingRolling
 
 ### Jungwon Lee, Zeewung Shin, SeoYoon Lee, Hyunwoo Park
 
