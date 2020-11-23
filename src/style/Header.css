@@ -39,3 +39,7 @@
 .HD-rightones {
     display:inline;
 }
+.Hd-active {
+    font-weight: 900;
+    color: #439eb3;
+}
