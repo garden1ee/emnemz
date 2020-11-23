@@ -21,13 +21,13 @@ This project was generated with React 16.13.1.
 * Header.js - Header located at the top of the website that shows primary pages like: current room, published rooms, my page and etc.
 * Login.js
 * NovelRoomInfo.js
-* ProfilePage.js
+* ProfilePage.js - MyPage page in which users can see personal informations like profile information and rooms the users are currently involved in.
 * UserList.js
 * Vote.js
 * WritingroomPage.js
 
 [src/Pages/Mainpages folder] - Elements of the Header.js
-* MyPage.js - MyPage page in which users can see personal informations like profile information and rooms the users are currently involved in.
+* MyPage.js - Unused js file.
 * PublishedList.js - Page that displays completed works the platform users have published.
 * RoomList.js - Page that displays currently available works that users can currently participate in.
 
