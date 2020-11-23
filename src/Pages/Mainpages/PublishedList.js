@@ -76,6 +76,7 @@ const searchbarstyle={
     height: 29,
     width: "auto",
     marginRight: 10,
+    marginLeft: 0,
 }
 const PublishedList =() => {
 
