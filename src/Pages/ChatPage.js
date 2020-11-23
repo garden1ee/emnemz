@@ -17,7 +17,7 @@ class ChatPage extends Component {
     constructor(props) {
     super(props);
 
-    this.ChatMessage = ({ message: { character, avatar, when, message, isScript } }) => 
+    this.ChatMessage = ({ message: { name, avatar, when, message, isScript } }) => 
   <div>
     <div>
 {(isScript  
@@ -29,7 +29,7 @@ class ChatPage extends Component {
     <MDBCard style={{borderRadius: "20%"}}>
       <MDBCardBody>
         <div>
-          <strong className="primary-font">{character}</strong>
+          <strong className="primary-font">{name}</strong>
          
         </div>
         <hr />
@@ -43,7 +43,7 @@ class ChatPage extends Component {
           </small>
 
 <hr></hr>
-          {(this.state.user === character ?
+          {(this.state.user_character.name === name ?
 
 <button class="btn btn-primary" style={{width:70, height:30, verticalAlign: "center"}} onClick={() => this.changeText(message)}>편집</button>
 : 
@@ -61,7 +61,7 @@ class ChatPage extends Component {
     <TableRow>
     <MDBCardBody>
       <div>
-        <strong className="primary-font">{character}</strong>
+        <strong className="primary-font">{name}</strong>
        
       </div>
       <hr />
@@ -78,7 +78,7 @@ class ChatPage extends Component {
         </small>
 
    
-   {(this.state.user === character ?
+   {(this.state.user_character.name=== name ?
 
   
 <button class="btn btn-primary" onClick={() => this.changeText(message)}>편집</button>
@@ -105,7 +105,8 @@ class ChatPage extends Component {
       text_input: "",
       room_id: -1,
       user_script: "",
-      user_character: {}};
+      character_name: "경우",
+      user_character: {name: "자림", }};
 
     } 
     
@@ -117,17 +118,29 @@ class ChatPage extends Component {
        }
    
     } 
-    send = () => { 
+    send_script = () => { 
       // this.state.user_script
-      var new_data = { character: "나미", avatar: nami_img, message: this.state.user_script, isScript: true}
+      var new_data = { character: this.state.user_character.name
+        , avatar: this.state.user_character.pic, 
+        message: this.state.user_script, isScript: true}
 
       const new_scripts = updateScript(this.state.room_id, new_data);
      // this.setState({scripts: new_scripts});
     } 
+
+    send_action = () => {
+      var new_data = { character: this.state.user_character.name
+        , avatar: this.state.user_character.pic, 
+        message: this.state.user_script, isScript: false}
+
+      const new_scripts = updateScript(this.state.room_id, new_data);
+    }
+
     componentDidMount = async () => {
       const room_id = this.props.roomid;
       const characters = this.props.characters;
       // name, pic, url, user, uid
+       this.state.user_id  = characters.uid;
 
       characters.map((character) =>
         {
@@ -193,12 +206,14 @@ class ChatPage extends Component {
             onChange={this.handleChange}/>
        
             <div className="WR-submitBtn">
-                <button className="scriptBtn" className="btn btn-default" style={{width:80, height:30, textAlign: "center"}}>대사</button>
-                <button className="actionBtn" className="btn btn-default" style={{width:80, height:30, textAlign: "center"}}>액션</button>
+                <button className="scriptBtn" className="btn btn-default" 
+                style={{width:80, height:30, textAlign: "center"}} 
+                onClick={() => this.send_script()}>대사</button>
+                <button className="actionBtn" className="btn btn-default" 
+                style={{width:80, height:30, textAlign: "center"}}
+                onClick={() => this.send_action()}>액션</button>
             </div>
-            <button className="sendBtn" className="btn btn-primary" 
-            style={{width:80, height:30, textAlign: "center"}}
-            onClick={() => this.send()}>전송</button>
+           
         </div>
       
         <div className="col-1">
