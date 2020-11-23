@@ -84,13 +84,13 @@ const RoomList = () => {
    
 
 
-    var room_data, aa;
+    
     async function loadRoom () {
 
-      const roomnum = await getRoomNum();
+      const roomnum = getRoomNum();
 
       for(var i = 1; i <= roomnum; i++){
-        room_data = await getRoomDocument(i);
+        let {aa, room_data} = getRoomDocument(i);
         customer.push(room_data);
   
       }

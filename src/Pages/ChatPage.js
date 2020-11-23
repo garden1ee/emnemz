@@ -4,7 +4,7 @@ import { getRoomDocument, getScript, firestore } from "../firebase";
 import aron_img from "../Pages/Images_character/aron.png";
 import ruffi_img from "../Pages/Images_character/ruffi.png";
 import nami_img from "../Pages/Images_character/nami.png";
-//import ChatMessage from "./ChatMessage";
+import ChatMessage from "./ChatMessage";
 import { MDBCard, MDBCardBody} from "mdbreact";
 import TableRow from '@material-ui/core/TableRow';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
