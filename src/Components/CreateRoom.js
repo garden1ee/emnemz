@@ -1,6 +1,7 @@
 import React from "react";
 import { getRoomNum, generateRoomDocument } from "../firebase";
 /*NOT WORKING YET form과 character list 나누어놓기*/
+
 class CreateRoom extends React.Component {
   constructor(props) {
     super(props);

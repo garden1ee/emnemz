@@ -102,7 +102,8 @@ class ChatPage extends Component {
       scripts:[],
       user: "경우",
       text_input: "",
-      room_id: -1};
+      room_id: -1,
+      user_script: ""};
     } 
     
      changeText(target){
@@ -113,9 +114,11 @@ class ChatPage extends Component {
        }
    
     } 
-    send = (text_input) => {
-      
-      const new_scripts = updateScript(this.state.room_id, text_input);
+    send = () => { 
+      // this.state.user_script
+      var new_data = { character: "나미", avatar: nami_img, when: 12121212, message: "Ddd", isScript: true}
+
+      const new_scripts = updateScript(this.state.room_id, new_data);
      // this.setState({scripts: new_scripts});
     } 
     componentDidMount = async () => {
@@ -136,6 +139,11 @@ class ChatPage extends Component {
       }
    
     };
+    handleChange = (e) =>{
+      this.setState({
+        user_script: e.target.value
+      })
+    }
     render() {
     return (
       <div className="row trytohandle">
@@ -158,14 +166,18 @@ class ChatPage extends Component {
         <div className="col-11 WR-scriptbar" style={{bottom: 0}}>
             
             <button id="characterSelect"><img id="userCharacterImg" src={nami_img} /></button>
-            <textarea placeholder="대사를 입력하세요." className="scriptInput" defaultValue={this.state.text_input}/>
+       
+            <input placeholder="대사를 입력하세요." defaultValue={this.state.text_input} 
+           
+            onChange={this.handleChange}/>
+       
             <div className="WR-submitBtn">
                 <button className="scriptBtn" className="btn btn-default" style={{width:80, height:30, textAlign: "center"}}>대사</button>
                 <button className="actionBtn" className="btn btn-default" style={{width:80, height:30, textAlign: "center"}}>액션</button>
             </div>
             <button className="sendBtn" className="btn btn-primary" 
             style={{width:80, height:30, textAlign: "center"}}
-            onClick={() => this.send(this.state.text_input)}>전송</button>
+            onClick={() => this.send()}>전송</button>
         </div>
       
         <div className="col-1">
