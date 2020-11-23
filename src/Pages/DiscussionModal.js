@@ -3,7 +3,72 @@ import  '../../src/style/WritingRoom.css';
 import {MDBRow, MDBCol, MDBListGroup} from "mdbreact";
 import aron_img from "../Pages/Images_character/aron.png";
 import ruffi_img from "../Pages/Images_character/ruffi.png";
-import ChatMessage from "./ChatMessage";
+import { MDBCard, MDBCardBody} from "mdbreact";
+import TableRow from '@material-ui/core/TableRow';
+
+
+const ChatMessage = ({ message: { character, avatar, when, message, isScript } }) => 
+  <div>
+    <div>
+{(isScript  
+    ? <li className="chat-message  d-flex justify-content-between mb-4">
+  
+    <img src={avatar} alt="character"  style={{width: 50, height: 50, borderRadius: 50/ 2}} />
+    
+    <MDBCard style={{borderRadius: "20%"}}>
+      <MDBCardBody>
+        <div>
+          <strong className="primary-font">{character}</strong>
+         
+        </div>
+        <hr />
+     
+        <p className="mb-0">{message}  </p>
+       
+      </MDBCardBody>
+    </MDBCard>
+    <small className="pull-right text-muted">
+            <i className="far fa-clock"/> {when}
+          </small>
+    
+   
+   
+  </li>
+  
+  : <li className="chat-message  d-flex justify-content-between mb-4">
+     <TableRow>
+  <img src={avatar} alt="character"  style={{width: 50, height: 50, borderRadius: 50/ 2}} />
+
+  <MDBCard>
+    <MDBCardBody>
+      <div>
+        <strong className="primary-font">{character}</strong>
+       
+      </div>
+      <hr />
+   
+      <p className="mb-0">{message}  </p>
+     
+    </MDBCardBody>
+
+  </MDBCard>
+
+ 
+ 
+  
+  <small className="pull-right text-muted">
+          <i className="far fa-clock"/> {when}
+        </small>
+        </TableRow>
+   
+</li>
+
+)}
+
+</div>
+
+
+</div>
 
 class DiscussionModal extends Component {
 constructor() {

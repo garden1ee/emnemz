@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Button} from 'react-bootstrap';
 import { Link, Route } from 'react-router-dom';
-import WritingRoom from '../../WritingRoom.js';
-
+import WritingRoomPage from '../../WritingroomPage.js';
 
 export class AlarmModal extends Component {
     constructor(props) {
