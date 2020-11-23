@@ -10,6 +10,7 @@ import ChatMessage from "./ChatMessage";
 
 const ChatPage = (props) => {
     const [scripts, setScripts] = useState([]);
+    const [news, setNews] = useState(true);
     const room_id = props.roomid;
     useEffect(() => {
       async function loadScript() {
@@ -17,8 +18,11 @@ const ChatPage = (props) => {
         const { scripts } = scriptDB;
         setScripts(scripts);
       };
-        loadScript();
-        firestore.doc(`rooms/${room_id}`).onSnapshot(loadScript());
+        if (news==true) {
+          loadScript();
+          setNews(false);
+        }
+        firestore.doc(`rooms/${room_id}`).onSnapshot(setNews(true));
     });
     return (
       <div>
