@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import TableRow from '@material-ui/core/TableRow'
 import ChatInfoModal from './Modals/ChatInfoModal.js';
 import {makeStyles} from "@material-ui/core/styles";
@@ -75,31 +75,31 @@ const roomcreate = {
 }
 
 const RoomList = () => {
-  var customer = [];
+  var customer = useState([]);
   const classes=useStyles();
 
-  useEffect(() => {
+ /* const [info, setInfo] = useState({title:"", profilePic:"", intro:"", hashtag:[]});
+  const [characters, setCharacters] = useState([]); */
 
-   
-   
-
-
-    
-    async function loadRoom () {
-
-      const roomnum = getRoomNum();
+  const getRoomInfo = async () => {
+    const roomnum = await getRoomNum();
 
       for(var i = 1; i <= roomnum; i++){
-        let {aa, room_data} = getRoomDocument(i);
-        customer.push(room_data);
+        let room_info = await getRoomDocument(i)
+
+     //   const {info, characters} = roominfo;
+        if (room_info){
+          customer.push(room_info);
   
+        }
+        
+
       }
-    };
-
-    loadRoom();
     
-
-  });
+  }
+    
+  useEffect(getRoomInfo);
+  
 
   return(
       <Grid container spacing={2} className={classes.grid}>
@@ -135,9 +135,9 @@ const RoomList = () => {
                   return(
                     <Customer
                     id={c.id}
-                    image={c.info.profilePic}
-                    name={c.info.title}
-                    hashtag={c.info.hashtag}/>
+                    image={c.profilePic}
+                    name={c.title}
+                    hashtag={c.hashtag}/>
                   )
                 })
               }
@@ -155,9 +155,9 @@ const RoomList = () => {
                     return(
                       <Customer
                         id={c.id}
-                        image={c.info.profilePic}
-                        name={c.info.title}
-                        hashtag={c.info.hashtag}
+                        image={c.profilePic}
+                        name={c.title}
+                        hashtag={c.hashtag}
                       />
                     )
                   })
@@ -175,9 +175,9 @@ const RoomList = () => {
                   return(
                     <Customer
                       id={c.id}
-                      image={c.info.profilePic}
-                      name={c.info.title}
-                      hashtag={c.info.hashtag}
+                      image={c.profilePic}
+                      name={c.title}
+                      hashtag={c.hashtag}
                       />
                   )
                 })
@@ -226,8 +226,6 @@ render(){
     <div>
       <a marginLeft={3} href="">{this.props.name}</a>
       <p>{this.props.hashtag}</p>
-      <p>{this.props.gender}</p>
-      <p>{this.props.score}</p>
     </div>
   )
 }
