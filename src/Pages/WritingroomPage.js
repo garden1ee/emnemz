@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import ChatPage from "./ChatPage"
-import { getRoomDocument, getScript } from "../firebase";
+import { getRoomDocument, updateScript } from "../firebase";
+import { UserContext } from "../Components/UserProvider";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faBars, faComments, faVoteYea, faBook } from '@fortawesome/free-solid-svg-icons';
 import { DropdownButton, Dropdown } from 'react-bootstrap';
@@ -14,8 +15,13 @@ var script = "대사를 입력하세요. \n";
 
 const WritingRoomPage = (props) => {
     const [info, setInfo] = useState({title:"", profilePic:"", intro:"", hashtag:[]});
-    const [characters, setCharacters] = useState([]);
+    const [characters, setCharacters] = useState([{name:'',pic:'',user:''}]);
+    const [mycharacter, setMycharacter] = useState({name:'',pic:''});
+    const [input, setInput] = useState("");
+    const user = useContext(UserContext);
+    const { uid } = user;
     const room_id = props.roomid;
+
     const getRoominfo = async () => {
         const roominfo = await getRoomDocument(room_id)
         if (roominfo) {
@@ -24,8 +30,31 @@ const WritingRoomPage = (props) => {
         setInfo(info);
         };
     }
-    useEffect(getRoominfo);
+    setInput('');
+    const onChangeHandler = event => setInput(event.target.value);
 
+    const onSubmitHandler = async (event, input) => {
+        event.preventDefault();
+        const {name, pic} = mycharacter;
+
+        await updateScript(room_id, {
+          isScript: event.target.value,
+          avatar: pic,
+          character: name,
+          message: input
+        });
+    }
+    useEffect(()=>{
+        getRoominfo();
+        const char = characters.map(character=> {
+            if(character.user===uid) {
+                const {name, pic} = character;
+                return {name, pic}
+            }
+        })
+        setMycharacter(char);
+    })
+    
     return (
         <div className="writingroompage">
             <div className="row">
@@ -68,11 +97,15 @@ const WritingRoomPage = (props) => {
             <div className="row">
                 <div className="col-11 WR-scriptbar">
                     
-                    <button id="characterSelect"><img id="userCharacterImg" src={nami_img} /></button>
-                    <textarea placeholder={script} className="scriptInput" />
+                    <button id="characterSelect"><img id="userCharacterImg" src={mycharacter.pic} /></button>
+                    <textarea placeholder={script} className="scriptInput" onChange={event => onChangeHandler(event)} />
                     <div className="WR-submitBtn">
-                        <button className="scriptBtn">대사</button><br/>
-                        <button className="actionBtn">액션</button>
+                        <button className="scriptBtn" value={true} onClick={event => {
+                            onSubmitHandler(event, input);
+                            }}>대사</button><br/>
+                        <button className="actionBtn" value={false} onClick={event => {
+                            onSubmitHandler(event, input);
+                            }}>액션</button>
                     </div>
                 </div>
                 <div className="col-1">
