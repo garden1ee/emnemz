@@ -109,7 +109,7 @@ const RoomList = () => {
 
   return(
       <Grid container spacing={2} className={classes.grid}>
-        <Grid item xs={6}>
+        <Grid item xs={6}><div>{console.log(room_num)}</div>
           <input style={searchbarstyle}/>
           <button onClick={()=>{alert("조금더 시간을 주시면 구현됩니다")}}> 검색</button>
         </Grid>
