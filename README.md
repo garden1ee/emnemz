@@ -53,9 +53,11 @@ This project was generated with React 16.13.1.
 ### Dependencies
 * Bootstrap
 * React-bootstrap
-* React-router
-* React-firebase
+* React-router-dom
+* firebase auth
+* Cloud Firestore
 * React-dom
 * React-select
 * @material-ui
 * @fontawesome
+* mdbootstrap
