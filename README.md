@@ -15,24 +15,24 @@ This project was generated with React 16.13.1.
 
 [src/Components folder]
 * AuthApplication.js - If the user did not sign in, it redirects the user to the signup link ('/signup') and if the user did sign in, it redirects to the mypage of the website.
-* CreateRoom.js - 
-* ScriptProvider.js -
+* CreateRoom.js - If user want to make novel room, so click button, then some info related to novel room saved into db. 
+* ScriptProvider.js - Saving information of script content written in novel writing room.  
 * SignIn.js - Login interface as well as algorithm for determining whether the user entered in correct email address and password.
 * SignUp.js - Sign up interface as well as algorithm for determining whether user entered valid value for each blank space.
-* UserProvider.js - 
+* UserProvider.js - Loading information of user logged in. 
   
 [src/Pages folder]
-* ChatMessage.js
-* ChatPage.js
-* DiscussionModal.js -
+* ChatMessage.js - Information about chatmessage. It contains who sended message, content, character image.
+* ChatPage.js - Chatpage loads some chatmessages sended by users in novel writing room. 
+* DiscussionModal.js - When user wants to give feedback to other users, after pressing discussion button, users can discussion in this modal.  
 * EnterWritingroom.js - File that determines whether user's room id matches with the pre-existing room. If it matches it redirects the user to the room, if not it shows the alert "you cannot enter here".
 * Header.js - Header located at the top of the website that shows primary pages like: current room, published rooms, my page and etc.
 * Login.js - Calls 'AuthApplication.js' file.
 * NovelRoomInfo.js - Information aggregation about novel room. It contains genre and charactor of  novel. 
 * ProfilePage.js - MyPage page in which users can see personal informations like profile information and rooms the users are currently involved in.
-* UserList.js
-* Vote.js
-* WritingroomPage.js
+* UserList.js - Saving information of users in novel writing room ib database. 
+* Vote.js - To finsih writing novel  and publish novel, all users in novel writing room  have to vote and agree to publish novel in thie vote room. 
+* WritingroomPage.js - In this room 
 
 [src/Pages/Mainpages folder] - Elements of the Header.js
 * MyPage.js - Unused js file.
