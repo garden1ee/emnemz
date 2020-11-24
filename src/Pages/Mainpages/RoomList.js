@@ -82,19 +82,24 @@ const RoomList = () => {
   const [characters, setCharacters] = useState([]); */
 
   const getRoomInfo = async () => {
-    const roomnum = await getRoomNum();
 
-      for(var i = 1; i <= roomnum; i++){
-        let room_info = await getRoomDocument(i)
+    const room_num = getRoomNum();
+
+       
 
      //   const {info, characters} = roominfo;
+      for(var i = 0; i < room_num; i++){
+        let room_info = await getRoomDocument(i);
+
         if (room_info){
-          customer.push(room_info);
-  
+          let {info, _} = room_info;
+          customer.push(info);
+       
         }
+      }
         
 
-      }
+      
     
   }
     
@@ -192,14 +197,17 @@ const RoomList = () => {
 class Customer extends React.Component{
   constructor(props) {
       super(props);
+
       this.state = {
           setModalIsOpen: false
       };
+
   }
   render() {
       let setModalClose = () => this.setState({ setModalIsOpen: false });
       return (
           <TableRow>
+
       <h2/><img src= {this.props.image} width="200" height="200" alt="profile"/>
       <h2/><text style={stly}>{this.props.name}</text>
       <h2/><text style={stly}>{this.props.hashtag}</text>
@@ -226,6 +234,7 @@ render(){
     <div>
       <a marginLeft={3} href="">{this.props.name}</a>
       <p>{this.props.hashtag}</p>
+
     </div>
   )
 }
