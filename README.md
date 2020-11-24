@@ -32,7 +32,7 @@ This project was generated with React 16.13.1.
 * ProfilePage.js - MyPage page in which users can see personal informations like profile information and rooms the users are currently involved in.
 * UserList.js - Saving information of users in novel writing room ib database. 
 * Vote.js - To finsih writing novel  and publish novel, all users in novel writing room  have to vote and agree to publish novel in thie vote room. 
-* WritingroomPage.js - In this room 
+* WritingroomPage.js - In this room user can write novel and can press some buttons to discusss with other or vote etc. 
 
 [src/Pages/Mainpages folder] - Elements of the Header.js
 * MyPage.js - Unused js file.
