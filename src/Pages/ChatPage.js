@@ -26,9 +26,9 @@ const ChatPage = (props) => {
     });
     return (
       <div>
-          <MDBCol md="6" xl="8">
+          <MDBCol md="11">
             <MDBRow>
-              <MDBListGroup><div>{console.log(scripts)}</div>
+              <MDBListGroup>
                 {scripts.map(message => (
                 <ChatMessage message={message} />
                 ))}

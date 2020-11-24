@@ -31,7 +31,7 @@ const WritingRoomPage = (props) => {
             <div className="row">
                 <div className="col-11 writingroom-title">
                     <button className="WR-backtoMain"><Link to="/list" className="WR-link"><FontAwesomeIcon icon={faArrowLeft} /></Link></button>
-                    <h4>{info.title}</h4>
+                    <h4 className="WR-title">{info.title}</h4>
                 </div>
                 <div className="col-1 WRdropdown-here">
                     <DropdownButton variant="secondary"size="lg" className='WRdropdownMenu' menuAlign="right"
@@ -50,18 +50,9 @@ const WritingRoomPage = (props) => {
                 </div>
                 <div className="col-1">
                     <ul className="WR-sidebar">
-                        <li><a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faComments} /><p>토론방</p></a></li>
-                        <li>
-                       
-                                
-                            <a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faVoteYea} />
-                             <p> 
-                               
-                            </p>
-                             </a>
-                            투표하기
-                        </li>
-                        <li><a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faBook} /><p>출판하기</p></a></li>
+                        <li><a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faComments} /><p className="WR-small">토론방</p></a></li>
+                        <li><a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faVoteYea} /><p className="WR-small">투표하기</p></a></li>  
+                        <li><a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faBook} /><p className="WR-small">출판하기</p></a></li>
                     </ul>
                 </div>
             </div>
