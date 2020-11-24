@@ -4,7 +4,7 @@
 
 RolyRoly is an interactive platform, in which users co-operate to write novels for their favorite dramas, comics or movies by each roleplaying one of the characters.
 
-Available at [URL]
+Available at https://mnms-6771f.web.app/
 
 This project was generated with React 16.13.1.
 
