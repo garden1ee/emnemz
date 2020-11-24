@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useContext} from "react";
 import ChatPage from "./ChatPage"
 import { getRoomDocument, updateScript } from "../firebase";
-import { UserContext } from "../Components/UserProvider";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faBars, faComments, faVoteYea, faBook } from '@fortawesome/free-solid-svg-icons';
 import { DropdownButton, Dropdown } from 'react-bootstrap';
@@ -18,8 +17,7 @@ const WritingRoomPage = (props) => {
     const [characters, setCharacters] = useState([{name:'',pic:'',user:''}]);
     const [mycharacter, setMycharacter] = useState({name:'',pic:''});
     const [input, setInput] = useState("");
-    const user = useContext(UserContext);
-    const { uid } = user;
+    const { uid } = props.user;
     const room_id = props.roomid;
 
     const getRoominfo = async () => {
