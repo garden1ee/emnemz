@@ -15,6 +15,11 @@ This project was generated with React 16.13.1.
 
 [src/Components folder]
 * AuthApplication.js - If the user did not sign in, it redirects the user to the signup link ('/signup') and if the user did sign in, it redirects to the mypage of the website.
+* CreateRoom.js - 
+* ScriptProvider.js -
+* SignIn.js - Login interface as well as algorithm for determining whether the user entered in correct email address and password.
+* SignUp.js - Sign up interface as well as algorithm for determining whether user entered valid value for each blank space.
+* UserProvider.js - 
   
 [src/Pages folder]
 * ChatMessage.js
