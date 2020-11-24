@@ -75,8 +75,8 @@ const roomcreate = {
 }
 
 const RoomList = () => {
-  var customer = useState([]);
-  const classes=useStyles();
+  const [customer, setCustomer] = useState([]);
+  const classes =useStyles();
 
  /* const [info, setInfo] = useState({title:"", profilePic:"", intro:"", hashtag:[]});
   const [characters, setCharacters] = useState([]); */
@@ -88,15 +88,16 @@ const RoomList = () => {
        
 
      //   const {info, characters} = roominfo;
-      for(var i = 0; i < room_num; i++){
+    
+     for(var i = 1; i <= room_num; i++){
         let room_info = await getRoomDocument(i);
 
         if (room_info){
           let {info, _} = room_info;
-          customer.push(info);
+          setCustomer(customer => customer.push(info));
        
         }
-      }
+      } 
         
 
       
