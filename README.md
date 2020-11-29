@@ -4,7 +4,7 @@
 
 RolyRoly is an interactive platform, in which users co-operate to write novels for their favorite dramas, comics or movies by each roleplaying one of the characters.
 
-Available at [URL]
+Available at https://mnms-6771f.web.app/
 
 This project was generated with React 16.13.1.
 
@@ -13,18 +13,26 @@ This project was generated with React 16.13.1.
 [src folder]
 * App.js - Implemented routing link, which is redirects users to specific pages when users click on certain buttons.
 
+[src/Components folder]
+* AuthApplication.js - If the user did not sign in, it redirects the user to the signup link ('/signup') and if the user did sign in, it redirects to the mypage of the website.
+* CreateRoom.js - If user want to make novel room, so click button, then some info related to novel room saved into db. 
+* ScriptProvider.js - Saving information of script content written in novel writing room.  
+* SignIn.js - Login interface as well as algorithm for determining whether the user entered in correct email address and password.
+* SignUp.js - Sign up interface as well as algorithm for determining whether user entered valid value for each blank space.
+* UserProvider.js - Loading information of user logged in. 
+  
 [src/Pages folder]
-* ChatMessage.js
-* ChatPage.js
-* DiscussionModal.js -
-* EnterWritingroom.js
+* ChatMessage.js - Information about chatmessage. It contains who sended message, content, character image.
+* ChatPage.js - Chatpage loads some chatmessages sended by users in novel writing room. 
+* DiscussionModal.js - When user wants to give feedback to other users, after pressing discussion button, users can discussion in this modal.  
+* EnterWritingroom.js - File that determines whether user's room id matches with the pre-existing room. If it matches it redirects the user to the room, if not it shows the alert "you cannot enter here".
 * Header.js - Header located at the top of the website that shows primary pages like: current room, published rooms, my page and etc.
-* Login.js
+* Login.js - Calls 'AuthApplication.js' file.
 * NovelRoomInfo.js - Information aggregation about novel room. It contains genre and charactor of  novel. 
 * ProfilePage.js - MyPage page in which users can see personal informations like profile information and rooms the users are currently involved in.
-* UserList.js
-* Vote.js
-* WritingroomPage.js
+* UserList.js - Saving information of users in novel writing room ib database. 
+* Vote.js - To finsih writing novel  and publish novel, all users in novel writing room  have to vote and agree to publish novel in thie vote room. 
+* WritingroomPage.js - In this room user can write novel and can press some buttons to discusss with other or vote etc. 
 
 [src/Pages/Mainpages folder] - Elements of the Header.js
 * MyPage.js - Unused js file.
@@ -37,16 +45,19 @@ This project was generated with React 16.13.1.
 * CreateRoomModal.js - Currently unused modal file, which displayed modal to create and host writing room.
 * EditProfileModal.js - Modal that pops up when clicking "Edit Profile" button in MyPage page.
 * EnterRoomModal.js - Modal that pops up when clicking on picture in "참가하는 방" that redirects user to writing room the user is participating in.
-* ProfileModal.js - Unused modal js file.
 * PublishInfoModal.js - Modal that pops up when clicking on one of the buttons for the rooms in published work room. It displays room information like author's note, the genre of the novel and etc.
-
+* RoomCompleteModal.js - File that displays respective modal when clicking on one of the published works ("완결낸 방") in "Mypage" page.
+* RoomRequestModal.js - File that displays respective modal when clicking on one of the request pending rooms ("신청중인 방") in "Mypage" page.
 
 
 ### Dependencies
 * Bootstrap
 * React-bootstrap
-* React-router
-* React-firebase
+* React-router-dom
+* firebase auth
+* Cloud Firestore
 * React-dom
 * React-select
 * @material-ui
+* @fontawesome
+* mdbootstrap
