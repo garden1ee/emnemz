@@ -1,13 +1,9 @@
 import '../style/ChatMessage.css'
 import { auth } from "../firebase";
 
-function edit(){
-  var edit_content = ChatMessage.text;
-  
-  
-}
+
 function ChatMessage(props) {
-  const { text, createdAt, isScript, character, uid, photoURL } = props.message; 
+  const { text, createdAt, isScript, character, uid, photoURL, id } = props.message; 
   return (
   <div>
     <div>
@@ -17,7 +13,7 @@ function ChatMessage(props) {
     <p>{character}</p></div>
       <div className="chat-scriptbox"> {text} 
       </div> {uid === auth.currentUser.uid ?   <button className="btn btn-primary btn-sm editBtn" 
-                                                    style={{width:50, height:30, verticalAlign: "center"}}>편집</button>:<div/>}
+                                                    style={{width:50, height:30, verticalAlign: "center"}} onClick={()=>{props.onEdit(text,id)}}>편집</button>:<div/>}
       <small hidden className="pull-right text-muted">
           <i className="far fa-clock"/> {createdAt && createdAt.seconds}
         </small>                                    
@@ -26,7 +22,7 @@ function ChatMessage(props) {
     <li className="chat-message">
       <div>
        <div className="chat-actionbox">{character}, {text} {uid === auth.currentUser.uid ? <button className="btn btn-primary btn-sm editBtn" 
-                                                    style={{width:50, height:30, verticalAlign: "center"}}>편집</button>:<div/>}
+                                                    style={{width:50, height:30, verticalAlign: "center"}} onClick={()=>{props.onEdit(text,id)}}>편집</button>:<div/>}
       </div>
       <small hidden className="pull-right text-muted">
           <i className="far fa-clock"/> {createdAt && createdAt.seconds}
