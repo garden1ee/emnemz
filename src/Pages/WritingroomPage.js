@@ -8,12 +8,27 @@ import '../style/WritingroomPage.css';
 import NovelRoomInfo from './NovelRoomInfo';
 import Vote from './Vote';
 import { Link } from 'react-router-dom';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DiscussionModal from './DiscussionModal';
 
+
+var isDiscussion = false;
+
+const openDiscussion = () => {
+
+    isDiscussion = true;
+}
+
+const closeDiscussion = () => {
+    isDiscussion = false;
+}
 
 const WritingRoomPage = (props) => {
     const [info, setInfo] = useState({title:"", profilePic:"", intro:"", hashtag:[]});
     const [characters, setCharacters] = useState([]);
     const room_id = props.roomid;
+ 
     const getRoominfo = async () => {
         const roominfo = await getRoomDocument(room_id)
         if (roominfo) {
@@ -48,7 +63,25 @@ const WritingRoomPage = (props) => {
                 </div>
                 <div className="col-1">
                     <ul className="WR-sidebar">
-                        <li><a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faComments} /><p className="WR-small">토론방</p></a></li>
+                        
+                        <li>
+                            <a className="Wr-sidebar-comp" onClick={openDiscussion}>
+                            <FontAwesomeIcon icon={faComments} /><p className="WR-small">토론방</p>
+                            </a>
+                        </li>
+                        <Dialog open={isDiscussion}>
+                        <DialogContent style={{width: 500, height:700}}>
+                        <button type="button" class="btn btn-default" class="x_button"
+                                onClick={closeDiscussion} class="right_align1">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                                </svg>
+                        </button>
+                        </DialogContent>
+                         <DiscussionModal/>
+
+
+                        </Dialog>
                         <li><a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faVoteYea} /><p className="WR-small">투표하기</p></a></li>  
                         <li><a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faBook} /><p className="WR-small">출판하기</p></a></li>
                     </ul>
