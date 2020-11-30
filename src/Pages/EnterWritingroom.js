@@ -9,7 +9,7 @@ function EnterWritingroom() {
   const {rooms} = user;
   if (rooms.includes(id)) {
       return (
-        <WritingRoomPage roomid={id}/>
+        <WritingRoomPage roomid={id} user={user}/>
       )
   }
   else{

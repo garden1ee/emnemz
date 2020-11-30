@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import ChatPage from "./ChatPage"
-import { getRoomDocument, getScript } from "../firebase";
+import { getRoomDocument, updateScript } from "../firebase";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faBars, faComments, faVoteYea, faBook } from '@fortawesome/free-solid-svg-icons';
 import { DropdownButton, Dropdown } from 'react-bootstrap';
@@ -13,8 +13,12 @@ var script = "대사를 입력하세요. \n";
 
 const WritingRoomPage = (props) => {
     const [info, setInfo] = useState({title:"", profilePic:"", intro:"", hashtag:[]});
-    const [characters, setCharacters] = useState([]);
+    const [characters, setCharacters] = useState([{name:'',pic:'',user:''}]);
+    const [mycharacter, setMycharacter] = useState({name:'',pic:''});
+    const [input, setInput] = useState("");
+    const { uid } = props.user;
     const room_id = props.roomid;
+
     const getRoominfo = async () => {
         const roominfo = await getRoomDocument(room_id)
         if (roominfo) {
@@ -23,8 +27,31 @@ const WritingRoomPage = (props) => {
         setInfo(info);
         };
     }
-    useEffect(getRoominfo);
+    setInput('');
+    const onChangeHandler = event => setInput(event.target.value);
 
+    const onSubmitHandler = async (event, input) => {
+        event.preventDefault();
+        const {name, pic} = mycharacter;
+
+        await updateScript(room_id, {
+          isScript: event.target.value,
+          avatar: pic,
+          character: name,
+          message: input
+        });
+    }
+    useEffect(()=>{
+        getRoominfo();
+        const char = characters.map(character=> {
+            if(character.user===uid) {
+                const {name, pic} = character;
+                return {name, pic}
+            }
+        })
+        setMycharacter(char);
+    })
+    
     return (
         <div className="writingroompage">
             <div className="row">

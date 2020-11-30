@@ -31,7 +31,7 @@ export class EditProfileModal extends Component {
                                 프로필 이름
                             </div>
                             <div>
-                        <input type="text" style={{ width: '100%', marginBottom: '5px' }} />
+                        <input type="text" style={{ width: '100%', marginBottom: '5px' }} placeholder={this.props.user.displayName}/>
                     </div>
                             <div className="row" style={{ marginTop: '10px' }}>
                         관심분야
