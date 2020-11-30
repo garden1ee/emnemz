@@ -4,11 +4,11 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 import  '../../src/style/WritingRoom.css';
 import {MDBRow, MDBCol, MDBListGroup} from "mdbreact";
 
-function DiscussionModal() {
+function DiscussionModal(props) {
   const auth= firebase.auth();
   const firestore=firebase.firestore();
   const dummy = useRef();
-  const messagesRef1 = firestore.collection('ccc');
+  const messagesRef1 = firestore.collection(`discussions_${props.id}`);
   const query = messagesRef1.orderBy('createdAt').limit(25);
 
   const [discussion] = useCollectionData(query, { idField: 'id' });

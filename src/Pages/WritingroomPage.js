@@ -35,7 +35,7 @@ const WritingRoomPage = (props) => {
         <div className="writingroompage">
             <div className="row">
                 <div className="col-11 writingroom-title">
-                    <button className="WR-backtoMain"><Link to="/list" className="WR-link"><FontAwesomeIcon icon={faArrowLeft} /></Link></button>
+                    <button className="WR-backtoMain"><Link to="/mypage" className="WR-link"><FontAwesomeIcon icon={faArrowLeft} /></Link></button>
                     <h4 className="WR-title">{info.title}</h4>
                 </div>
                 <div className="col-1 WRdropdown-here">
@@ -51,7 +51,7 @@ const WritingRoomPage = (props) => {
             </div>
             <div className="row trytohandle">
                 <div className="col-11 h-100 Chatcontainer">
-                    <ChatPage myCharName={userChar? userChar.name : "?"} myCharPic={userChar? userChar.pic : null} roomid={props.roomid} />
+                    <ChatPage id={props.roomid} myCharName={userChar? userChar.name : "?"} myCharPic={userChar? userChar.pic : null} roomid={props.roomid} />
                 </div>
                 <div className="col-1">
                     <ul className="WR-sidebar">
@@ -70,7 +70,7 @@ const WritingRoomPage = (props) => {
                                 </svg>
                         </button>
                         </DialogContent>
-                         <DiscussionModal/>
+                         <DiscussionModal id={props.roomid}/>
 
 
                         </Dialog>
