@@ -9,7 +9,6 @@ import NovelRoomInfo from './NovelRoomInfo';
 import Vote from './Vote';
 import { Link } from 'react-router-dom';
 
-var script = "대사를 입력하세요. \n";
 
 const WritingRoomPage = (props) => {
     const [info, setInfo] = useState({title:"", profilePic:"", intro:"", hashtag:[]});
@@ -45,7 +44,7 @@ const WritingRoomPage = (props) => {
             </div>
             <div className="row trytohandle">
                 <div className="col-11 h-100 WR-MainArea">
-                    <ChatPage roomid={props.roomid} />
+                    <ChatPage user={props.user} roomid={props.roomid} />
                 </div>
                 <div className="col-1">
                     <ul className="WR-sidebar">
