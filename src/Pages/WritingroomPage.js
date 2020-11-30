@@ -7,7 +7,7 @@ import { DropdownButton, Dropdown } from 'react-bootstrap';
 import '../style/WritingroomPage.css';
 import NovelRoomInfo from './NovelRoomInfo';
 import Vote from './Vote';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DiscussionModal from './DiscussionModal';
@@ -25,20 +25,11 @@ const closeDiscussion = () => {
 }
 
 const WritingRoomPage = (props) => {
-    const [info, setInfo] = useState({title:"", profilePic:"", intro:"", hashtag:[]});
-    const [characters, setCharacters] = useState([]);
+    const location = useLocation();
+    const [info, setInfo] = useState(location.state.info);
+    const [characters, setCharacters] = useState(location.state.characters);
     const room_id = props.roomid;
- 
-    const getRoominfo = async () => {
-        const roominfo = await getRoomDocument(room_id)
-        if (roominfo) {
-        const {info, characters} = roominfo;
-        setCharacters(characters);
-        setInfo(info);
-        };
-    }
-    useEffect(getRoominfo);
-    
+
     return (
         <div className="writingroompage">
             <div className="row">

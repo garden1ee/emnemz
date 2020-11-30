@@ -19,7 +19,7 @@ function ChatMessage(props) {
                                                     style={{width:70, height:30, verticalAlign: "center"}}>편집</button>:<div/>}
       </div>
       <small hidden className="pull-right text-muted">
-          <i className="far fa-clock"/> {createdAt.seconds}
+          <i className="far fa-clock"/> {createdAt && createdAt.seconds}
         </small>                                    
         <hr /></li>
       :
@@ -29,7 +29,7 @@ function ChatMessage(props) {
                                                     style={{width:70, height:30, verticalAlign: "center"}}>편집</button>:<div/>}
       </div>
       <small hidden className="pull-right text-muted">
-          <i className="far fa-clock"/> {createdAt.seconds}
+          <i className="far fa-clock"/> {createdAt && createdAt.seconds}
         </small>
       </div>
     </li>  

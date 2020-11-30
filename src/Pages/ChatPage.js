@@ -32,7 +32,7 @@ function ChatPage() {
       })
 
       setFormValue('');
-      dummy.current.scrollIntoView({ behavior: 'smooth' });
+      if(dummy) dummy.current.scrollIntoView({ behavior: 'smooth' });
   }
     return (
       <div>

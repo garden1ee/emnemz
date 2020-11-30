@@ -102,7 +102,13 @@ const ProfilePage = () => {
                     <h2 />
                     <Paper className={classes.paper1} textSize={"15px"}>
                         { rooms && rooms.map(r => {
-                            return (<div><Link to={`/writingroom/${r.id}`}>{r.info.title}</Link></div>) //r.id = room id 입니다
+                            return (<div><Link to={{
+                                pathname : `/writingroom/${r.id}`,
+                                state : {
+                                    info: r.info,
+                                    characters: r.characters
+                                }
+                        }}>{r.info.title}</Link></div>) //r.id = room id 입니다
                         })}
                     </Paper>
                 </Grid>
