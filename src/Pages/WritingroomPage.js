@@ -14,23 +14,23 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DiscussionModal from './DiscussionModal';
 
 
-var isDiscussion = false;
 
-const openDiscussion = () => {
-
-    isDiscussion = true;
-}
-
-const closeDiscussion = () => {
-    isDiscussion = false;
-}
 
 const WritingRoomPage = (props) => {
     const location = useLocation();
     const [info, setInfo] = useState(location.state.info);
     const [characters, setCharacters] = useState(location.state.characters);
     const userChar = characters.find(c => c['user'] === props.user.uid);
+    var [isDiscussion, setDiscussion] = useState(false);
 
+    const openDiscussion = () => {
+
+        setDiscussion(true);
+    }
+
+    const closeDiscussion = () => {
+        setDiscussion(false);
+    }
     return (
         <div className="writingroompage">
             <div className="row">
