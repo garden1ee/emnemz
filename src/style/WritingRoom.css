@@ -1,117 +1,117 @@
 .container{
-   display: table;
-}
-
-.vertical_menus{
-    display: table-cell;
-    vertical-align: right;
-}
-.vertical_icon{
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-    right: 0;
-}
-
-.right_align1{
-    
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    width: 50px;
-    height:50px;
-}
-.right_align2{
-    position: absolute;
-    right: 0px;
-    top: 50px;
-    width: 50px;
-    height:50px;
-}
-.right_align3{
-    position: absolute;
-    right: 0px;
-    top: 100px;
-    width: 50px;
-    height:50px;
-}
-.right_align4{
-    position: absolute;
-    right: 0px;
-    top: 150px;
-    width: 50px;
-    height:50px;
-}
-.nav_loc{
-    position: absolute;
-    right: 0px;
-}
-.column{
-    display: grid;
-    grid-gap: 1rem;
-    grid-template-columns: repeat(1, 30px);
-    grid-template-rows: repeat(4, 30px);
-    position: relative;
-}
-.center{
-    vertical-align: center;
-}
-.message{
-    display: flex;
-    margin: 10px;
-}
-.sent{
-    flex-direction: row-reverse;
-}
-.sent .textball {
-    color: white;
-    background-color: #555;
-}
-.textball {
-    border-radius: 8px;
-    border: 1px solid #999;
-    margin: 5px;
-    padding-top: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    max-width: 250px;
-    word-break: break-all;
-}
-#discussContainer {
-    height: 500px;
-    overflow: auto;
-}
-#discussTextarea {
-    margin: 10px;
-}
-#DinputArea {
-    width: 84%;
-    border-radius: 8px;
-    padding: 7px;
-    border: 1px solid #999;
-    margin-right: 6px;
-}
-#Dsubmit {
-    padding: 7px;
-    padding-left: 9px;
-    padding-right: 9px;
-    background-color: #777;
-    border-radius: 8px;
-    border: solid 1px gray;
-}
-.x_button {
-    width: 45px;
-    height: 45px;
-    background-color: #888;
-    border-radius: 4px;
-    border: none;
-    margin: 2px;
-    color: black;
-    font-weight: 900;
-    font-size: 1.3em;
-}
-.profileDiv {
-    justify-content: center;
-    text-align: center;
-    font-size: 12px;
-}
+    display: table;
+ }
+ 
+ .vertical_menus{
+     display: table-cell;
+     vertical-align: right;
+ }
+ .vertical_icon{
+     display: inline-block;
+     height: 100%;
+     vertical-align: middle;
+     right: 0;
+ }
+ 
+ .right_align1{
+     
+     position: absolute;
+     right: 0px;
+     top: 0px;
+     width: 50px;
+     height:50px;
+ }
+ .right_align2{
+     position: absolute;
+     right: 0px;
+     top: 50px;
+     width: 50px;
+     height:50px;
+ }
+ .right_align3{
+     position: absolute;
+     right: 0px;
+     top: 100px;
+     width: 50px;
+     height:50px;
+ }
+ .right_align4{
+     position: absolute;
+     right: 0px;
+     top: 150px;
+     width: 50px;
+     height:50px;
+ }
+ .nav_loc{
+     position: absolute;
+     right: 0px;
+ }
+ .column{
+     display: grid;
+     grid-gap: 1rem;
+     grid-template-columns: repeat(1, 30px);
+     grid-template-rows: repeat(4, 30px);
+     position: relative;
+ }
+ .center{
+     vertical-align: center;
+ }
+ .message{
+     display: flex;
+     margin: 10px;
+ }
+ .sent{
+     flex-direction: row-reverse;
+ }
+ .sent .textball {
+     color: white;
+     background-color: #555;
+ }
+ .textball {
+     border-radius: 8px;
+     border: 1px solid #999;
+     margin: 5px;
+     padding-top: 5px;
+     padding-left: 10px;
+     padding-right: 10px;
+     max-width: 250px;
+     word-break: break-all;
+ }
+ #discussContainer {
+     height: 500px;
+     overflow: auto;
+ }
+ #discussTextarea {
+     margin: 10px;
+ }
+ #DinputArea {
+     width: 84%;
+     border-radius: 8px;
+     padding: 7px;
+     border: 1px solid #999;
+     margin-right: 6px;
+ }
+ #Dsubmit {
+     padding: 7px;
+     padding-left: 9px;
+     padding-right: 9px;
+     background-color: #777;
+     border-radius: 8px;
+     border: solid 1px gray;
+ }
+ .x_button {
+     width: 45px;
+     height: 45px;
+     background-color: #888;
+     border-radius: 4px;
+     border: none;
+     margin: 2px;
+     color: black;
+     font-weight: 900;
+     font-size: 1.3em;
+ }
+ .profileDiv {
+     justify-content: center;
+     text-align: center;
+     font-size: 12px;
+ }

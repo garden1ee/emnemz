@@ -1,9 +1,11 @@
-import {Component} from 'react';
+import {Component, useRef} from 'react';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
-
+import firebase from "firebase/app";
+import { auth, getRoomDocument, getScript, firestore } from "../firebase";
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 class Vote extends Component{
 
@@ -18,6 +20,7 @@ class Vote extends Component{
             participant_num: props.participant_num          
 
         }
+        
     }
 
     voting(isPositive){

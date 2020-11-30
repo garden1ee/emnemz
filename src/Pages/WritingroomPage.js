@@ -108,11 +108,11 @@ const WritingRoomPage = (props) => {
                         </button>
                         </DialogContent>
                         
-                          <Vote participant_num={characters.length}/>
+                          <Vote participant_num={characters.length} id={props.roomid}/>
                         
                         </Dialog>  
                         <li>
-                            <a className="Wr-sidebar-comp" onClick={openPublish}>
+                            <a className="Wr-sidebar-comp" onClick={openPublish}> 
                             <FontAwesomeIcon icon={faBook} />
                             <p className="WR-small">출판하기</p>
                             </a>
