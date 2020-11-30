@@ -15,6 +15,7 @@ function ChatPage(props) {
   const [messages] = useCollectionData(query, { idField: 'id' });
 
   const [formValue, setFormValue] = useState('');
+  const [isScriptVal, setIsScript] = useState(true);
 
   const sendMessage = async (e) => {
       e.preventDefault();
@@ -26,7 +27,7 @@ function ChatPage(props) {
           createdAt: firebase.firestore.FieldValue.serverTimestamp(),
           uid,
           character: props.myCharName, //character 이름 받아와서 넣기
-          isScript: true, //대사,액션 버튼 만들어 알맞게 넣기
+          isScript: isScriptVal, //대사,액션 버튼 만들어 알맞게 넣기
           photoURL: props.myCharPic
       })
 
@@ -35,24 +36,24 @@ function ChatPage(props) {
   }
     return (
       <div>
-          <MDBCol md="11">
+          <div className="WR-MainArea">
             <MDBRow>
               <MDBListGroup>
                 {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
                 <span ref={dummy}></span>
               </MDBListGroup>
             </MDBRow>
-          </MDBCol>
-          <MDBCol md="11">
-          <button id="characterSelect"><img id="userCharacterImg" /></button>
+          </div>
+          <div className="WR-scriptbar">
           <form onSubmit={sendMessage}>
-
-            <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="say something nice" />
-
-            <button type="submit" disabled={!formValue}>대사</button>
-
+          <button id="characterSelect"><img id="userCharacterImg" src={props.myCharPic} style={{width: 50, height: 50, borderRadius: 50/ 2}}/></button>
+            <input className="scriptInput" value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="대사를 입력하세요" />
+          <div className="WR-submitBtn">
+            <button type="submit" onClick={() => setIsScript(true)} disabled={!formValue}>대사</button>
+            <button type="submit" onClick={() => setIsScript(false)} disabled={!formValue}>액션</button>
+          </div>
         </form>
-          </MDBCol>   
+          </div>   
       </div>
     );
   }

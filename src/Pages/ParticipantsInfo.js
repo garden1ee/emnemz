@@ -24,7 +24,7 @@ const ParticipantsInfo = ( { characters }) => {
         <Dialog open={isOpen}>    
 
             <div>
-                <DialogContent style={{width: 1000}}>
+                <DialogContent style={{width: 500}}>
                     <TableRow>
                         {characters.map(ch => <Charlist key={ch.id} info={ch} />)}
                     </TableRow>

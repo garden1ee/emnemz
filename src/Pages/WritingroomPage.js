@@ -50,7 +50,7 @@ const WritingRoomPage = (props) => {
                 </div>
             </div>
             <div className="row trytohandle">
-                <div className="col-11 h-100 WR-MainArea">
+                <div className="col-11 h-100 Chatcontainer">
                     <ChatPage myCharName={userChar? userChar.name : "?"} myCharPic={userChar? userChar.pic : null} roomid={props.roomid} />
                 </div>
                 <div className="col-1">
