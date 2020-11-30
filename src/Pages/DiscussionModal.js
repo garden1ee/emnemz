@@ -1,70 +1,77 @@
-import React, {Component} from 'react';
+import React, { Component, useRef, useState } from 'react';
+import firebase from 'firebase/app';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 import  '../../src/style/WritingRoom.css';
 import {MDBRow, MDBCol, MDBListGroup} from "mdbreact";
-import aron_img from "../Pages/Images_character/aron.png";
-import ruffi_img from "../Pages/Images_character/ruffi.png";
-import ChatMessage from "./ChatMessage";
 
-class DiscussionModal extends Component {
-constructor() {
-super();
-this.state = {
-messages: [
-  {
-  author: "루피",
-  avatar: ruffi_img,
-  message: "아론씨 캐릭터 묘사가 부족해요",
-  when: "Just now",
-  toRespond: 1,
-  seen: false,
-  active: true
-  },
-  {
-  author: "아론",
-  avatar: aron_img,
-  message: "혹시 어느 부분 말씀하시는 건가요",
-  when: "5 min ago",
+function DiscussionModal() {
+  const auth= firebase.auth();
+  const firestore=firebase.firestore();
+  const dummy = useRef();
+  const messagesRef1 = firestore.collection('ccc');
+  const query = messagesRef1.orderBy('createdAt').limit(25);
+
+  const [discussion] = useCollectionData(query, { idField: 'id' });
+
+  const [formValue1, setFormValue1] = useState('');
+
+
+  const sendMessage = async (e) => {
+      e.preventDefault();
+
+      const { uid, photoURL } = auth.currentUser;
+
+      await messagesRef1.add({
+          text: formValue1,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          uid,
+          photoURL
+      })
+
+      setFormValue1('');
+      dummy.current.scrollIntoView({ behavior: 'smooth' });
   }
-]
-};
-}
 
-render() {
+
 return (
   <div>
-         <MDBCol md="6" xl="8">
+      <MDBCol md="6" xl="8">
         <MDBRow>
           <MDBListGroup>
-            {this.state.messages.map(message => (
-            <ChatMessage key={message.author} message={message} />
+            {discussion && discussion.map(message => (
+            <Messages key={message.id} message={message} />
             ))}
+            <span ref={dummy}></span>
          
-                </MDBListGroup>
-              </MDBRow>
-              </MDBCol>
+          </MDBListGroup>
+        </MDBRow>
+      </MDBCol>
+      <div className="form-group basic-textarea">
+        <form onSubmit={sendMessage}>
+            <input className="form-control pl-2 my-0" value={formValue1} onChange={(e) => setFormValue1(e.target.value)} placeholder="say nice" />
 
+            <button type="submit" disabled={!formValue1}>입력</button>
+
+        </form>
+      </div>
+  </div>
      
         
-            <div className="form-group basic-textarea">
-              <div>
-             
-                <textarea className="form-control pl-2 my-0" id="exampleFormControlTextarea2" 
-                  style={{width: 500, position: "absolute", left:10, bottom:50}}
-                  placeholder="Type your message here..." />
-                  
-                  <button type="button"  class="btn btn-default" 
-                  style={{position: "absolute", left:520, bottom:80}}>
-                      전송
-                    </button>
-                    </div>
-              </div>
-            </div>
-
     );
-  }
 }
+function Messages(props) {
+  const auth= firebase.auth();
+  const { text, uid, photoURL } = props.message;
 
+  const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
 
+  return (<>
+      <div className={`message ${messageClass}`}>
+          <img src={photoURL || 'https://i.ibb.co/ChncsT7/1-W35-QUSv-Gpc-Lux-Po3-SRTH4w.png'} />
+          <p>{text}</p>
+      </div>
+  </>)
+}
 
 
 export default DiscussionModal;
