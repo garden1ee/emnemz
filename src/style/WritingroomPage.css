@@ -73,6 +73,7 @@
 .Wr-sidebar-comp:hover {
     background-color: #555;
     color: white;
+    text-decoration: none;
 }
 .WR-scriptbar {
     align-items: center;
