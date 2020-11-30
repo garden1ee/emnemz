@@ -8,6 +8,7 @@ import '../style/WritingroomPage.css';
 import NovelRoomInfo from './NovelRoomInfo';
 import ParticipantsInfo from './ParticipantsInfo';
 import Vote from './Vote';
+import Publish from './Publish';
 import { Link, useLocation } from 'react-router-dom';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -22,7 +23,9 @@ const WritingRoomPage = (props) => {
     const [characters, setCharacters] = useState(location.state.characters);
     const userChar = characters.find(c => c['user'] === props.user.uid);
     var [isDiscussion, setDiscussion] = useState(false);
-
+    var [isVote, setVote] = useState(false);
+    var [isPublish, setPublish] = useState(false);
+    
     const openDiscussion = () => {
 
         setDiscussion(true);
@@ -31,6 +34,23 @@ const WritingRoomPage = (props) => {
     const closeDiscussion = () => {
         setDiscussion(false);
     }
+
+    const openVote = () => {
+        setVote(true);
+    }
+
+    const closeVote = () => {
+        setVote(false);
+    }
+
+    const openPublish = () => {
+        setPublish(true);
+    }
+
+    const closePublish = () => {
+        setPublish(false);
+    }
+
     return (
         <div className="writingroompage">
             <div className="row">
@@ -74,8 +94,45 @@ const WritingRoomPage = (props) => {
 
 
                         </Dialog>
-                        <li><a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faVoteYea} /><p className="WR-small">투표하기</p></a></li>  
-                        <li><a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faBook} /><p className="WR-small">출판하기</p></a></li>
+                        <li><a className="Wr-sidebar-comp" onClick={openVote}>
+                            <FontAwesomeIcon icon={faVoteYea}/>
+                            <p className="WR-small">
+                                투표하기
+                            </p>
+                            </a>
+                        </li>
+                        <Dialog open={isVote}>
+                        <DialogContent style={{width: 500, height:700}}>
+                        <button type="button" class="btn btn-default" class="x_button"
+                                onClick={closeVote} class="right_align1">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                                </svg>
+                        </button>
+                        </DialogContent>
+                        
+                          <Vote participant_num={characters.length}/>
+                        
+                        </Dialog>  
+                        <li>
+                            <a className="Wr-sidebar-comp" onClick={openPublish}>
+                            <FontAwesomeIcon icon={faBook} />
+                            <p className="WR-small">출판하기</p>
+                            </a>
+                        </li>
+                        <Dialog open={isPublish}>
+                        <DialogContent style={{width: 500, height:700}}>
+                     
+                        </DialogContent>
+                        
+                          <Publish/>
+                          <button type="button" class="btn btn-warning" onClick={openVote}>
+                            네
+                        </button>
+                        <button type="button" class="btn btn-warning" onClick={closePublish}>
+                            아니오
+                        </button>
+                        </Dialog>  
                     </ul>
                 </div>
             </div>

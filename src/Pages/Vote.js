@@ -9,11 +9,12 @@ class Vote extends Component{
 
     constructor(props){
         super(props);
+
         this.state = {
             agree_num: 0,
             disagree_num: 0,
             voted_num: 0,
-            participant_num: 7            
+            participant_num: props.participant_num          
 
         }
     }
@@ -21,14 +22,22 @@ class Vote extends Component{
     voting(isPositive){
 
         if(isPositive){
-            this.state.agree_num+= 1;
+            this.setState({
+                agree_num: this.state.agree_num + 1
            
+              });
         }
         else{
-            this.state.disagree_num += 1;
+            this.setState({
+                disagree_num: this.state.disagree_num + 1
+           
+              });
         }
 
-        this.state.voted_num += 1;
+        this.setState({
+            voted_num: this.state.voted_num + 1
+       
+          });
 
     }
     
@@ -37,13 +46,13 @@ class Vote extends Component{
         return(
       <div>
           <TableRow>
-              출판에 동의하시겠습니까?
+              출판 혹은 투표에 동의하시겠습니까?
           </TableRow>
           <TableRow>
-            <button type="button" class="btn btn-warning" onClick={this.voting()}>
+            <button type="button" class="btn btn-warning" onClick={() => this.voting(true)}>
                 네
             </button>
-            <button type="button" class="btn btn-warning" onClick={this.voting()}>
+            <button type="button" class="btn btn-warning" onClick={() => this.voting(false)}>
                 아니오
             </button>
           </TableRow>
