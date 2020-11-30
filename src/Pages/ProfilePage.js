@@ -77,7 +77,7 @@ const ProfilePage = () => {
                     <Paper className={classes.paper1} textSize={"15px"}>
                         <text>이름:{displayName}</text>
                         <h2 />
-                        <text>관심분야:#모험#액션#만화</text>
+                        <text>관심분야:#모험#만화#웹툰</text>
                         <h2 />
                         <text>방 개설 횟수:0</text>
                         <h2 />
@@ -101,15 +101,8 @@ const ProfilePage = () => {
                     <text style={back}>참가하는 방</text>
                     <h2 />
                     <Paper className={classes.paper1} textSize={"15px"}>
-                        { rooms && rooms.map(r => {
-                            return (<div><Link to={{
-                                pathname : `/writingroom/${r.id}`,
-                                state : {
-                                    info: r.info,
-                                    characters: r.characters
-                                }
-                        }}>{r.info.title}</Link></div>) //r.id = room id 입니다
-                        })}
+                        { rooms && rooms.map(r => <Enterlist key={r.id} room={r} />)}
+                        { (rooms===undefined || rooms.length==0) && <text>참가 중인 방이 없습니다.</text>}
                     </Paper>
                 </Grid>
                 <Grid item xs={4}>
@@ -123,5 +116,31 @@ const ProfilePage = () => {
         </div>
     )
 };
+function Enterlist(props) {
+    const classes = useStyles();
+    const r = props.room;
+    return (
+    <Paper className={classes.paper1} textSize={"13px"} style={{textAlign: "center", marginBottom: "10px"}}>
+        <Link to={{
+            pathname : `/writingroom/${r.id}`,
+            state : {
+                info: r.info,
+                characters: r.characters
+            }
+        }}><img src={r.info.profilePic} style={{width:200, height:200}}/></Link>
+        <br />
+        <Link to={{
+            pathname : `/writingroom/${r.id}`,
+            state : {
+                info: r.info,
+                characters: r.characters
+            }
+    }}>{r.info.title}</Link>
+    <br />
+    {r.info.hashtag}
+    <br />
+    </Paper>
+    ) //r.id = room id 입니다
 
+}
 export default ProfilePage;
