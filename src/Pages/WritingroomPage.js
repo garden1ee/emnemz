@@ -6,6 +6,7 @@ import { faArrowLeft, faBars, faComments, faVoteYea, faBook } from '@fortawesome
 import { DropdownButton, Dropdown } from 'react-bootstrap';
 import '../style/WritingroomPage.css';
 import NovelRoomInfo from './NovelRoomInfo';
+import ParticipantsInfo from './ParticipantsInfo';
 import Vote from './Vote';
 import { Link, useLocation } from 'react-router-dom';
 import Dialog from '@material-ui/core/Dialog';
@@ -28,7 +29,7 @@ const WritingRoomPage = (props) => {
     const location = useLocation();
     const [info, setInfo] = useState(location.state.info);
     const [characters, setCharacters] = useState(location.state.characters);
-    const room_id = props.roomid;
+    const userChar = characters.find(c => c['user'] === props.user.uid);
 
     return (
         <div className="writingroompage">
@@ -41,7 +42,7 @@ const WritingRoomPage = (props) => {
                     <DropdownButton variant="secondary"size="lg" className='WRdropdownMenu' menuAlign="right"
                     title={<FontAwesomeIcon icon={faBars} />}>
                         <div>
-                        <Dropdown.Item className="WRdropdownedMenu">참여자 목록</Dropdown.Item>
+                        <ParticipantsInfo characters={characters}/>
                         <NovelRoomInfo info={info}/>
                         <Dropdown.Item className="WRdropdownedMenu">친구 초대</Dropdown.Item>
                         </div>
@@ -50,7 +51,7 @@ const WritingRoomPage = (props) => {
             </div>
             <div className="row trytohandle">
                 <div className="col-11 h-100 WR-MainArea">
-                    <ChatPage user={props.user} roomid={props.roomid} />
+                    <ChatPage myCharName={userChar? userChar.name : "?"} myCharPic={userChar? userChar.pic : null} roomid={props.roomid} />
                 </div>
                 <div className="col-1">
                     <ul className="WR-sidebar">

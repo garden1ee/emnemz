@@ -7,7 +7,7 @@ import ChatMessage from "./ChatMessage";
 
 
 
-function ChatPage() {
+function ChatPage(props) {
   const dummy = useRef();
   const messagesRef = firestore.collection('scripts');
   const query = messagesRef.orderBy('createdAt').limit(25);
@@ -15,7 +15,6 @@ function ChatPage() {
   const [messages] = useCollectionData(query, { idField: 'id' });
 
   const [formValue, setFormValue] = useState('');
-
 
   const sendMessage = async (e) => {
       e.preventDefault();
@@ -26,9 +25,9 @@ function ChatPage() {
           text: formValue,
           createdAt: firebase.firestore.FieldValue.serverTimestamp(),
           uid,
-          character: uid, //character 이름 받아와서 넣기
+          character: props.myCharName, //character 이름 받아와서 넣기
           isScript: true, //대사,액션 버튼 만들어 알맞게 넣기
-          photoURL
+          photoURL: props.myCharPic
       })
 
       setFormValue('');
