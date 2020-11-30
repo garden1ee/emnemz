@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faBars, faComments, faVoteYea, faBook } from '@fortawesome/free-solid-svg-icons';
 import { DropdownButton, Dropdown } from 'react-bootstrap';
 import '../style/WritingroomPage.css';
-import nami_img from "./Images_character/nami.png";
 import NovelRoomInfo from './NovelRoomInfo';
 import Vote from './Vote';
 import { Link } from 'react-router-dom';
@@ -81,23 +80,6 @@ const WritingRoomPage = (props) => {
                         <li><a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faVoteYea} /><p className="WR-small">투표하기</p></a></li>  
                         <li><a className="Wr-sidebar-comp"><FontAwesomeIcon icon={faBook} /><p className="WR-small">출판하기</p></a></li>
                     </ul>
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-11 WR-scriptbar">
-                    
-                    <button id="characterSelect"><img id="userCharacterImg" src={mycharacter.pic} /></button>
-                    <textarea placeholder={script} className="scriptInput" onChange={event => onChangeHandler(event)} />
-                    <div className="WR-submitBtn">
-                        <button className="scriptBtn" value={true} onClick={event => {
-                            onSubmitHandler(event, input);
-                            }}>대사</button><br/>
-                        <button className="actionBtn" value={false} onClick={event => {
-                            onSubmitHandler(event, input);
-                            }}>액션</button>
-                    </div>
-                </div>
-                <div className="col-1">
                 </div>
             </div>
         </div>
