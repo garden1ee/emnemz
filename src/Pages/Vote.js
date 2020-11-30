@@ -14,6 +14,7 @@ class Vote extends Component{
             agree_num: 0,
             disagree_num: 0,
             voted_num: 0,
+            isCompleted: false,
             participant_num: props.participant_num          
 
         }
@@ -26,6 +27,13 @@ class Vote extends Component{
                 agree_num: this.state.agree_num + 1
            
               });
+            if(this.state.agree_num === this.state.participant_num){
+
+                this.setState({
+                    isCompleted: true
+                });
+               
+            }
         }
         else{
             this.setState({
@@ -33,7 +41,7 @@ class Vote extends Component{
            
               });
         }
-
+       
         this.setState({
             voted_num: this.state.voted_num + 1
        
@@ -64,7 +72,9 @@ class Vote extends Component{
                 현재까지 동의하지 않은 인원: {this.state.disagree_num}
             </p>
           </TableRow>
-
+          <Dialog open={this.state.isCompleted}>
+            
+        </Dialog>  
       </div>
         );
     }

@@ -16,30 +16,44 @@ function ChatPage(props) {
 
   const [formValue, setFormValue] = useState('');
   const [isScriptVal, setIsScript] = useState(true);
+  const [editid, setEditid] = useState('');
 
   const sendMessage = async (e) => {
       e.preventDefault();
 
       const { uid, photoURL } = auth.currentUser;
 
-      await messagesRef.add({
+      if (editid!=='') {
+        await messagesRef.doc(editid).set({
+          text: formValue,
+          isScript: isScriptVal
+        }, {merge: true});
+        setEditid('');
+        setFormValue('');
+      }
+      else {
+        await messagesRef.add({
           text: formValue,
           createdAt: firebase.firestore.FieldValue.serverTimestamp(),
           uid,
           character: props.myCharName, //character 이름 받아와서 넣기
           isScript: isScriptVal, //대사,액션 버튼 만들어 알맞게 넣기
           photoURL: props.myCharPic
-      })
-
-      setFormValue('');
-      if(dummy) dummy.current.scrollIntoView({ behavior: 'smooth' });
+        })
+        setFormValue('');
+        if(dummy) dummy.current.scrollIntoView({ behavior: 'smooth' });
+      }
+  }
+  async function onEdit(text,id) {
+    setFormValue(text);
+    setEditid(id);
   }
     return (
       <div>
           <div className="WR-MainArea">
             <MDBRow>
               <MDBListGroup>
-                {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
+                {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} onEdit={onEdit}/>)}
                 <span ref={dummy}></span>
               </MDBListGroup>
             </MDBRow>
