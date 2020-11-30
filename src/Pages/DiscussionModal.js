@@ -66,7 +66,7 @@ function Messages(props) {
   const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
 
   return (<>
-      <div className={`message ${messageClass}`}>
+      <div className={messageClass}>
           <img src={photoURL || 'https://i.ibb.co/ChncsT7/1-W35-QUSv-Gpc-Lux-Po3-SRTH4w.png'} />
           <p>{text}</p>
       </div>

@@ -56,3 +56,6 @@
 .center{
     vertical-align: center;
 }
+.sent{
+    display: flex; justify-content: flex-end;
+}
