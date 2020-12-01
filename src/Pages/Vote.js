@@ -1,8 +1,7 @@
 import {useRef, useState} from 'react';
 import TableRow from '@material-ui/core/TableRow';
 import Dialog from '@material-ui/core/Dialog';
-import firebase from "firebase/app";
-import { auth, getRoomDocument, getScript, firestore } from "../firebase";
+import {firestore } from "../firebase";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 function Vote(props){
@@ -17,7 +16,7 @@ function Vote(props){
     const dummy = useRef();
     const messagesRef = firestore.collection(`scripts_${props.id}`);
     const query = messagesRef.orderBy('createdAt').limit(25);
-    const messages = useCollectionData(query, { idField: 'id' });
+    const [messages] = useCollectionData(query, { idField: 'id' });
     var value = "";
 
 
@@ -28,7 +27,7 @@ function Vote(props){
         if(isPositive){
             setAgreeNum(agree_num + 1);
                
-            if(agree_num === participant_num){
+            if(agree_num === participant_num - 1){
 
                 setCompleted(true);
             }
@@ -41,12 +40,10 @@ function Vote(props){
 
     }
     
-    const loadContents = () => {
+  
 
-        contents = messages.reduce((acc, cur, i) =>{
-            return acc.concat(cur.text);
-        }, "");
-    }
+    
+    
 
         return(
       <div>
@@ -63,15 +60,16 @@ function Vote(props){
           </TableRow>
           <TableRow>
             <p>
-                현재까지 동의한 인원: {agree_num}
+                현재까지 동의한 인원: {agree_num} / {participant_num}
             </p>
             <p>
-                현재까지 동의하지 않은 인원: {disagree_num}
+                현재까지 동의하지 않은 인원: {disagree_num} / {participant_num}
             </p>
           </TableRow>
           <Dialog open={isCompleted}>
-            {loadContents()}
-            {contents}
+          {messages && messages.reduce((acc, cur) =>{
+            return acc.concat(cur.character, ":", " ",cur.text + '\n');
+        }, "")}
         </Dialog>  
       </div>
         );
