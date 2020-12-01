@@ -48,7 +48,7 @@ function Vote(props){
         return(
       <div>
           <TableRow>
-              출판 혹은 투표에 동의하시겠습니까?
+              출판 투표에 동의하시겠습니까?
           </TableRow>
           <TableRow>
             <button type="button" class="btn btn-warning" onClick={() => voting(true)}>
@@ -67,9 +67,13 @@ function Vote(props){
             </p>
           </TableRow>
           <Dialog open={isCompleted}>
-          {messages && messages.reduce((acc, cur) =>{
-            return acc.concat(cur.character, ":", " ",cur.text + '\n');
-        }, "")}
+          {messages && messages.map((message) =>
+             <div>{message.character + ":" + " " + message.text + " "}
+              <br></br>
+               </div>
+              
+               )
+               }
         </Dialog>  
       </div>
         );
