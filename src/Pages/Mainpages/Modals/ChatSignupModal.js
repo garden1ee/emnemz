@@ -60,20 +60,20 @@ export class ChatSignupModal extends Component {
                     <div className="row" style={{marginLeft: '30px', marginRight: '30px'}}>
                         왜 이 소설에 참가하고 싶은가요?
                     </div>
-                    <div className="row">
-                        <input type="text" style={{ width: '80%'}}/>
+                    <div className="row" style={{marginLeft: '30px', marginRight: '30px'}}>
+                        <input type="text" style={{ width: '100%', marginBottom: '10px'}}/>
                     </div>
-                    <div className="row">
+                    <div className="row" style={{marginLeft: '30px', marginRight: '30px'}}>
                         친구와 어떠한 소설을 작성해 보고 싶나요?
                         </div>
-                    <div className="row">
-                        <input type="text" style={{ width: '80%' }}/>
+                    <div className="row" style={{marginLeft: '30px', marginRight: '30px'}}>
+                        <input type="text" style={{ width: '100%', marginBottom: '10px' }}/>
                     </div>
-                    <div className="row">
+                    <div className="row" style={{marginLeft: '30px', marginRight: '30px'}}>
                         소설이 완성될 때까지 책임감 있게 참여하실 건가요?
                     </div>
-                    <div className="row">
-                        <input type="text" style={{ width: '80%' }}/>
+                    <div className="row" style={{marginLeft: '30px', marginRight: '30px'}}>
+                        <input type="text" style={{ width: '100%', marginBottom: '10px' }}/>
                     </div>
                 </Modal.Body>
                 <Modal.Footer>

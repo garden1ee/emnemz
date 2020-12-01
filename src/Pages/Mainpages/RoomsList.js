@@ -20,7 +20,7 @@ const Roomslist = () => {
         marginRight: 10,
     }
     return (
-        <Grid container spacing={3} style={{ width: '100%', fontSize: '20px', margin: '0px'}}>
+        <Grid container spacing={4} style={{ width: '100%', fontSize: '20px', margin: '20px'}}>
         <Grid item xs={6}>
           <input style={searchbarstyle}/>
           <button onClick={()=>{alert("조금더 시간을 주시면 구현됩니다")}}> 검색</button>
