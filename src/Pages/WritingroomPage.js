@@ -108,7 +108,7 @@ const WritingRoomPage = (props) => {
                         </button>
                         </DialogContent>
                         
-                          <Vote participant_num={characters.length} id={props.roomid}/>
+                          <Vote participant_num={characters.length} id={props.roomid} uid={props.user.uid}/>
                         
                         </Dialog>  
                         <li>

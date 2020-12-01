@@ -18,12 +18,15 @@ function Vote(props){
     const query = messagesRef.orderBy('createdAt').limit(25);
     const [messages] = useCollectionData(query, { idField: 'id' });
     var value = "";
-
-
+    const [voted, setVoted] = useState([]);
     var [contents, setContents] = useState(value);
 
     const voting = (isPositive) =>{
     
+        if(voted.includes(props.uid)){
+            return;
+        }
+
         if(isPositive){
             setAgreeNum(agree_num + 1);
                
@@ -36,7 +39,7 @@ function Vote(props){
             setDisAgreeNum(disagree_num + 1);
         }
        
-        
+        setVoted(voted.concat(props.uid));
 
     }
     
