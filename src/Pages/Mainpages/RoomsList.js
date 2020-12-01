@@ -43,7 +43,7 @@ const Roomslist = () => {
             </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </ui>
         </Grid>
-            { rooms && rooms.map(r=><RoomObj key={r.id} info={r.info} characters={r.characters}/>) }
+            { rooms && rooms.map(r=><RoomObj key={r.id} id={r.id} info={r.info} characters={r.characters}/>) }
             { (rooms===undefined || rooms.length==0) && <text>해당하는 방이 없습니다.</text> }
         </Grid>
     )
@@ -64,7 +64,7 @@ function RoomObj(props) {
             {props.info.hashtag}
             <br />
         </Paper>
-        <ChatInfoModal show={modalOpen} onHide={setModalClose} info={props.info} characters={props.characters} />
+        <ChatInfoModal show={modalOpen} onHide={setModalClose} id={props.id} info={props.info} characters={props.characters} />
     </Grid>
   )  
 }

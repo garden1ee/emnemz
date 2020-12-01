@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { firestore } from "../../../firebase";
 import { Modal, Button, Row, Col, Form } from 'react-bootstrap';
 import SubmissionModal from './SubmissionModal.js';
 
@@ -11,6 +12,14 @@ export class ChatSignupModal extends Component {
     }
 
     render() {
+        let roomid = this.props.roomid;
+        let uid = this.props.uid;
+        let addUser = async function () {
+            const roomRef = firestore.doc(`rooms/${roomid}`);
+            await roomRef.set({
+                applicants: [uid]
+            }, {merge: true});
+        }
         let setSubmitClose = () => this.setState({ setSubmitIsOpen: false });
         return (
             <Modal
@@ -78,7 +87,7 @@ export class ChatSignupModal extends Component {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={() => this.setState({ setSubmitIsOpen: true })} className="primary-btn">등록</Button>
-                    <SubmissionModal show={this.state.setSubmitIsOpen} onComplete={setSubmitClose} />
+                    <SubmissionModal submit={addUser} show={this.state.setSubmitIsOpen} onComplete={setSubmitClose} />
                     <Button onClick={this.props.onSubmit} className="secondary-btn">닫기</Button>
                 </Modal.Footer>
             </Modal>
