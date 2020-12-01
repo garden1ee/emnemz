@@ -1,86 +1,81 @@
-import {Component, useRef} from 'react';
+import {useRef, useState} from 'react';
 import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
 import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
 import firebase from "firebase/app";
 import { auth, getRoomDocument, getScript, firestore } from "../firebase";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
-class Vote extends Component{
+function Vote(props){
 
-    constructor(props){
-        super(props);
+ 
+       
+    const [agree_num, setAgreeNum] = useState(0);
+    const [disagree_num, setDisAgreeNum] = useState(0);
+    const [isCompleted, setCompleted] = useState(false);
+    const [participant_num, setParticipantNum] = useState(props.participant_num);
 
-        this.state = {
-            agree_num: 0,
-            disagree_num: 0,
-            voted_num: 0,
-            isCompleted: false,
-            participant_num: props.participant_num          
+    const dummy = useRef();
+    const messagesRef = firestore.collection(`scripts_${props.id}`);
+    const query = messagesRef.orderBy('createdAt').limit(25);
+    const messages = useCollectionData(query, { idField: 'id' });
+    var value = "";
 
-        }
-        
-    }
 
-    voting(isPositive){
+    var [contents, setContents] = useState(value);
 
+    const voting = (isPositive) =>{
+    
         if(isPositive){
-            this.setState({
-                agree_num: this.state.agree_num + 1
-           
-              });
-            if(this.state.agree_num === this.state.participant_num){
-
-                this.setState({
-                    isCompleted: true
-                });
+            setAgreeNum(agree_num + 1);
                
+            if(agree_num === participant_num){
+
+                setCompleted(true);
             }
         }
         else{
-            this.setState({
-                disagree_num: this.state.disagree_num + 1
-           
-              });
+            setDisAgreeNum(disagree_num + 1);
         }
        
-        this.setState({
-            voted_num: this.state.voted_num + 1
-       
-          });
+        
 
     }
     
-    
-    render(){
+    const loadContents = () => {
+
+        contents = messages.reduce((acc, cur, i) =>{
+            return acc.concat(cur.text);
+        }, "");
+    }
+
         return(
       <div>
           <TableRow>
               출판 혹은 투표에 동의하시겠습니까?
           </TableRow>
           <TableRow>
-            <button type="button" class="btn btn-warning" onClick={() => this.voting(true)}>
+            <button type="button" class="btn btn-warning" onClick={() => voting(true)}>
                 네
             </button>
-            <button type="button" class="btn btn-warning" onClick={() => this.voting(false)}>
+            <button type="button" class="btn btn-warning" onClick={() => voting(false)}>
                 아니오
             </button>
           </TableRow>
           <TableRow>
             <p>
-                현재까지 동의한 인원: {this.state.agree_num}
+                현재까지 동의한 인원: {agree_num}
             </p>
             <p>
-                현재까지 동의하지 않은 인원: {this.state.disagree_num}
+                현재까지 동의하지 않은 인원: {disagree_num}
             </p>
           </TableRow>
-          <Dialog open={this.state.isCompleted}>
-            
+          <Dialog open={isCompleted}>
+            {loadContents()}
+            {contents}
         </Dialog>  
       </div>
         );
-    }
+    
 }
 
 export default Vote;
