@@ -86,7 +86,7 @@ const ProfilePage = () => {
                         <text>완결 편수:0</text>
                         <h2 />
                         <h2 />
-                        <button onClick={toggleprofile}>프로필 수정하기<EditProfileModal user={user} show={modalprofile} toggleprofile={toggleprofile} /></button>
+                        <button onClick={() => { setModalprofile(true); }}>프로필 수정하기<EditProfileModal user={user} show={modalprofile} /></button>
                     <h2 />
                     </Paper>
                 </Grid>
