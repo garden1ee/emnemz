@@ -1,16 +1,16 @@
 
 import React, { useState } from 'react';
-import { firestore, generateRoomDocument } from "../../firebase";
+import { firestore } from "../../firebase";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { Grid, Paper } from "@material-ui/core";
-import ChatInfoModal from './Modals/ChatInfoModal';
+import { Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText } from "@material-ui/core";
+import ReadNovel from '../ReadNovel';
 
-
-const Roomslist = () => {
+const PublishedNovels = () => {
     const roomsRef = firestore.collection('rooms');
-    const query = roomsRef.where("completed","==",false);
+    const query = roomsRef.where("completed","==",true);
     //.where("hashtag","array-contains", "#바보" );
-    const [rooms] = useCollectionData(query, { idField: 'id' });
+    const [rooms] = useCollectionData(query);
     const searchbarstyle={
         color: "black",
         background: "#C4C4C4",
@@ -44,17 +44,18 @@ const Roomslist = () => {
             </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </ui>
         </Grid>
-            { rooms && rooms.map(r=><RoomObj key={r.id} info={r.info} characters={r.characters}/>) }
+            { rooms && rooms.map(r=><RoomObj key={r.id} id={r.id} info={r.info} characters={r.characters}/>) }
             { (rooms===undefined || rooms.length==0) && <text>해당하는 방이 없습니다.</text> }
         </Grid>
     )
 }
-export default Roomslist;
+export default PublishedNovels;
 
 function RoomObj(props) {
     const [modalOpen,setModalOpen] = useState(false);
     let setModalClose = () => setModalOpen(false);
   return (
+    
     <Grid item xs={3}>
         <Paper fontSize={"13px"} style={{textAlign: "center", marginBottom: "10px", paddingBottom:"10px"}}
                 onClick={() => setModalOpen(true)}>
@@ -65,7 +66,38 @@ function RoomObj(props) {
             {props.info.hashtag}
             <br />
         </Paper>
-        <ChatInfoModal show={modalOpen} onHide={setModalClose} info={props.info} characters={props.characters} />
+        <Dialog open={modalOpen} onClose={setModalClose}>
+        <DialogTitle>{props.info.title}</DialogTitle>
+        <DialogContent>
+            <div className="row">
+                <div className="col-4">
+                    <img src={props.info.profilePic} width= "200" height = "200" />
+                </div>
+                <div className="col-8">
+                    <p>{props.info.intro}</p>
+                    <p>{props.info.hashtag}</p>
+                    <p>장르: {props.info.genre}</p>
+                    <p>작가의 말: {props.info.authorwords}</p>
+                </div>
+            </div>
+            <div className="row" style={{
+                    paddingTop: "10px", paddingLeft: '15px'}}>
+                등장 캐릭터
+            </div>
+            <div className="row">
+                {props.characters.map(c =>
+                    <div><img src={c.pic} width="50" height="50" className="profile-pic" /> {c.name}</div>)}
+            </div>
+        </DialogContent>
+        <DialogActions>
+        <ReadNovel id={props.id} />
+            <button onClick={setModalClose} className="btn btn-primary">
+                닫기
+            </button>
+        </DialogActions>
+    </Dialog>
     </Grid>
+
+    
   )  
 }

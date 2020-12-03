@@ -58,59 +58,50 @@ const ProfilePage = () => {
     return (
         <div>
             <Grid container spacing={2} className={classes.grid}>
-                <Grid item xs={3}>
-                    <h2>Welcome!</h2>
+                <Grid item xs={4}>
                     <div
                         style={{
-                            background: `url(${photoURL || 'https://i.ibb.co/gFDFRHf/1-W35-QUSv-Gpc-Lux-Po3-SRTH4w.png'})  no-repeat center center`,
+                            background: `url(${photoURL || 'https://i.ibb.co/gFDFRHf/1-W35-QUSv-Gpc-Lux-Po3-SRTh6w.png'})  no-repeat center center`,
                             backgroundSize: "cover",
-                            height: "200px",
-                            width: "200px"
+                            height: "300px",
+                            width: "300px"
                         }}
                     ></div>
-                    <div>
-                        <h2><text marginLeft={30} /></h2>
-                    </div>
                 </Grid>
-                <Grid item xs={9}>
-                    <h2 />
-                    <Paper className={classes.paper1} textSize={"15px"}>
-                        <text>이름:{displayName}</text>
-                        <h2 />
-                        <text>관심분야:#모험#만화#웹툰</text>
-                        <h2 />
-                        <text>방 개설 횟수:0</text>
-                        <h2 />
-                        <text>방 참여 횟수:0</text>
-                        <h2 />
-                        <text>완결 편수:0</text>
-                        <h2 />
-                        <h2 />
+                <Grid item xs={8}>
+                    <br />
+                    <Paper className={classes.paper1} fontSize={"15px"} style={{padding: "30px"}}>
+                        <h6>이름:{displayName}</h6>
+                        <h6>관심분야:#모험#만화#웹툰</h6>
+                        <h6>방 개설 횟수:0</h6>
+                        <h6>방 참여 횟수:0</h6>
+                        <h6>완결 편수:0</h6>
+                        <br />
                         <button onClick={toggleprofile}>프로필 수정하기<EditProfileModal user={user} show={modalprofile} toggleprofile={toggleprofile} /></button>
-                    <h2 />
+                    <br />
                     </Paper>
                 </Grid>
                 <Grid item xs={4}>
-                    <text style={back}>신청중인 방</text>
-                    <h2 />
+                    <span style={back}>신청중인 방</span>
+                    <br /><br />
                     <Paper className={classes.paper1}>
-                        <text>신청 중인 방이 없습니다.</text>
+                        <span>신청 중인 방이 없습니다.</span>
                     </Paper>
                 </Grid>
                 <Grid item xs={4}>
-                    <text style={back}>참가하는 방</text>
-                    <h2 />
-                    <Paper className={classes.paper1} textSize={"15px"}>
+                    <span style={back}>참가하는 방</span>
+                    <br /><br />
+                    <Paper className={classes.paper1} fontSize={"15px"}>
                         { rooms && rooms.map(r => <Enterlist key={r.id} room={r} />)}
-                        { (rooms===undefined || rooms.length==0) && <text>참가 중인 방이 없습니다.</text>}
+                        { (rooms===undefined || rooms.length==0) && <span>참가 중인 방이 없습니다.</span>}
                     </Paper>
                 </Grid>
             
                 <Grid item xs={4}>
-                    <text style={back}>완결낸 작품</text>
-                    <h2 />
+                    <span style={back}>완결낸 작품</span>
+                    <br /><br />
                     <Paper className={classes.paper1}>
-                        <text>완결 낸 작품이 없습니다.</text>
+                        <span>완결 낸 작품이 없습니다.</span>
                     </Paper>
                 </Grid>
             </Grid>
@@ -121,7 +112,7 @@ function Enterlist(props) {
     const classes = useStyles();
     const r = props.room;
     return (
-    <Paper className={classes.paper1} textSize={"13px"} style={{textAlign: "center", marginBottom: "10px"}}>
+    <Paper className={classes.paper1} fontSize={"13px"} style={{textAlign: "center", marginBottom: "10px"}}>
         <Link to={{
             pathname : `/writingroom/${r.id}`,
             state : {

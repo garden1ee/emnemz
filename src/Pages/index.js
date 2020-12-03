@@ -8,3 +8,4 @@ export { default as DiscussionModal} from './DiscussionModal';
 export {default as ChatMessage} from './ChatMessage';
 export {default as NovelRoomInfo} from './NovelRoomInfo';
 export {default as Publish} from './Publish';
+export {default as ReadNovel} from './ReadNovel';

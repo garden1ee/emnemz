@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, Route } from 'react-router-dom';
-import { RoomsList, PublishedList, ProfilePage } from 'Pages/Mainpages';
+import { RoomsList, PublishedNovels, ProfilePage } from 'Pages/Mainpages';
 import { auth } from "../firebase";
 import '../style/Header.css';
 import 'style/Modal.css';
@@ -41,7 +41,7 @@ const Header = () => {
         </div>
       </ul>
       <hr></hr>
-      <Route path="/library" component={PublishedList}/>
+      <Route path="/library" component={PublishedNovels}/>
       <Route path="/mypage" component={ProfilePage}/>
       <Route path="/list" component={RoomsList}/>
       <Route exact path="/" component={ProfilePage}/>

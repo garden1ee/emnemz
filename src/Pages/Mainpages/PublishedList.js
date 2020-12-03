@@ -139,7 +139,7 @@ const PublishedList =() => {
          
             <Grid item xs={4}>
               
-              <Paper textSize={"15px"} className={classes.paper1}>
+              <Paper fontSize={"15px"} className={classes.paper1}>
               { rooms && rooms.map(r => 
               {return r.completed ?
                 <div>
@@ -182,7 +182,7 @@ function Enterlist(props) {
   const classes = useStyles();
   const r = props.room;
   return (
-  <Paper className={classes.paper1} textSize={"13px"} style={{textAlign: "center", marginBottom: "10px"}}>
+  <Paper className={classes.paper1} fontSize={"13px"} style={{textAlign: "center", marginBottom: "10px"}}>
       <Link to={{
           pathname : `/writingroom/${r.id}`,
           state : {
