@@ -32,7 +32,14 @@ const Publish = (props) => {
   
     const openConfirm = () => {
         setNotice(true);
-        rooms[props.id].info.completed = true;
+
+        let updateCompleted = async function(){
+            const roomRef = firestore.doc(`rooms/${props.id}`);
+            await roomRef.set({
+                completed: [true]
+            });
+        }
+    
         
     }
     return (
@@ -73,7 +80,7 @@ const Publish = (props) => {
           
                 <DialogContent>
 
-                <button onClick={openConfirm} class="btn btn-primary">
+                <button onClick={() => openConfirm()} class="btn btn-primary">
                     확인
                 </button>
                 </DialogContent>

@@ -126,7 +126,7 @@ const PublishedList =() => {
               
               <Paper textSize={"15px"} className={classes.paper1}>
               { rooms && rooms.map(r => 
-              {return r.info.completed ?
+              {return r.completed ?
               <Enterlist key={r.id} room={r} /> :
                <></>
               }
