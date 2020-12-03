@@ -6,22 +6,34 @@ import {firestore } from "../firebase";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { DialogContent } from '@material-ui/core';
 import NovelRoomInfo from './NovelRoomInfo';
-import { Link } from 'react-router-dom';
+import { Link, useLocation} from 'react-router-dom';
+import React, {useContext} from 'react';
+import { UserContext } from "../Components/UserProvider";
 
 const Publish = (props) => {
+    const roomsRef = firestore.collection('rooms');
+    const user = useContext(UserContext);
+    const { photoURL, displayName, email, uid } = user;
+    const query = roomsRef.where("users","array-contains", uid );
+    const [rooms] = useCollectionData(query, { idField: 'id' });
+   //find(r => r['id'] === props.id));
+    
     const [participant_num, setParticipantNum] = useState(props.participant_num);
     const [notice, setNotice] = useState(false);
     const dummy = useRef();
     const messagesRef = firestore.collection(`scripts_${props.id}`);
-    const query = messagesRef.orderBy('createdAt').limit(25);
-    const [messages] = useCollectionData(query, { idField: 'id' });
-    const [info, setInfo] = useState(props.info);
+    const Messagequery = messagesRef.orderBy('createdAt').limit(25);
+    const [messages] = useCollectionData(Messagequery, { idField: 'id' });
+    const location = props.location;
+    const [info, setInfo] = useState(location.state.info);
     var value = "";
     var [contents, setContents] = useState(value);
     
   
     const openConfirm = () => {
         setNotice(true);
+        rooms[props.id].info.completed = true;
+        
     }
     return (
 

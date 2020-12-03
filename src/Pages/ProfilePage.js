@@ -105,6 +105,7 @@ const ProfilePage = () => {
                         { (rooms===undefined || rooms.length==0) && <text>참가 중인 방이 없습니다.</text>}
                     </Paper>
                 </Grid>
+            
                 <Grid item xs={4}>
                     <text style={back}>완결낸 작품</text>
                     <h2 />

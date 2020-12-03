@@ -1,31 +1,40 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import TableRow from '@material-ui/core/TableRow'
 import PublishInfoModal from './Modals/PublishInfoModal.js';
 import {makeStyles} from "@material-ui/core/styles";
 import {Grid, Paper} from "@material-ui/core";
+import { UserContext } from "../../Components/UserProvider";
+import { auth, firestore } from "../../firebase";
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { Link } from 'react-router-dom';
 
-const useStyles = makeStyles((theme)=>({
-  grid:{
-    width:'100%',
-    fontSize:'20px',
-    margin:'0px',
-    justifyContent: "center",
+const useStyles = makeStyles((theme) => ({
+  grid: {
+      width: '100%',
+      fontSize: '20px',
+      margin: '0px',
   },
   paper: {
-    border:"0",
-    padding: theme.spacing(2),
-    color: "white",
-    background: "#263343",
-    height:"60px",
+      padding: theme.spacing(2),
+      color: "black",
+      background: "white",
   },
   paper1: {
-    padding: theme.spacing(2),
-    color: "black",
-    background: "white",
-    border:0,
+      padding: theme.spacing(2),
+      color: "black",
+      background: "white",
+      border: 0,
   },
 
 }));
+const back = {
+  color: "black",
+  fontSize: 18,
+}
+const stly = {
+  textAlign: 'center',
+}
+
 const customer1=[
     {
         'number': "1",
@@ -69,9 +78,6 @@ const customer=[
   'birthday':'#이태원클라쓰 #배우 #드라마',
   'score':'4.89/5점',
 }]
-const stly={
-  textAlign: 'center',
-}
 
 const searchbarstyle={
     color: "black",
@@ -83,8 +89,14 @@ const searchbarstyle={
     marginRight: 10,
 }
 const PublishedList =() => {
-
+  
+    const roomsRef = firestore.collection('rooms');
+    const user = useContext(UserContext);
+    const { photoURL, displayName, email, uid } = user;
+    const query = roomsRef.where("users","array-contains", uid );
+    const [rooms] = useCollectionData(query, { idField: 'id' });
     const classes=useStyles();
+
     return(
         <Grid container spacing={2} className={classes.grid}>
           <Grid item xs={6}>
@@ -109,56 +121,51 @@ const PublishedList =() => {
               </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </ui>
           </Grid>
-          <Grid item xs={3}>
-            <Grid item xs={12}>
-              <Grid item xs={12}>
-              </Grid>
-              <Paper className={classes.paper1}>
-                {
-                  customer.map(c=>{
-                    return(
-                        <PublishInfoModal c={c}/>
-                    )
-                  })
-                }
+         
+            <Grid item xs={4}>
+              
+              <Paper textSize={"15px"} className={classes.paper1}>
+                        { rooms && 
+                        rooms.map(r => { <Enterlist key={r.id} room={r} /> 
+                        })}
+                       
               </Paper>
+              
             </Grid>
-          </Grid>
-          <Grid item xs={3}>
-            <Grid item xs={12}>
-              <Grid item xs={12}>
-              </Grid>
-
-              <Paper className={classes.paper1}>
-                {
-                    customer1.map(c=>{
-                      return(
-                          <PublishInfoModal c={c} />
-                      )
-                    })
-                  }
-                </Paper>
-            </Grid>
-          </Grid>
-          <Grid item xs={3}>
-            <Grid item xs={12}>
-              <Grid item xs={12}>
-              </Grid>
-              <Paper className={classes.paper1}>
-                {
-                  customer.map(c=>{
-                    return(
-                        <PublishInfoModal c={c} />
-                    )
-                  })
-                }
-              </Paper>
-            </Grid>
-          </Grid>
+          
         </Grid>
 
     );
 };
+
+function Enterlist(props) {
+  const classes = useStyles();
+  const r = props.room;
+  return (
+  <Paper className={classes.paper1} textSize={"13px"} style={{textAlign: "center", marginBottom: "10px"}}>
+      <Link to={{
+          pathname : `/writingroom/${r.id}`,
+          state : {
+              info: r.info,
+              characters: r.characters
+          }
+      }}><img src={r.info.profilePic} style={{width:200, height:200}}/></Link>
+      <br />
+      <Link to={{
+          pathname : `/writingroom/${r.id}`,
+          state : {
+              info: r.info,
+              characters: r.characters
+          }
+  }}>{r.info.title}</Link>
+  <br />
+  {r.info.hashtag}
+  <br />
+  </Paper>
+  ) //r.id = room id 입니다
+
+}
+
 class Customer extends React.Component{
     constructor(props) {
         super(props);
@@ -204,3 +211,4 @@ class CustomerInfo extends React.Component{
   }
 }
 export default PublishedList;
+//  { (rooms===undefined || rooms.length==0) && <text> 완결 된 작품이 아직 없습니다.</text>}

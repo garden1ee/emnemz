@@ -175,7 +175,8 @@ const WritingRoomPage = (props) => {
                         <button type="button" class="btn btn-warning" onClick={closePublish}>
                             아니오
                         </button> 
-                        </>:  <Publish participant_num={participant_num} agree_num={agree_num} isCompleted={isCompleted} id={props.roomid} info={info}/>
+                        </>:  <Publish participant_num={participant_num} agree_num={agree_num} 
+                                isCompleted={isCompleted} id={props.roomid} location={location}/>
                          }
                         <button type="button" class="btn btn-default" class="x_button"
                                 onClick={closePublish} class="right_align1" >
