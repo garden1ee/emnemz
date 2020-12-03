@@ -125,9 +125,14 @@ const PublishedList =() => {
             <Grid item xs={4}>
               
               <Paper textSize={"15px"} className={classes.paper1}>
-                        { rooms && 
-                        rooms.map(r => { <Enterlist key={r.id} room={r} /> 
-                        })}
+              { rooms && rooms.map(r => 
+              {return r.info.completed ?
+              <Enterlist key={r.id} room={r} /> :
+               <></>
+              }
+              )}
+                        { (rooms===undefined || rooms.length==0) && <text>참가 중인 방이 없습니다.</text>}
+                  
                        
               </Paper>
               
