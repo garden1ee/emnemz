@@ -30,7 +30,7 @@ const NovelRoomInfo = ( { info:{ title, profilePic, genre, hashtag, intro, autho
                  
                          <br></br>
                         <p className="NV-li">
-                            <TableRow> 작품명:   {title} </TableRow>
+                            <TableRow> 작품명:   {title}  </TableRow>
                             
                             <TableRow>장르:  {genre}</TableRow>
                             <br></br>

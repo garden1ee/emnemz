@@ -24,9 +24,9 @@ const WritingRoomPage = (props) => {
     const [agree_num, setAgreeNum] = useState(0);
     const [disagree_num, setDisAgreeNum] = useState(0);
     const [voted, setVoted] = useState([]);
-    const [isCompleted, setCompleted] = useState(false);
     const [participant_num, setParticipantNum] = useState(characters.length);
-    
+    const [attemptPublish, setAttemptPublish] = useState(false);
+    const [isCompleted, setCompleted] = useState(false);
     var [isDiscussion, setDiscussion] = useState(false);
     var [isVote, setVote] = useState(false);
     var [isPublish, setPublish] = useState(false);
@@ -79,6 +79,9 @@ const WritingRoomPage = (props) => {
 
     }
 
+    const attemtPublished = () =>{
+        setAttemptPublish(true);
+    }
     return (
         <div className="writingroompage">
             <div className="row">
@@ -159,20 +162,23 @@ const WritingRoomPage = (props) => {
                             <p className="WR-small">출판하기</p>
                             </a>
                         </li>
-                        <Dialog open={isPublish}>
-                        <DialogContent style={{width: 500, height:700}}>
-                     
-                        </DialogContent>
-                        
-                          <Publish participant_num={participant_num} agree_num={agree_num}/>
-                          <button type="button" class="btn btn-warning" onClick={openPublish}>
+                        <Dialog open={isPublish} style={{width: 500, height: 700, position: "relative", left: "50%", top: "50%"}}>
+                       
+                        <p>
+                            작품을 출판하시겠습니까? 출판 전, 작품에 들어갈 정보를 점검해주세요. 
+                        </p>
+                          {!attemptPublish ? <>
+                          <button type="button" class="btn btn-warning" onClick={attemtPublished}>
                             네
                           </button>
+
                         <button type="button" class="btn btn-warning" onClick={closePublish}>
                             아니오
-                        </button>
+                        </button> 
+                        </>:  <Publish participant_num={participant_num} agree_num={agree_num} isCompleted={isCompleted} id={props.roomid} info={info}/>
+                         }
                         <button type="button" class="btn btn-default" class="x_button"
-                                onClick={closePublish} class="right_align1">
+                                onClick={closePublish} class="right_align1" >
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
                                 </svg>

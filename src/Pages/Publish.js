@@ -1,54 +1,111 @@
 import TableRow from '@material-ui/core/TableRow';
 import {useRef, useState} from 'react';
-
+import TableCell from '@material-ui/core/TableCell';
 import Dialog from '@material-ui/core/Dialog';
 import {firestore } from "../firebase";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { DialogContent } from '@material-ui/core';
+import NovelRoomInfo from './NovelRoomInfo';
+import { Link } from 'react-router-dom';
 
 const Publish = (props) => {
-    const [isCompleted, setCompleted] = useState(false);
     const [participant_num, setParticipantNum] = useState(props.participant_num);
-
+    const [notice, setNotice] = useState(false);
     const dummy = useRef();
     const messagesRef = firestore.collection(`scripts_${props.id}`);
     const query = messagesRef.orderBy('createdAt').limit(25);
     const [messages] = useCollectionData(query, { idField: 'id' });
+    const [info, setInfo] = useState(props.info);
     var value = "";
     var [contents, setContents] = useState(value);
-
-    const closeCompleted = () => {
-        setCompleted(false);
+    
+  
+    const openConfirm = () => {
+        setNotice(true);
     }
-
     return (
 
         <div>
-            <TableRow>
-               작품을 출판하시겠습니까? 출판 전, 작품에 들어갈 정보를 점검해주세요. 
-          </TableRow>
+         
           <TableRow>
-            <p>
+            <p style={{position: "relative", left: "50%", top: "50%"}}>
                 현재까지 동의한 인원: {props.agree_num} / {props.participant_num}
             </p>
           </TableRow>
-          <Dialog open={isCompleted}>
-          {messages && messages.map((message) =>
-             <div>{message.character + ":" + " " + message.text + " "}
-              <br></br>
-               </div>
-              
-               )
-               }
-                 <button type="button" class="btn btn-default" class="x_button"
-                                onClick={closeCompleted} class="right_align1">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
-                        </svg>
-               </button>
+          <Dialog open={props.isCompleted} >
+          <DialogContent style={{width: 1000, height: 700}}>
+
+           
+
+     
+           
+                    <TableRow>
+                        <img src= {info.profilePic} width="200" height="200" alt="profile"/>
+                
+                        <br></br>
+                        <p className="NV-li">
+                            <TableRow> 작품명:   {info.title}  </TableRow>
+                            
+                            <TableRow>장르:  {info.genre}</TableRow>
+                            <br></br>
+                            <TableRow> 해시 태그:  {info.hashtag}</TableRow>
+                            <br></br>
+                            <TableRow> 작품 소개: {info.intro}</TableRow>
+                        </p>
+
+                    </TableRow>
+                    <TableRow>
+                        <TableCell style={{width:500}}> 작가의 말: {info.authorwords}</TableCell>
+
+                    </TableRow>
+          
+                <DialogContent>
+
+                <button onClick={openConfirm} class="btn btn-primary">
+                    확인
+                </button>
+                </DialogContent>
+
+
+          </DialogContent>
+         
+            <Dialog open={notice}>
+                <DialogContent>
+                    <TableRow>
+                    소설방 전원이 동의하여 작품이 완결되었습니다. 
+                    </TableRow>
+                    <TableRow>
+                    완결 작품은 "완결 작품들" 탭과 마이페이지에서 확인하실수 있습니다. 
+                    </TableRow>
+                    <TableRow>
+                    <button type="button" className="btn btn-primary"
+                                 style={{margin: 50}}>
+                       
+                         작품 보러가기 
+                    </button>
+                
+                    <button type="button" className="btn btn-primary">
+                      <Link to="/" style={{fontsize: "1em"}}>
+                    메인 페이지로 돌아가기
+                      </Link>
+                    </button>
+                    </TableRow>
+                </DialogContent>
+            </Dialog>
         </Dialog>  
+      
         </div>
 
     );
 }
 
 export default Publish;
+
+/*   {messages && messages.map((message) =>
+             <div>{message.character + ":" + " " + message.text + " "}
+              <br></br>
+               </div>
+              
+               )
+               }
+*/
