@@ -1,6 +1,8 @@
  import React, { Component } from 'react';
 import { Modal, Button, Row, Col, Form } from 'react-bootstrap';
 import '../../../style/Modal.css';
+import { auth, firestore } from "../../../firebase";
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 
 export class EditProfileModal extends Component {
