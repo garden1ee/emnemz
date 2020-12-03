@@ -7,13 +7,12 @@ import { DropdownButton, Dropdown } from 'react-bootstrap';
 import '../style/WritingroomPage.css';
 import NovelRoomInfo from './NovelRoomInfo';
 import ParticipantsInfo from './ParticipantsInfo';
-import Vote from './Vote';
 import Publish from './Publish';
 import { Link, useLocation } from 'react-router-dom';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DiscussionModal from './DiscussionModal';
-
+import TableRow from '@material-ui/core/TableRow';
 
 
 
@@ -22,6 +21,12 @@ const WritingRoomPage = (props) => {
     const [info, setInfo] = useState(location.state.info);
     const [characters, setCharacters] = useState(location.state.characters);
     const userChar = characters.find(c => c['user'] === props.user.uid);
+    const [agree_num, setAgreeNum] = useState(0);
+    const [disagree_num, setDisAgreeNum] = useState(0);
+    const [voted, setVoted] = useState([]);
+    const [isCompleted, setCompleted] = useState(false);
+    const [participant_num, setParticipantNum] = useState(characters.length);
+    
     var [isDiscussion, setDiscussion] = useState(false);
     var [isVote, setVote] = useState(false);
     var [isPublish, setPublish] = useState(false);
@@ -45,10 +50,33 @@ const WritingRoomPage = (props) => {
 
     const openPublish = () => {
         setPublish(true);
+
     }
 
     const closePublish = () => {
         setPublish(false);
+    }
+
+    const voting = (isPositive) =>{
+    
+       /* if(voted.includes(props.user.uid)){
+            return;
+        } */
+
+        if(isPositive){
+            setAgreeNum(agree_num + 1);
+               
+            if(agree_num === participant_num - 1){
+
+                setCompleted(true);
+            }
+        }
+        else{
+            setDisAgreeNum(disagree_num + 1);
+        }
+       
+    //    setVoted(voted.concat(props.user.uid));
+
     }
 
     return (
@@ -108,7 +136,21 @@ const WritingRoomPage = (props) => {
                         </button>
                         </DialogContent>
                         
-                          <Vote participant_num={characters.length} id={props.roomid} uid={props.user.uid}/>
+                        <div>
+                            <TableRow>
+                                출판 투표에 동의하시겠습니까?
+                            </TableRow>
+                            <TableRow>
+                                <button type="button" class="btn btn-warning" onClick={() => voting(true)}>
+                                    네
+                                </button>
+                                <button type="button" class="btn btn-warning" onClick={() => voting(false)}>
+                                    아니오
+                                </button>
+                            </TableRow>
+                            
+                            
+                        </div>
                         
                         </Dialog>  
                         <li>
@@ -122,10 +164,10 @@ const WritingRoomPage = (props) => {
                      
                         </DialogContent>
                         
-                          <Publish/>
-                          <button type="button" class="btn btn-warning" onClick={openVote}>
+                          <Publish participant_num={participant_num} agree_num={agree_num}/>
+                          <button type="button" class="btn btn-warning" onClick={openPublish}>
                             네
-                        </button>
+                          </button>
                         <button type="button" class="btn btn-warning" onClick={closePublish}>
                             아니오
                         </button>
