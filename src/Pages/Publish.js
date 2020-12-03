@@ -29,17 +29,17 @@ const Publish = (props) => {
     var value = "";
     var [contents, setContents] = useState(value);
     
-  
+    let updateCompleted = async function(){
+        const roomRef = firestore.doc(`rooms/${props.id}`);
+        await roomRef.set({
+            completed: true
+        }, {merge: true});
+    }
     const openConfirm = () => {
         setNotice(true);
 
-        let updateCompleted = async function(){
-            const roomRef = firestore.doc(`rooms/${props.id}`);
-            await roomRef.set({
-                completed: [true]
-            });
-        }
-    
+      
+         updateCompleted();
         
     }
     return (
