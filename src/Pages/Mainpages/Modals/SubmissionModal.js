@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Button, Row, Col, Form } from 'react-bootstrap';
 import { Link, Route } from 'react-router-dom';
-import MyPage from '../MyPage.js';
 
 
 export class SubmissionModal extends Component {
@@ -29,7 +28,6 @@ export class SubmissionModal extends Component {
                     <Button className="primary-btn"><Link to="/mypage" style={{
                         fontSize: 15, color: 'white'}} > 마이페이지</Link></Button>
                 </Modal.Footer>
-                <Route path="/mypage" component={MyPage} />
             </Modal>
         );
     }

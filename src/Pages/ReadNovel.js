@@ -23,7 +23,7 @@ const ReadNovel = (props) => {
             소설 보러 가기
         </button>
         <Dialog open={isOpen} onClose={Close} scroll={scroll} fullScreen>
-            <DialogTitle>title</DialogTitle>
+            <DialogTitle><span style={{fontWeight: '700', textAlign: 'center'}}>{props.title}</span></DialogTitle>
             <DialogContent dividers={scroll==="paper"}>
                 <DialogContentText>
                     {messages && messages.map(msg => <Script key={msg.id} message={msg}/>)}

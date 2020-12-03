@@ -1,10 +1,9 @@
 
 import React, { useState } from 'react';
-import { firestore, generateRoomDocument } from "../../firebase";
+import { firestore } from "../../firebase";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { Grid, Paper } from "@material-ui/core";
-import ChatInfoModal from './Modals/ChatInfoModal';
-
+import { Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText } from "@material-ui/core";
 
 const Roomslist = () => {
     const roomsRef = firestore.collection('rooms');
@@ -65,7 +64,36 @@ function RoomObj(props) {
             {props.info.hashtag}
             <br />
         </Paper>
-        <ChatInfoModal show={modalOpen} onHide={setModalClose} info={props.info} characters={props.characters} />
+        <Dialog open={modalOpen} onClose={setModalClose} fullWidth='true' maxWidth="md" style={{padding: '30px'}}>
+            <DialogTitle style={{padding: '20px'}}><span style={{fontWeight: '700'}}>{props.info.title}</span></DialogTitle>
+            <DialogContent dividers style={{padding: '30px'}}>
+                <Grid container spacing={2}>
+                    <Grid item xs={4} style={{textAlign: 'center'}}>
+                        <img src={props.info.profilePic} width= "200" height = "200" />
+                    </Grid>
+                    <Grid item xs={8}>
+                        <p>{props.info.intro}</p>
+                        <p>{props.info.hashtag}</p>
+                        <p>장르: {props.info.genre}</p>
+                        <p>모집인원: {props.characters.length}</p>
+                    </Grid>
+                    <Grid item xs={12} style={{
+                        paddingTop: "10px", paddingLeft: '15px'}}>
+                    등장 캐릭터
+                    </Grid>
+                    <Grid item xs={12}>
+                        {props.characters.map(c =>
+                            <span><img src={c.pic} width="50" height="50" className="profile-pic" /> {c.name}</span>)}
+                    </Grid>
+                </Grid>
+            </DialogContent>
+            <DialogActions style={{padding: '20px'}}>
+                <button>등록하기</button>
+                <button onClick={setModalClose} className="btn btn-primary">
+                    닫기
+                </button>
+            </DialogActions>
+        </Dialog>
     </Grid>
   )  
 }

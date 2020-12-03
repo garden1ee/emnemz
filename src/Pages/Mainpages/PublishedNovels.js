@@ -66,36 +66,36 @@ function RoomObj(props) {
             {props.info.hashtag}
             <br />
         </Paper>
-        <Dialog open={modalOpen} onClose={setModalClose}>
-        <DialogTitle>{props.info.title}</DialogTitle>
-        <DialogContent>
-            <div className="row">
-                <div className="col-4">
-                    <img src={props.info.profilePic} width= "200" height = "200" />
-                </div>
-                <div className="col-8">
-                    <p>{props.info.intro}</p>
-                    <p>{props.info.hashtag}</p>
-                    <p>장르: {props.info.genre}</p>
-                    <p>작가의 말: {props.info.authorwords}</p>
-                </div>
-            </div>
-            <div className="row" style={{
-                    paddingTop: "10px", paddingLeft: '15px'}}>
-                등장 캐릭터
-            </div>
-            <div className="row">
-                {props.characters.map(c =>
-                    <div><img src={c.pic} width="50" height="50" className="profile-pic" /> {c.name}</div>)}
-            </div>
-        </DialogContent>
-        <DialogActions>
-        <ReadNovel id={props.id} />
-            <button onClick={setModalClose} className="btn btn-primary">
-                닫기
-            </button>
-        </DialogActions>
-    </Dialog>
+        <Dialog open={modalOpen} onClose={setModalClose} fullWidth='true' maxWidth="md" style={{padding: '30px'}}>
+            <DialogTitle style={{padding: '20px'}}><span style={{fontWeight: '700'}}>{props.info.title}</span></DialogTitle>
+            <DialogContent dividers style={{padding: '30px'}}>
+                <Grid container spacing={2}>
+                    <Grid item xs={4} style={{textAlign: 'center'}}>
+                        <img src={props.info.profilePic} width= "200" height = "200" />
+                    </Grid>
+                    <Grid item xs={8}>
+                        <p>{props.info.intro}</p>
+                        <p>{props.info.hashtag}</p>
+                        <p>장르: {props.info.genre}</p>
+                        <p>작가의 말: {props.info.authorwords}</p>
+                    </Grid>
+                    <Grid item xs={12} style={{
+                        paddingTop: "10px", paddingLeft: '15px'}}>
+                    등장 캐릭터
+                    </Grid>
+                    <Grid item xs={12}>
+                        {props.characters.map(c =>
+                            <span><img src={c.pic} width="50" height="50" className="profile-pic" /> {c.name}</span>)}
+                    </Grid>
+                </Grid>
+            </DialogContent>
+            <DialogActions style={{padding: '20px'}}>
+            <ReadNovel id={props.id} title={props.info.title}/>
+                <button onClick={setModalClose} className="btn btn-primary">
+                    닫기
+                </button>
+            </DialogActions>
+        </Dialog>
     </Grid>
 
     
