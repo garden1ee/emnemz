@@ -1,4 +1,6 @@
  import React, { Component } from 'react';
+ import { Link } from 'react-router-dom';
+ import { auth } from "../../../firebase";
 import { Modal, Button, Row, Col, Form } from 'react-bootstrap';
 import ChatSignupModal from './ChatSignupModal.js';
 import '../../../style/Modal.css';
@@ -11,8 +13,9 @@ export class ChatInfoModal extends Component {
             modalOpen: false
         };
     }
-
     render() {
+        const { uid, photoURL } = auth.currentUser;
+        const check = this.props.characters.find(c => c['user'] === uid);
         let setSignupClose = () => this.setState({ modalOpen: false });
         return (
             <Modal
@@ -50,8 +53,15 @@ export class ChatInfoModal extends Component {
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={() => this.setState({ modalOpen: true })} className="primary-btn">등록하기</Button>
-                    <ChatSignupModal show={this.state.modalOpen} onSubmit={setSignupClose} characters={this.props.characters} />
+                    {check ? <Link to={{
+                            pathname : `/writingroom/${this.props.id}`,
+                            state : {
+                                    info: this.props.info,
+                                    characters: this.props.characters
+                                    }
+                        }}><Button className="primary-btn">작성방 입장</Button></Link> :
+                    <Button onClick={() => this.setState({ modalOpen: true })} className="primary-btn">등록하기</Button> }
+                    <ChatSignupModal show={this.state.modalOpen} onSubmit={setSignupClose} characters={this.props.characters} uid={uid} roomid={this.props.id}/>
                     <Button onClick={this.props.onHide} className="secondary-btn">닫기</Button>
                 </Modal.Footer>
             </Modal>

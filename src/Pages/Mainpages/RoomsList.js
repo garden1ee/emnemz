@@ -20,7 +20,7 @@ const Roomslist = () => {
         marginRight: 10,
     }
     return (
-        <Grid container spacing={3} style={{ width: '100%', fontSize: '20px', margin: '0px'}}>
+        <Grid container spacing={4} style={{ width: '100%', fontSize: '20px', margin: '20px'}}>
         <Grid item xs={6}>
           <input style={searchbarstyle}/>
           <button onClick={()=>{alert("조금더 시간을 주시면 구현됩니다")}}> 검색</button>
@@ -43,7 +43,7 @@ const Roomslist = () => {
             </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </ui>
         </Grid>
-            { rooms && rooms.map(r=><RoomObj key={r.id} info={r.info} characters={r.characters}/>) }
+            { rooms && rooms.map(r=><RoomObj key={r.id} id={r.id} info={r.info} characters={r.characters}/>) }
             { (rooms===undefined || rooms.length==0) && <text>해당하는 방이 없습니다.</text> }
         </Grid>
     )

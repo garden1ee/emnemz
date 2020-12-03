@@ -54,6 +54,8 @@ const ProfilePage = () => {
     const query = roomsRef.where("users","array-contains", uid );
   
     const [rooms] = useCollectionData(query, { idField: 'id' });
+    const query2 = roomsRef.where("applicants","array-contains",uid);
+    const [applying] = useCollectionData(query2, {idField: 'id'});
 
     return (
         <div>
@@ -85,7 +87,8 @@ const ProfilePage = () => {
                     <span style={back}>신청중인 방</span>
                     <br /><br />
                     <Paper className={classes.paper1}>
-                        <span>신청 중인 방이 없습니다.</span>
+                    { applying && applying.map(r => <Applylist key={r.id} room={r} />)}
+                        { (applying===undefined || applying.length==0) && <text>신청 중인 방이 없습니다.</text>}
                     </Paper>
                 </Grid>
                 <Grid item xs={4}>
@@ -108,6 +111,20 @@ const ProfilePage = () => {
         </div>
     )
 };
+function Applylist(props) {
+    const classes = useStyles();
+    const r = props.room;
+    return (
+        <Paper className={classes.paper1} textSize={"13px"} style={{textAlign: "center", marginBottom: "10px"}}>
+        <img src={r.info.profilePic} style={{width:200, height:200}}/>
+        <br />
+        {r.info.title}
+        <br />
+        {r.info.hashtag}
+        <br />
+        </Paper>        
+    )    
+}
 function Enterlist(props) {
     const classes = useStyles();
     const r = props.room;
