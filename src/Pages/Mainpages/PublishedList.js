@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import TableRow from '@material-ui/core/TableRow'
 import PublishInfoModal from './Modals/PublishInfoModal.js';
 import {makeStyles} from "@material-ui/core/styles";
@@ -7,6 +7,9 @@ import { UserContext } from "../../Components/UserProvider";
 import { auth, firestore } from "../../firebase";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { Link } from 'react-router-dom';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+
 
 const useStyles = makeStyles((theme) => ({
   grid: {
@@ -96,7 +99,19 @@ const PublishedList =() => {
     const query = roomsRef.where("users","array-contains", uid );
     const [rooms] = useCollectionData(query, { idField: 'id' });
     const classes=useStyles();
+    const [isShown, setShown] = useState(false);
+   // const messages=useCollectionData(firestore.collection(`scripts_1`)).orderBy('createdAt').limit(25);
 
+   /*let updateOriginal = async function(room){
+    const roomRef = firestore.doc(`rooms/${room.id}`);
+    await roomRef.set({
+        completed: false
+    },{merge: true});
+    }*/
+
+    const novelShown = () => {
+        setShown(true);
+    }
     return(
         <Grid container spacing={2} className={classes.grid}>
           <Grid item xs={6}>
@@ -127,11 +142,31 @@ const PublishedList =() => {
               <Paper textSize={"15px"} className={classes.paper1}>
               { rooms && rooms.map(r => 
               {return r.completed ?
-              <Enterlist key={r.id} room={r} /> :
+                <div>
+              <Enterlist key={r.id} room={r} /> 
+              <button type="btn btn-primary" onClick={() => novelShown()}>
+                작품 보러 가기 
+              </button>
+              <Dialog open={isShown}>
+                <DialogContent>
+                  
+                
+                 { r.messages && r.messages.map((message) =>
+                  <div>{message.character + ":" + " " + message.text + " "}
+                   <br></br>
+                    </div>
+                   
+                    )
+                  }
+                </DialogContent>
+              </Dialog>
+              </div>
+
+               :
                <></>
               }
               )}
-                        { (rooms===undefined || rooms.length==0) && <text>참가 중인 방이 없습니다.</text>}
+                        { (rooms===undefined || rooms.length==0) && <text>완결 작품이  없습니다.</text>}
                   
                        
               </Paper>
