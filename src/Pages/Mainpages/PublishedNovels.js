@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { firestore } from "../../firebase";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { Grid, Paper } from "@material-ui/core";
-import { Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText } from "@material-ui/core";
+import { Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText, Button } from "@material-ui/core";
 import ReadNovel from '../ReadNovel';
 
 const PublishedNovels = () => {
@@ -44,20 +44,20 @@ const PublishedNovels = () => {
             </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </ui>
         </Grid>
-            { rooms && rooms.map(r=><RoomObj key={r.id} id={r.id} info={r.info} characters={r.characters}/>) }
+            { rooms && rooms.map(r=><NovelObj key={r.id} id={r.id} info={r.info} characters={r.characters}/>) }
             { (rooms===undefined || rooms.length==0) && <text>해당하는 방이 없습니다.</text> }
         </Grid>
     )
 }
 export default PublishedNovels;
 
-function RoomObj(props) {
+export function NovelObj(props) {
     const [modalOpen,setModalOpen] = useState(false);
     let setModalClose = () => setModalOpen(false);
   return (
     
     <Grid item xs={3}>
-        <Paper fontSize={"13px"} style={{textAlign: "center", marginBottom: "10px", paddingBottom:"10px"}}
+        <Paper style={{textAlign: "center", marginBottom: "10px", paddingBottom:"10px"}}
                 onClick={() => setModalOpen(true)}>
             <img src={props.info.profilePic} style={{width:200, height:200}}/>
             <br />
@@ -67,13 +67,14 @@ function RoomObj(props) {
             <br />
         </Paper>
         <Dialog open={modalOpen} onClose={setModalClose} fullWidth='true' maxWidth="md" style={{padding: '30px'}}>
-            <DialogTitle style={{padding: '20px'}}><span style={{fontWeight: '700'}}>{props.info.title}</span></DialogTitle>
+            <DialogTitle style={{padding: '20px'}}><span style={{fontWeight: '700'}}>작품 정보</span></DialogTitle>
             <DialogContent dividers style={{padding: '30px'}}>
                 <Grid container spacing={2}>
                     <Grid item xs={4} style={{textAlign: 'center'}}>
                         <img src={props.info.profilePic} width= "200" height = "200" />
                     </Grid>
                     <Grid item xs={8}>
+                        <p style={{fontWeight: '700'}}>{props.info.title}</p>
                         <p>{props.info.intro}</p>
                         <p>{props.info.hashtag}</p>
                         <p>장르: {props.info.genre}</p>
@@ -91,9 +92,9 @@ function RoomObj(props) {
             </DialogContent>
             <DialogActions style={{padding: '20px'}}>
             <ReadNovel id={props.id} title={props.info.title}/>
-                <button onClick={setModalClose} className="btn btn-primary">
+                <Button variant="outlined" onClick={setModalClose}>
                     닫기
-                </button>
+                </Button>
             </DialogActions>
         </Dialog>
     </Grid>

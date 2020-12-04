@@ -1,5 +1,5 @@
 import react, {useState} from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText } from "@material-ui/core";
+import { Button, Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText } from "@material-ui/core";
 import { firestore } from "../firebase";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import '../style/ChatMessage.css'
@@ -19,9 +19,9 @@ const ReadNovel = (props) => {
 
     return (
     <div>
-        <button className="ReadnovelBtn" onClick={Open}>
+        <Button variant="outlined" color="primary" className="ReadnovelBtn" onClick={Open}>
             소설 보러 가기
-        </button>
+        </Button>
         <Dialog open={isOpen} onClose={Close} scroll={scroll} fullScreen>
             <DialogTitle><span style={{fontWeight: '700', textAlign: 'center'}}>{props.title}</span></DialogTitle>
             <DialogContent dividers={scroll==="paper"}>
@@ -45,23 +45,21 @@ function Script(props) {
     return (
     <div>
       <div>
-          <div>{console.log(text)}</div>
         {isScript ?
       <li className="chat-message">
       <div className="chat-profilebox"><img src={photoURL||'https://i.ibb.co/ChncsT7/1-W35-QUSv-Gpc-Lux-Po3-SRTH4w.png'} alt="character"  style={{width: 50, height: 50, borderRadius: 50/ 2}} />
       <p>{character}</p></div>
         <div className="chat-actionbox"> {text} 
         </div>                                  
-          <hr /></li>
+          </li>    
         :
       <li className="chat-message">
         <div>
             <div className="chat-actionbox">{character}, {text}
             </div>
         </div>
-      <hr />
       </li>
-      }
+      }  
     </div>
   
   

@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { firestore } from "../../firebase";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { Grid, Paper } from "@material-ui/core";
-import { Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText } from "@material-ui/core";
+import { Button, Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText } from "@material-ui/core";
+import Roomsignup from '../Roomsignup';
 
 const Roomslist = () => {
     const roomsRef = firestore.collection('rooms');
@@ -50,12 +51,12 @@ const Roomslist = () => {
 }
 export default Roomslist;
 
-function RoomObj(props) {
+export function RoomObj(props) {
     const [modalOpen,setModalOpen] = useState(false);
     let setModalClose = () => setModalOpen(false);
   return (
     <Grid item xs={3}>
-        <Paper fontSize={"13px"} style={{textAlign: "center", marginBottom: "10px", paddingBottom:"10px"}}
+        <Paper style={{textAlign: "center", marginBottom: "10px", paddingBottom:"10px"}}
                 onClick={() => setModalOpen(true)}>
             <img src={props.info.profilePic} style={{width:200, height:200}}/>
             <br />
@@ -65,13 +66,14 @@ function RoomObj(props) {
             <br />
         </Paper>
         <Dialog open={modalOpen} onClose={setModalClose} fullWidth='true' maxWidth="md" style={{padding: '30px'}}>
-            <DialogTitle style={{padding: '20px'}}><span style={{fontWeight: '700'}}>{props.info.title}</span></DialogTitle>
+            <DialogTitle style={{padding: '20px'}}><span style={{fontWeight: '700'}}>소설방 정보</span></DialogTitle>
             <DialogContent dividers style={{padding: '30px'}}>
                 <Grid container spacing={2}>
                     <Grid item xs={4} style={{textAlign: 'center'}}>
                         <img src={props.info.profilePic} width= "200" height = "200" />
                     </Grid>
                     <Grid item xs={8}>
+                        <p style={{fontWeight: '700'}}>{props.info.title}</p>
                         <p>{props.info.intro}</p>
                         <p>{props.info.hashtag}</p>
                         <p>장르: {props.info.genre}</p>
@@ -88,10 +90,11 @@ function RoomObj(props) {
                 </Grid>
             </DialogContent>
             <DialogActions style={{padding: '20px'}}>
-                <button>등록하기</button>
-                <button onClick={setModalClose} className="btn btn-primary">
+                {props.applied? <Button variant="outlined" color="primary" disabled>신청 중</Button>
+                : <Roomsignup />}
+                <Button variant="outlined" onClick={setModalClose}>
                     닫기
-                </button>
+                </Button>
             </DialogActions>
         </Dialog>
     </Grid>
