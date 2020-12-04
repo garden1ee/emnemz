@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Header, Login, EnterWritingRoom, Vote } from 'Pages';
+import { Header, Login, EnterWritingRoom } from 'Pages';
 
 class App extends Component {
   render() {

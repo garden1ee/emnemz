@@ -4,12 +4,13 @@ import { firestore } from "../../firebase";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { Grid, Paper } from "@material-ui/core";
 import { Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText } from "@material-ui/core";
+import ReadNovel from '../ReadNovel';
 
-const Roomslist = () => {
+const PublishedNovels = () => {
     const roomsRef = firestore.collection('rooms');
-    const query = roomsRef.where("completed","==",false);
+    const query = roomsRef.where("completed","==",true);
     //.where("hashtag","array-contains", "#바보" );
-    const [rooms] = useCollectionData(query, { idField: 'id' });
+    const [rooms] = useCollectionData(query);
     const searchbarstyle={
         color: "black",
         background: "#C4C4C4",
@@ -20,7 +21,7 @@ const Roomslist = () => {
         marginRight: 10,
     }
     return (
-        <Grid container spacing={4} style={{ width: '100%', fontSize: '20px', margin: '20px'}}>
+        <Grid container spacing={3} style={{ width: '100%', fontSize: '20px', margin: '0px'}}>
         <Grid item xs={6}>
           <input style={searchbarstyle}/>
           <button onClick={()=>{alert("조금더 시간을 주시면 구현됩니다")}}> 검색</button>
@@ -48,12 +49,13 @@ const Roomslist = () => {
         </Grid>
     )
 }
-export default Roomslist;
+export default PublishedNovels;
 
 function RoomObj(props) {
     const [modalOpen,setModalOpen] = useState(false);
     let setModalClose = () => setModalOpen(false);
   return (
+    
     <Grid item xs={3}>
         <Paper fontSize={"13px"} style={{textAlign: "center", marginBottom: "10px", paddingBottom:"10px"}}
                 onClick={() => setModalOpen(true)}>
@@ -75,7 +77,7 @@ function RoomObj(props) {
                         <p>{props.info.intro}</p>
                         <p>{props.info.hashtag}</p>
                         <p>장르: {props.info.genre}</p>
-                        <p>모집인원: {props.characters.length}</p>
+                        <p>작가의 말: {props.info.authorwords}</p>
                     </Grid>
                     <Grid item xs={12} style={{
                         paddingTop: "10px", paddingLeft: '15px'}}>
@@ -88,12 +90,14 @@ function RoomObj(props) {
                 </Grid>
             </DialogContent>
             <DialogActions style={{padding: '20px'}}>
-                <button>등록하기</button>
+            <ReadNovel id={props.id} title={props.info.title}/>
                 <button onClick={setModalClose} className="btn btn-primary">
                     닫기
                 </button>
             </DialogActions>
         </Dialog>
     </Grid>
+
+    
   )  
 }
