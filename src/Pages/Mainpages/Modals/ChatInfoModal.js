@@ -4,7 +4,8 @@
 import { Modal, Button, Row, Col, Form } from 'react-bootstrap';
 import ChatSignupModal from './ChatSignupModal.js';
 import '../../../style/Modal.css';
-
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
 
 export class ChatInfoModal extends Component {
     constructor(props) {
@@ -18,7 +19,7 @@ export class ChatInfoModal extends Component {
         const check = this.props.characters.find(c => c['user'] === uid);
         let setSignupClose = () => this.setState({ modalOpen: false });
         return (
-            <Modal
+            <Dialog
                 {...this.props}
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
