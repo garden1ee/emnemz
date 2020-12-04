@@ -91,7 +91,7 @@ export function RoomObj(props) {
             </DialogContent>
             <DialogActions style={{padding: '20px'}}>
                 {props.applied? <Button variant="outlined" color="primary" disabled>신청 중</Button>
-                : <Roomsignup />}
+                : <Roomsignup roomid={props.id} characters={props.characters}/>}
                 <Button variant="outlined" onClick={setModalClose}>
                     닫기
                 </Button>
