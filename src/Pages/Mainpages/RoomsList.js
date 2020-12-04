@@ -4,6 +4,8 @@ import { firestore } from "../../firebase";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { Grid, Paper } from "@material-ui/core";
 import { Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText } from "@material-ui/core";
+import { auth } from "../../firebase";
+import ChatSignupModal from './Modals/ChatSignupModal.js';
 
 const Roomslist = () => {
     const roomsRef = firestore.collection('rooms');
@@ -52,7 +54,23 @@ export default Roomslist;
 
 function RoomObj(props) {
     const [modalOpen,setModalOpen] = useState(false);
-    let setModalClose = () => setModalOpen(false);
+
+    const [isRegister, setRegister] = useState(false);
+    const { uid, photoURL } = auth.currentUser;
+    const [submitted, setSubmitted] = useState(false);
+
+    const onRegister =  () => {
+      setRegister(true);
+    }
+
+    const setModalClose = () =>{
+      setRegister(false);
+    }
+
+    const setSubmit = () => {
+      setSubmitted(true);
+    }
+
   return (
     <Grid item xs={3}>
         <Paper fontSize={"13px"} style={{textAlign: "center", marginBottom: "10px", paddingBottom:"10px"}}
@@ -88,12 +106,48 @@ function RoomObj(props) {
                 </Grid>
             </DialogContent>
             <DialogActions style={{padding: '20px'}}>
-                <button>등록하기</button>
-                <button onClick={setModalClose} className="btn btn-primary">
+                <button onClick={setSubmit}>등록하기</button>
+                <Dialog open={isRegister}>
+               
+                  <DialogContent>
+                  <div className="row">
+                        <div className="col-3">
+                            <img src={props.info.profilePic} width= "200" height = "200" />
+                        </div>
+                        <div className="col-6" style={{ paddingLeft: '40px'}}>
+                            <p>{props.info.intro}</p>
+                            <p>{props.info.hashtag}</p>
+                            <p>장르: {props.info.genre}</p>
+                            <p>모집인원: {props.characters.length}</p>
+                            </div>
+                    </div>
+                    <div className="row" style={{
+                        paddingTop: "10px", paddingLeft: '15px'
+                    }}>
+                        선택할 수 있는 캐릭터
+                        </div>
+                    <div className="row">
+                        {props.characters.map(c =>
+                        <div><img src={c.pic} width="50" height="50" className="profile-pic" /> {c.name}</div>)}
+                    </div>
+                    <button onClick={setModalClose} className="btn btn-primary">
                     닫기
                 </button>
+                  </DialogContent>
+                </Dialog>
+                <Dialog open={submitted}>
+                  <DialogContent>
+                       제출되었습니다.
+                  </DialogContent>
+                </Dialog>
+               
             </DialogActions>
         </Dialog>
     </Grid>
   )  
 }
+
+/*
+ <ChatSignupModal show={isRegister}
+                onSubmit={setRegister(false)} characters={props.characters} uid={uid} roomid={props.id}/>
+*/

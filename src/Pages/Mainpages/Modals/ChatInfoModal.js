@@ -19,7 +19,7 @@ export class ChatInfoModal extends Component {
         const check = this.props.characters.find(c => c['user'] === uid);
         let setSignupClose = () => this.setState({ modalOpen: false });
         return (
-            <Dialog
+            <Modal
                 {...this.props}
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
