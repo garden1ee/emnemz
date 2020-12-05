@@ -13,7 +13,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DiscussionModal from './DiscussionModal';
 import TableRow from '@material-ui/core/TableRow';
-
+import {firestore } from "../firebase";
 
 
 const WritingRoomPage = (props) => {
@@ -21,7 +21,7 @@ const WritingRoomPage = (props) => {
     const [info, setInfo] = useState(location.state.info);
     const [characters, setCharacters] = useState(location.state.characters);
     const userChar = characters.find(c => c['user'] === props.user.uid);
-    const [agree_num, setAgreeNum] = useState(0);
+   
     const [disagree_num, setDisAgreeNum] = useState(0);
     const [voted, setVoted] = useState([]);
     const [participant_num, setParticipantNum] = useState(characters.length);
@@ -30,7 +30,9 @@ const WritingRoomPage = (props) => {
     var [isDiscussion, setDiscussion] = useState(false);
     var [isVote, setVote] = useState(false);
     var [isPublish, setPublish] = useState(false);
-    
+    const roomRef = firestore.doc(`rooms/${props.roomid}`);
+    const [agree_num, setAgree] = useState(location.state.agree_num);
+
     const openDiscussion = () => {
 
         setDiscussion(true);
@@ -57,6 +59,13 @@ const WritingRoomPage = (props) => {
         setPublish(false);
     }
 
+    let increaseAgreeNum = async function(){
+        const roomRef = firestore.doc(`rooms/${props.roomid}`);
+        await roomRef.set({
+             agree_num: agree_num,
+         },{merge: true});
+    }
+
     const voting = (isPositive) =>{
     
        if(voted.includes(props.user.uid)){
@@ -64,9 +73,12 @@ const WritingRoomPage = (props) => {
         } 
 
         if(isPositive){
-            setAgreeNum(agree_num + 1);
-               
-            if(agree_num === participant_num - 1){
+
+          
+            setAgree(agree_num + 1);
+            increaseAgreeNum();
+
+            if(agree_num=== participant_num - 1){
 
                 setCompleted(true);
             }
