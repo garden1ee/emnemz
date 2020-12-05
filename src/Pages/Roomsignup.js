@@ -11,12 +11,40 @@ const Roomsignup = (props) => {
     const Close = () => {
         setOpen(false);
       }
+
+    const [ chara, setChara ] = useState("");
+    const [ reason, setReason ] = useState("");
+    const [ determ, setDeterm ] = useState("");
+    const [ words, setWords ] = useState("");
+    const handleChange = (e) => {
+        const {name, value} = e.currentTarget;
+        if (name === "chara") {
+            setChara(value);
+        }
+        else if (name === "reason") {
+            setReason(value);
+        }
+        else if (name === "determ") {
+            setDeterm(value);
+        }
+        else if (name === "words") {
+            setWords(value);
+        }
+    }
     const { uid, photoURL } = auth.currentUser;
     let addUser = async function () {
         const roomRef = firestore.doc(`rooms/${props.roomid}`);
         await roomRef.set({
             applicants: [uid]
         }, {merge: true});
+        const appRef = firestore.collection(`rooms/${props.roomid}/applyforms`);
+        await appRef.add({
+                chara,
+                reason,
+                determ,
+                words,
+                uid
+        })
     }
     const [smOpen, setSmO ] = useState(false);
     const Oopen = () => {
@@ -38,10 +66,10 @@ const Roomsignup = (props) => {
 
                             <span><img src={c.pic} width="50" height="50" className="profile-pic" /> {c.name}</span>)}
                     <br/>
-                <TextField autoFocus margin="dense" id="name" label="하고 싶은 캐릭터" fullWidth/>
-                <TextField margin="dense" id="name" label="참여하고 싶은 이유" fullWidth/>
-                <TextField margin="dense" id="name" label="앞으로의 각오" fullWidth/>
-                <TextField margin="dense" id="name" label="하고 싶은 말" fullWidth/>
+                <TextField autoFocus margin="dense" name="chara" value={chara} label="하고 싶은 캐릭터" fullWidth onChange={(e)=>handleChange(e)}/>
+                <TextField margin="dense" name="reason" value={reason} label="참여하고 싶은 이유" fullWidth onChange={(e)=>handleChange(e)}/>
+                <TextField margin="dense" name="determ" value={determ} label="앞으로의 각오" fullWidth onChange={(e)=>handleChange(e)}/>
+                <TextField margin="dense" name="words" value={words} label="하고 싶은 말" fullWidth onChange={(e)=>handleChange(e)}/>
             </DialogContent>
             <DialogActions>
                 <Button onClick={()=>{addUser();Oopen();}} variant="outlined" color="primary">
