@@ -88,8 +88,7 @@ export const generateRoomDocument = async (room, additionalData) => {
       await roomRef.set({
         info,
         characters,
-        ...additionalData,
-        agree_num: 0
+        ...additionalData
       });
       await firestore.doc(`scripts/${room.id}`).set({
         scripts:[]

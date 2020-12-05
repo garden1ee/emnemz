@@ -31,7 +31,8 @@ const WritingRoomPage = (props) => {
     var [isVote, setVote] = useState(false);
     var [isPublish, setPublish] = useState(false);
     const roomRef = firestore.doc(`rooms/${props.roomid}`);
-    const [agree_num, setAgree] = useState(location.state.agree_num);
+    const [agree_num, setAgree] = useState(0);
+    
 
     const openDiscussion = () => {
 
@@ -61,9 +62,26 @@ const WritingRoomPage = (props) => {
 
     let increaseAgreeNum = async function(){
         const roomRef = firestore.doc(`rooms/${props.roomid}`);
-        await roomRef.set({
-             agree_num: agree_num,
-         },{merge: true});
+
+            await firestore.doc(`rooms/${props.roomid}`).set({
+                info,
+                characters,
+                completed: false,
+                users: [],
+                agree_num: location.state.agree_num + 1
+              })
+
+        if(location.state.agree_num === participant_num) {
+            await firestore.doc(`rooms/${props.roomid}`).set({
+                info,
+                characters,
+                completed: true,
+                users: [],
+                agree_num: location.state.agree_num
+              })
+        }
+       
+      
     }
 
     const voting = (isPositive) =>{

@@ -33,9 +33,11 @@ user:""}];
         info,
         characters,
         completed: false,
-        users: []
+        users: [],
+        agree_num: 0
       })
     }
+    
     return (
         <Grid container spacing={4} style={{ width: '100%', fontSize: '20px', margin: '20px'}}>
         <Grid item xs={6}>
