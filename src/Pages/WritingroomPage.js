@@ -31,7 +31,7 @@ const WritingRoomPage = (props) => {
     var [isVote, setVote] = useState(false);
     var [isPublish, setPublish] = useState(false);
     const roomRef = firestore.doc(`rooms/${props.roomid}`);
-    const [agree_num, setAgree] = useState(0);
+    const [agree_num, setAgree] = useState(location.state.agree_num);
     
 
     const openDiscussion = () => {
@@ -67,17 +67,18 @@ const WritingRoomPage = (props) => {
                 info,
                 characters,
                 completed: false,
-                users: [],
-                agree_num: location.state.agree_num + 1
+                users: ["bFloGsWXQ5ZNyb2acYagjgcl63z2", "kj2ctq3RAoYuKdO2bLrQIFeEmGu1"],
+                agree_num: parseInt(agree_num) + 1
               })
 
-        if(location.state.agree_num === participant_num) {
+        if(agree_num + 1 === participant_num){
+
             await firestore.doc(`rooms/${props.roomid}`).set({
                 info,
                 characters,
                 completed: true,
-                users: [],
-                agree_num: location.state.agree_num
+                users: ["bFloGsWXQ5ZNyb2acYagjgcl63z2", "kj2ctq3RAoYuKdO2bLrQIFeEmGu1"],
+                agree_num: agree_num + 1
               })
         }
        
@@ -96,7 +97,7 @@ const WritingRoomPage = (props) => {
             setAgree(agree_num + 1);
             increaseAgreeNum();
 
-            if(agree_num=== participant_num - 1){
+            if(agree_num=== participant_num){
 
                 setCompleted(true);
             }
