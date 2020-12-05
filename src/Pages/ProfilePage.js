@@ -36,9 +36,7 @@ const back = {
     color: "black",
     fontSize: 18,
 }
-const stly = {
-    textAlign: 'center',
-}
+
 
 const ProfilePage = () => {
     const classes = useStyles();
@@ -50,7 +48,6 @@ const ProfilePage = () => {
     const { photoURL, displayName, email, uid } = user;
 
     const toggleprofile = () => setModalprofile(!modalprofile);
-    const toggleroom = () => setModalroom(!modalroom);
  
     const roomsRef = firestore.collection('rooms');
     const query = roomsRef.where("users","array-contains", uid ).where("completed","==",false);
