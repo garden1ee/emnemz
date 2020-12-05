@@ -60,7 +60,7 @@ const ProfilePage = () => {
     const [completed] = useCollectionData(query3, {idField: 'id'});
     return (
         <div>
-            <Grid container spacing={2} className={classes.grid}>
+            <Grid container spacing={3} className={classes.grid}>
                 <Grid item xs={4}>
                     <div
                         style={{
@@ -86,29 +86,36 @@ const ProfilePage = () => {
                 </Grid>
                 <Grid item xs={12}>
                     <span style={back}>신청중인 방</span>
-                    <br /><br />
-                    <Paper className={classes.paper1}>
-                    { applying && applying.map(r => <RoomObj key={r.id} info={r.info} characters={r.characters} applied={true}/>)}
-                        { (applying===undefined || applying.length==0) && <text>신청 중인 방이 없습니다.</text>}
-                    </Paper>
                 </Grid>
+                { applying && applying.map(r => <RoomObj key={r.id} info={r.info} characters={r.characters} applied={true}/>)}
+                        { (applying===undefined || applying.length==0) && 
+                            <Grid item xs={12}>
+                                <Paper className={classes.paper1}>
+                                    <span>신청 중인 방이 없습니다.</span>
+                                </Paper>
+                            </Grid>}
+
                 <Grid item xs={12}>
                     <span style={back}>참가하는 방</span>
-                    <br /><br />
-                    <Paper className={classes.paper1} fontSize={"15px"}>
-                        { rooms && rooms.map(r => <Enterlist key={r.id} room={r} />)}
-                        { (rooms===undefined || rooms.length==0) && <span>참가 중인 방이 없습니다.</span>}
-                    </Paper>
                 </Grid>
+                { rooms && rooms.map(r => <Enterlist key={r.id} room={r} />)}
+                        { (rooms===undefined || rooms.length==0) && 
+                        <Grid item xs={12}>
+                            <Paper className={classes.paper1}>
+                                <span>참가 중인 방이 없습니다.</span>
+                            </Paper>
+                        </Grid>}
             
                 <Grid item xs={12}>
                     <span style={back}>완결낸 작품</span>
-                    <br /><br />
-                    <Paper className={classes.paper1}>
-                    { completed && completed.map(r => <NovelObj key={r.id} id={r.id} info={r.info} characters={r.characters} />)}
-                        { (completed===undefined || completed.length==0) && <span>완결 낸 작품이 없습니다.</span>}
-                    </Paper>
                 </Grid>
+                    { completed && completed.map(r => <NovelObj key={r.id} id={r.id} info={r.info} characters={r.characters} />)}
+                        { (completed===undefined || completed.length==0) &&
+                        <Grid item xs={12}>
+                            <Paper className={classes.paper1}>
+                                <span>완결 낸 작품이 없습니다.</span>
+                            </Paper>
+                        </Grid>}
             </Grid>
         </div>
     )
