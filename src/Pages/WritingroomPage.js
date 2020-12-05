@@ -59,9 +59,9 @@ const WritingRoomPage = (props) => {
 
     const voting = (isPositive) =>{
     
-       /* if(voted.includes(props.user.uid)){
+       if(voted.includes(props.user.uid)){
             return;
-        } */
+        } 
 
         if(isPositive){
             setAgreeNum(agree_num + 1);
@@ -75,7 +75,7 @@ const WritingRoomPage = (props) => {
             setDisAgreeNum(disagree_num + 1);
         }
        
-    //    setVoted(voted.concat(props.user.uid));
+        setVoted(voted.concat(props.user.uid));
 
     }
 
