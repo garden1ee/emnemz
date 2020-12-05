@@ -20,11 +20,27 @@ const Roomslist = () => {
         width: "auto",
         marginRight: 10,
     }
+    async function addroom() {
+      const info = {title: "슬기로운 의사생활",
+    profilePic: "http://img.newspim.com/news/2020/02/19/2002191027165970.jpg", 
+    intro:"좌충우돌 의사들의 판타지", hashtag:["#개그","#드라마"],genre:"드라마, 의학, 로맨스",
+authorwords:"소소하지만 특별한 의사들의 이야기 "};
+    const characters = [{name:"김준완",pic:"https://ww.namu.la/s/748d0d5da5c0daa06cc3ea5c48323fbe64e25c8810876968e4eb3f17bd6ca723366d29d73d81da1f65bc262f9743a0ec7f9855cb02cf8860fc184df441389b4f91c48003f77f578b9508a9640feca643b6f28759ed61e30b7406e4e37ce46d0a",
+user:""},
+    {name:"안정원",pic:"https://w.namu.la/s/0afbce42b632f22f922ece5a6d1ea59fa513b22eade5573f5b1cc73348bde754c137809d1bbc527d809fac0833b4c6aee3610cf5e16d7f382de3fef8ceb97831922af8a57967965527ec0a02ee98fda8c7e4cf771de8651b07d7103695871cf3",
+user:""}];
+      await firestore.doc('rooms/5').set({
+        info,
+        characters,
+        completed: false,
+        users: []
+      })
+    }
     return (
         <Grid container spacing={4} style={{ width: '100%', fontSize: '20px', margin: '20px'}}>
         <Grid item xs={6}>
           <input style={searchbarstyle}/>
-          <button onClick={()=>{alert("조금더 시간을 주시면 구현됩니다")}}> 검색</button>
+          <button onClick={()=>{alert("조금더 시간을 주시면 구현됩니다");addroom();}}> 검색</button>
         </Grid>
         <Grid item xs={6}>
           <ui class="searchbar_char">
