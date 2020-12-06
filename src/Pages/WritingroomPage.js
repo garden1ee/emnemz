@@ -68,7 +68,7 @@ const WritingRoomPage = (props) => {
                 characters,
                 completed: false,
                 users: ["bFloGsWXQ5ZNyb2acYagjgcl63z2", "kj2ctq3RAoYuKdO2bLrQIFeEmGu1"],
-                agree_num: parseInt(agree_num) + 1
+                agree_num: agree_num + 1 : 0
               })
 
         if(agree_num + 1 === participant_num){
@@ -78,7 +78,6 @@ const WritingRoomPage = (props) => {
                 characters,
                 completed: true,
                 users: ["bFloGsWXQ5ZNyb2acYagjgcl63z2", "kj2ctq3RAoYuKdO2bLrQIFeEmGu1"],
-                agree_num: agree_num + 1
               })
         }
        
