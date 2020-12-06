@@ -41,9 +41,7 @@ const back = {
 const ProfilePage = () => {
     const classes = useStyles();
     const authed = auth.currentUser;
-    console.log(authed + 'curuser');
     const [modalprofile, setModalprofile] = useState(false);
-    const [modalroom, setModalroom] = useState(false);
     const user = useContext(UserContext);
     const { photoURL, displayName, email, uid } = user;
 

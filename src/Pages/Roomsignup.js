@@ -38,7 +38,8 @@ const Roomsignup = (props) => {
             applicants: [uid]
         }, {merge: true});
         const appRef = firestore.collection(`rooms/${props.roomid}/applyforms`);
-        await appRef.add({
+        await appRef.doc(uid).set(
+            {
                 chara,
                 reason,
                 determ,
