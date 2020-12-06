@@ -13,7 +13,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DiscussionModal from './DiscussionModal';
 import TableRow from '@material-ui/core/TableRow';
-
+import {firestore } from "../firebase";
 
 
 const WritingRoomPage = (props) => {
@@ -21,16 +21,19 @@ const WritingRoomPage = (props) => {
     const [info, setInfo] = useState(location.state.info);
     const [characters, setCharacters] = useState(location.state.characters);
     const userChar = characters.find(c => c['user'] === props.user.uid);
-    const [agree_num, setAgreeNum] = useState(0);
+   
     const [disagree_num, setDisAgreeNum] = useState(0);
     const [voted, setVoted] = useState([]);
     const [participant_num, setParticipantNum] = useState(characters.length);
-    const [attemptPublish, setAttemptPublish] = useState(false);
+    const [attemptPublish, setAttemptPublish] = useState(location.state.attemptPublish);
     const [isCompleted, setCompleted] = useState(false);
     var [isDiscussion, setDiscussion] = useState(false);
     var [isVote, setVote] = useState(false);
     var [isPublish, setPublish] = useState(false);
+    const roomRef = firestore.doc(`rooms/${props.roomid}`);
+    const [agree_num, setAgree] = useState(location.state.agree_num);
     
+
     const openDiscussion = () => {
 
         setDiscussion(true);
@@ -48,13 +51,42 @@ const WritingRoomPage = (props) => {
         setVote(false);
     }
 
+   
     const openPublish = () => {
-        setPublish(true);
-
+       
+          setPublish(true);
     }
 
     const closePublish = () => {
         setPublish(false);
+    }
+
+    let increaseAgreeNum = async function(){
+        const roomRef = firestore.doc(`rooms/${props.roomid}`);
+
+            await firestore.doc(`rooms/${props.roomid}`).set({
+                info,
+                characters,
+                completed: false,
+                users: ["bFloGsWXQ5ZNyb2acYagjgcl63z2", "kj2ctq3RAoYuKdO2bLrQIFeEmGu1"],
+                agree_num: agree_num + 1 || 0
+              })
+              setAgree(agree_num + 1);
+        if(agree_num === participant_num - 1) {
+            setAttemptPublish(true);
+            setCompleted(true);
+             
+            /*await firestore.doc(`rooms/${props.roomid}`).set({
+                info,
+                characters,
+                completed: true,
+                users: ["bFloGsWXQ5ZNyb2acYagjgcl63z2", "kj2ctq3RAoYuKdO2bLrQIFeEmGu1"],
+              }) */
+
+              
+        }
+       
+      
     }
 
     const voting = (isPositive) =>{
@@ -64,12 +96,12 @@ const WritingRoomPage = (props) => {
         } 
 
         if(isPositive){
-            setAgreeNum(agree_num + 1);
-               
-            if(agree_num === participant_num - 1){
 
-                setCompleted(true);
-            }
+          
+            
+            increaseAgreeNum();
+
+          
         }
         else{
             setDisAgreeNum(disagree_num + 1);

@@ -129,7 +129,8 @@ function Enterlist(props) {
             pathname : `/writingroom/${r.id}`,
             state : {
                 info: r.info,
-                characters: r.characters
+                characters: r.characters,
+                agree_num: r.agree_num
             }
         }}><img src={r.info.profilePic} style={{width:200, height:200}}/></Link>
         <br />
@@ -137,7 +138,8 @@ function Enterlist(props) {
             pathname : `/writingroom/${r.id}`,
             state : {
                 info: r.info,
-                characters: r.characters
+                characters: r.characters,
+                agree_num: r.agree_num
             }
     }}>{r.info.title}</Link>
     <br />
