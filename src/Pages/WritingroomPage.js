@@ -25,7 +25,7 @@ const WritingRoomPage = (props) => {
     const [disagree_num, setDisAgreeNum] = useState(0);
     const [voted, setVoted] = useState([]);
     const [participant_num, setParticipantNum] = useState(characters.length);
-    const [attemptPublish, setAttemptPublish] = useState(false);
+    const [attemptPublish, setAttemptPublish] = useState(location.state.attemptPublish);
     const [isCompleted, setCompleted] = useState(false);
     var [isDiscussion, setDiscussion] = useState(false);
     var [isVote, setVote] = useState(false);
@@ -51,9 +51,10 @@ const WritingRoomPage = (props) => {
         setVote(false);
     }
 
+   
     const openPublish = () => {
-        setPublish(true);
-
+       
+          setPublish(true);
     }
 
     const closePublish = () => {
@@ -68,10 +69,12 @@ const WritingRoomPage = (props) => {
                 characters,
                 completed: false,
                 users: ["bFloGsWXQ5ZNyb2acYagjgcl63z2", "kj2ctq3RAoYuKdO2bLrQIFeEmGu1"],
-                agree_num: agree_num + 1 : 0
+                agree_num: agree_num + 1 || 0
               })
-
-        if(agree_num + 1 === participant_num){
+              
+        if(agree_num === participant_num) {
+            setAttemptPublish(true);
+            setCompleted(true);
 
             await firestore.doc(`rooms/${props.roomid}`).set({
                 info,
@@ -79,6 +82,8 @@ const WritingRoomPage = (props) => {
                 completed: true,
                 users: ["bFloGsWXQ5ZNyb2acYagjgcl63z2", "kj2ctq3RAoYuKdO2bLrQIFeEmGu1"],
               })
+
+              
         }
        
       
@@ -96,10 +101,7 @@ const WritingRoomPage = (props) => {
             setAgree(agree_num + 1);
             increaseAgreeNum();
 
-            if(agree_num=== participant_num){
-
-                setCompleted(true);
-            }
+          
         }
         else{
             setDisAgreeNum(disagree_num + 1);
