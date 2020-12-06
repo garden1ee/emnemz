@@ -71,17 +71,17 @@ const WritingRoomPage = (props) => {
                 users: ["bFloGsWXQ5ZNyb2acYagjgcl63z2", "kj2ctq3RAoYuKdO2bLrQIFeEmGu1"],
                 agree_num: agree_num + 1 || 0
               })
-              
-        if(agree_num === participant_num) {
+              setAgree(agree_num + 1);
+        if(agree_num === participant_num - 1) {
             setAttemptPublish(true);
             setCompleted(true);
-
-            await firestore.doc(`rooms/${props.roomid}`).set({
+             
+            /*await firestore.doc(`rooms/${props.roomid}`).set({
                 info,
                 characters,
                 completed: true,
                 users: ["bFloGsWXQ5ZNyb2acYagjgcl63z2", "kj2ctq3RAoYuKdO2bLrQIFeEmGu1"],
-              })
+              }) */
 
               
         }
@@ -98,7 +98,7 @@ const WritingRoomPage = (props) => {
         if(isPositive){
 
           
-            setAgree(agree_num + 1);
+            
             increaseAgreeNum();
 
           
