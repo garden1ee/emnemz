@@ -10,7 +10,7 @@ import ChatMessage from "./ChatMessage";
 function ChatPage(props) {
   const dummy = useRef();
   const messagesRef = firestore.collection(`scripts_${props.id}`);
-  const query = messagesRef.orderBy('createdAt').limit(25);
+  const query = messagesRef.orderBy('createdAt').limit(10000);
 
   const [messages] = useCollectionData(query, { idField: 'id' });
 

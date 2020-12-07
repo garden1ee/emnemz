@@ -69,13 +69,12 @@ const WritingRoomPage = (props) => {
     let increaseAgreeNum = async function(){
         const roomRef = firestore.doc(`rooms/${props.roomid}`);
 
-            await firestore.doc(`rooms/${props.roomid}`).set({
+            await roomRef.set({
                 info,
                 characters,
                 completed: false,
-                users: ["bFloGsWXQ5ZNyb2acYagjgcl63z2", "kj2ctq3RAoYuKdO2bLrQIFeEmGu1"],
                 agree_num: agree_num + 1 || 0
-              })
+              },{merge: true});
               setAgree(agree_num + 1);
            
             /*await firestore.doc(`rooms/${props.roomid}`).set({
