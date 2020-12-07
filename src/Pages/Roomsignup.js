@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText, TextField } from "@material-ui/core";
 import { Link } from 'react-router-dom';
+import firebase from "firebase/app";
 import { firestore, auth } from "../firebase";
 
 const Roomsignup = (props) => {
@@ -34,9 +35,9 @@ const Roomsignup = (props) => {
     const { uid, photoURL } = auth.currentUser;
     let addUser = async function () {
         const roomRef = firestore.doc(`rooms/${props.roomid}`);
-        await roomRef.set({
-            applicants: [uid]
-        }, {merge: true});
+        await roomRef.update({
+            applicants: firebase.firestore.FieldValue.arrayUnion(uid)
+        });
         const appRef = firestore.collection(`rooms/${props.roomid}/applyforms`);
         await appRef.doc(uid).set(
             {

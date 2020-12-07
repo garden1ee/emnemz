@@ -32,8 +32,7 @@ const Publish = (props) => {
     let updateCompleted = async function(){
         const roomRef = firestore.doc(`rooms/${props.id}`);
         await roomRef.set({
-            completed: true,
-            messages: messages
+            completed: true
         },{merge: true});
     }
 
