@@ -55,10 +55,15 @@ const WritingRoomPage = (props) => {
     const openPublish = () => {
        
           setPublish(true);
+          if(agree_num === participant_num) {
+            setAttemptPublish(true);
+            setCompleted(true);
+        }  
     }
 
     const closePublish = () => {
         setPublish(false);
+        
     }
 
     let increaseAgreeNum = async function(){
@@ -72,10 +77,7 @@ const WritingRoomPage = (props) => {
                 agree_num: agree_num + 1 || 0
               })
               setAgree(agree_num + 1);
-        if(agree_num === participant_num - 1) {
-            setAttemptPublish(true);
-            setCompleted(true);
-             
+           
             /*await firestore.doc(`rooms/${props.roomid}`).set({
                 info,
                 characters,
@@ -84,7 +86,7 @@ const WritingRoomPage = (props) => {
               }) */
 
               
-        }
+        
        
       
     }
