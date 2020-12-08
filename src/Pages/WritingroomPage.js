@@ -166,7 +166,7 @@ const WritingRoomPage = (props) => {
                             </a>
                         </li>
                         <Dialog open={isVote}>
-                        <DialogContent style={{width: 500, height:700}}>
+                        <DialogContent style={{width: 500, height:70}}>
                         <button type="button" class="btn btn-default" class="x_button"
                                 onClick={closeVote} class="right_align1">
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -175,7 +175,7 @@ const WritingRoomPage = (props) => {
                         </button>
                         </DialogContent>
                         
-                        <div>
+                        <div style={{padding: '30px'}}>
                             <TableRow>
                                 출판 투표에 동의하시겠습니까?
                             </TableRow>
