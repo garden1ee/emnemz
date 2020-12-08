@@ -1,10 +1,10 @@
-import react, {useState} from 'react';
+import React, {useState} from 'react';
 import {Dropdown} from 'react-bootstrap';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
 import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
-import { lightBlue } from '@material-ui/core/colors';
+import DialogActions from '@material-ui/core/DialogActions';
+import { Grid, Button } from "@material-ui/core";
 
 const NovelRoomInfo = ( { info:{ title, profilePic, genre, hashtag, intro, authorwords } }) => {
     const [isOpen, setOpen] = useState(false);
@@ -21,40 +21,28 @@ const NovelRoomInfo = ( { info:{ title, profilePic, genre, hashtag, intro, autho
         onClick={Open}>
             소설 정보
         </Dropdown.Item>
-        <Dialog open={isOpen}>    
-
-            <div>
-                <DialogContent style={{width: 1000}}>
-                    <TableRow>
-                        <img src= {profilePic} width="200" height="200" alt="profile"/>
-                 
-                         <br></br>
-                        <p className="NV-li">
-                            <TableRow> 작품명:   {title}  </TableRow>
-                            
-                            <TableRow>장르:  {genre}</TableRow>
-                            <br></br>
-                            <TableRow> 해시 태그:  {hashtag}</TableRow>
-                            <br></br>
-                            <TableRow> 작품 소개: {intro}</TableRow>
-                        </p>
-            
-                    </TableRow>
-                    <TableRow>
-                        <TableCell style={{width:500}}> 작가의 말: {authorwords}</TableCell>
-            
-                    </TableRow>
-                </DialogContent>
-
-                <DialogContent>
-
-                <button onClick={Close} class="btn btn-primary">
-                    뒤로 가기
-                </button>
-                </DialogContent>
-     
-            </div>
-
+        <Dialog open={isOpen} fullWidth='true' maxWidth="md" style={{padding: '30px'}}>    
+            <DialogTitle style={{padding: '20px'}}><span style={{fontWeight: '700'}}>소설방 정보</span></DialogTitle>
+            <DialogContent style={{padding: '30px'}}>
+                <Grid container spacing={2}>
+                    <Grid item xs={4} style={{textAlign: 'center'}}>
+                        <img src={profilePic} width= "200" height = "200" alt="profile"/>
+                    </Grid>
+                    <Grid item xs={8}>
+                        <p style={{fontWeight: '700'}}>작품명:  {title}</p>
+                        <p>장르:  {genre}</p>
+                        <p>해시태그:  {hashtag}</p>
+                        <p>작품 소개: {intro}</p>
+                    </Grid>
+                    <Grid item xs={12} style={{
+                        paddingTop: "10px", paddingLeft: '15px'}}>
+                    <p>작가의 말:  {authorwords}</p>
+                    </Grid>
+                </Grid>
+            </DialogContent>
+            <DialogActions>
+                <Button variant="outlined" color="primary" onClick={Close}> 뒤로 가기 </Button>
+            </DialogActions>
         </Dialog>
     </div>);
 }

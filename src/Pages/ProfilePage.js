@@ -1,4 +1,4 @@
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from 'react-router-dom';
 import { UserContext } from "../Components/UserProvider";
 import { auth, firestore } from "../firebase";
@@ -130,7 +130,8 @@ function Enterlist(props) {
             state : {
                 info: r.info,
                 characters: r.characters,
-                agree_num: r.agree_num
+                agree_num: r.agree_num,
+                createdby: r.createdby
             }
         }}><img src={r.info.profilePic} style={{width:200, height:200}}/></Link>
         <br />
@@ -139,7 +140,8 @@ function Enterlist(props) {
             state : {
                 info: r.info,
                 characters: r.characters,
-                agree_num: r.agree_num
+                agree_num: r.agree_num,
+                createdBy: r.createdBy
             }
     }}>{r.info.title}</Link>
     <br />

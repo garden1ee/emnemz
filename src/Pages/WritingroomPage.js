@@ -7,6 +7,7 @@ import { DropdownButton, Dropdown } from 'react-bootstrap';
 import '../style/WritingroomPage.css';
 import NovelRoomInfo from './NovelRoomInfo';
 import ParticipantsInfo from './ParticipantsInfo';
+import Applyforms from './Applyforms';
 import Publish from './Publish';
 import { Link, useLocation } from 'react-router-dom';
 import Dialog from '@material-ui/core/Dialog';
@@ -20,6 +21,7 @@ const WritingRoomPage = (props) => {
     const location = useLocation();
     const [info, setInfo] = useState(location.state.info);
     const [characters, setCharacters] = useState(location.state.characters);
+    const [createdBy, setCreator] = useState(location.state.createdBy);
     const userChar = characters.find(c => c['user'] === props.user.uid);
    
     const [disagree_num, setDisAgreeNum] = useState(0);
@@ -128,6 +130,7 @@ const WritingRoomPage = (props) => {
                         <div>
                         <ParticipantsInfo characters={characters}/>
                         <NovelRoomInfo info={info}/>
+                        {/*createdBy===props.user.uid? <Applyforms roomid={props.roomid} />:null*/}
                         <Dropdown.Item className="WRdropdownedMenu">친구 초대</Dropdown.Item>
                         </div>
                     </DropdownButton>

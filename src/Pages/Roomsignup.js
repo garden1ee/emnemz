@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState, useContext } from 'react';
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText, TextField } from "@material-ui/core";
 import { Link } from 'react-router-dom';
 import firebase from "firebase/app";
 import { firestore, auth } from "../firebase";
+import { UserContext } from "../Components/UserProvider";
 
 const Roomsignup = (props) => {
     const [isOpen, setOpen] = useState(false);
@@ -32,7 +33,8 @@ const Roomsignup = (props) => {
             setWords(value);
         }
     }
-    const { uid, photoURL } = auth.currentUser;
+    const user = useContext(UserContext);
+    const { photoURL, displayName, email, uid } = user;
     let addUser = async function () {
         const roomRef = firestore.doc(`rooms/${props.roomid}`);
         await roomRef.update({
@@ -45,7 +47,8 @@ const Roomsignup = (props) => {
                 reason,
                 determ,
                 words,
-                uid
+                uid,
+                displayName
         })
     }
     const [smOpen, setSmO ] = useState(false);
